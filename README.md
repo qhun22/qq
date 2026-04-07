@@ -95,7 +95,9 @@ Nhóm lựa chọn **Hybrid (Stage-gate cho phần cứng + Agile/Scrum cho clou
   - Cuối sprint có demo/đánh giá và cập nhật kế hoạch (nếu có thay đổi).
 
 ## 3.5. Công cụ quản lý dự án (Jira) – không thuộc kiến trúc hệ thống
-Nhóm dự kiến sử dụng **Jira** để quản lý backlog, phân công công việc, theo dõi tiến độ theo sprint/tuần và trích xuất báo cáo (ví dụ: % hoàn thành, burndown). Jira chỉ phục vụ **quản lý dự án** và **không nằm trong phạm vi kiến trúc sản phẩm GreenThumb** (không đưa Jira vào sơ đồ hệ thống).
+Nhóm **sử dụng Jira** để quản lý backlog, phân công công việc, theo dõi tiến độ theo sprint/tuần và trích xuất báo cáo (ví dụ: % hoàn thành, burndown). Jira chỉ phục vụ **quản lý dự án** và **không nằm trong phạm vi kiến trúc sản phẩm GreenThumb** (không đưa Jira vào sơ đồ hệ thống).
+
+Minh chứng sử dụng Jira được trình bày tại **Phụ lục A (Hình A.1–A.4)**.
 
 **Bảng 3.5. Thiết lập Jira (gợi ý tối thiểu)**
 
