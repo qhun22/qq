@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hình 7.1 – Luồng triển khai (GreenThumb)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .hint { margin-bottom: 12px; color: #333; }
+    .box { border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div class="hint">
+    <strong>Cách xuất hình:</strong> Mở file này bằng trình duyệt → copy sơ đồ sang https://mermaid.live để export PNG/SVG.
+  </div>
+
+  <div class="box">
+    <pre class="mermaid">
+flowchart LR
+  A[Chốt BOM + thiết kế] --> B[Pilot run (lô thử)]
+  B --> C[QC + Test xuất xưởng]
+  C --> D[Đóng gói + HDSD]
+  D --> E[Phân phối thiết bị]
+
+  F[Chuẩn bị phát hành app] --> G[Smoke test]
+  G --> H[Đăng tải store (giả định)]
+  H --> I[Người dùng cài app]
+
+  E --> J[Onboarding: kết nối Wi‑Fi + thêm thiết bị]
+  I --> J
+  J --> K[Vận hành + hỗ trợ sau bán]
+    </pre>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default" });
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hình 6.1 – Risk Matrix (5x5)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .hint { margin-bottom: 12px; color: #333; max-width: 980px; }
+    .legend { display: flex; gap: 12px; align-items: center; margin: 10px 0 14px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+    .swatch { width: 14px; height: 14px; border: 1px solid #999; }
+    .wrap { max-width: 980px; }
+    table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+    th, td { border: 1px solid #aaa; padding: 8px; vertical-align: top; }
+    th { background: #f3f3f3; font-weight: 600; text-align: center; }
+    .axis { font-weight: 700; text-align: center; background: #f9f9f9; }
+
+    /* Heatmap colors by score band (approx). */
+    .low { background: #e7f5e7; }
+    .med { background: #fff4d6; }
+    .high { background: #fde2e2; }
+
+    .cellTitle { font-size: 12px; color: #333; margin-bottom: 6px; }
+    .risks { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 12px; padding: 2px 6px; border: 1px solid #777; border-radius: 999px; background: rgba(255,255,255,0.65); }
+
+    .note { margin-top: 10px; font-size: 13px; color: #444; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hint">
+      <strong>Hình 6.1 – Ma trận rủi ro (Probability × Impact)</strong><br/>
+      Trục dọc: Probability (1–5). Trục ngang: Impact (1–5). Màu nền: Low/Medium/High theo vùng ưu tiên.
+    </div>
+
+    <div class="legend">
+      <span class="chip"><span class="swatch low"></span> Low (1–7)</span>
+      <span class="chip"><span class="swatch med"></span> Medium (8–14)</span>
+      <span class="chip"><span class="swatch high"></span> High (15–25)</span>
+    </div>
+
+    <table aria-label="Risk matrix 5x5">
+      <tr>
+        <th class="axis" style="width: 120px;">Probability</th>
+        <th>Impact 1</th>
+        <th>Impact 2</th>
+        <th>Impact 3</th>
+        <th>Impact 4</th>
+        <th>Impact 5</th>
+      </tr>
+
+      <!-- P=5 -->
+      <tr>
+        <th class="axis">5 (Rất cao)</th>
+        <td class="med"><div class="cellTitle">P5×I1</div><div class="risks"></div></td>
+        <td class="high"><div class="cellTitle">P5×I2</div><div class="risks"></div></td>
+        <td class="high"><div class="cellTitle">P5×I3</div><div class="risks"></div></td>
+        <td class="high"><div class="cellTitle">P5×I4</div><div class="risks"></div></td>
+        <td class="high"><div class="cellTitle">P5×I5</div><div class="risks"></div></td>
+      </tr>
+
+      <!-- P=4 -->
+      <tr>
+        <th class="axis">4 (Cao)</th>
+        <td class="low"><div class="cellTitle">P4×I1</div><div class="risks"></div></td>
+        <td class="med"><div class="cellTitle">P4×I2</div><div class="risks"></div></td>
+        <td class="med"><div class="cellTitle">P4×I3</div><div class="risks"><span class="tag">R4</span><span class="tag">R7</span></div></td>
+        <td class="high"><div class="cellTitle">P4×I4</div><div class="risks"><span class="tag">R1</span></div></td>
+        <td class="high"><div class="cellTitle">P4×I5</div><div class="risks"></div></td>
+      </tr>
+
+      <!-- P=3 -->
+      <tr>
+        <th class="axis">3 (Trung bình)</th>
+        <td class="low"><div class="cellTitle">P3×I1</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P3×I2</div><div class="risks"></div></td>
+        <td class="med"><div class="cellTitle">P3×I3</div><div class="risks"><span class="tag">R5</span><span class="tag">R8</span></div></td>
+        <td class="med"><div class="cellTitle">P3×I4</div><div class="risks"><span class="tag">R3</span><span class="tag">R10</span></div></td>
+        <td class="high"><div class="cellTitle">P3×I5</div><div class="risks"><span class="tag">R2</span></div></td>
+      </tr>
+
+      <!-- P=2 -->
+      <tr>
+        <th class="axis">2 (Thấp)</th>
+        <td class="low"><div class="cellTitle">P2×I1</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P2×I2</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P2×I3</div><div class="risks"></div></td>
+        <td class="med"><div class="cellTitle">P2×I4</div><div class="risks"><span class="tag">R9</span></div></td>
+        <td class="med"><div class="cellTitle">P2×I5</div><div class="risks"><span class="tag">R6</span></div></td>
+      </tr>
+
+      <!-- P=1 -->
+      <tr>
+        <th class="axis">1 (Rất thấp)</th>
+        <td class="low"><div class="cellTitle">P1×I1</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P1×I2</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P1×I3</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P1×I4</div><div class="risks"></div></td>
+        <td class="low"><div class="cellTitle">P1×I5</div><div class="risks"></div></td>
+      </tr>
+    </table>
+
+    <div class="note">
+      Gợi ý chèn Word: chụp ảnh màn hình hoặc Print to PDF rồi lấy hình. Bạn có thể đổi vị trí tag (R1…R10) nếu cập nhật P/I trong Risk Register.
+    </div>
+  </div>
+</body>
+</html>

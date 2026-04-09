@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hình 2.1 – Use Case (GreenThumb)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .hint { margin-bottom: 12px; color: #333; }
+    .box { border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div class="hint">
+    <strong>Cách xuất hình:</strong> Mở file này bằng trình duyệt → copy sơ đồ sang https://mermaid.live để export PNG/SVG.
+  </div>
+
+  <div class="box">
+    <pre class="mermaid">
+flowchart LR
+  U[Actor: User] --> UC01((UC01: Xem dữ liệu\nđộ ẩm/nhiệt độ))
+  U --> UC02((UC02: Xem lịch sử/biểu đồ))
+  U --> UC03((UC03: Nhận cảnh báo\nđộ ẩm thấp))
+  U --> UC04((UC04: Cấu hình ngưỡng\ncảnh báo))
+  U --> UC05((UC05: Điều khiển bơm\nBật/Tắt))
+    </pre>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default" });
+  </script>
+</body>
+</html>

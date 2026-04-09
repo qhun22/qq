@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hình 3.1 – Power–Interest Matrix (GreenThumb)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .hint { margin-bottom: 12px; color: #333; }
+    .box { border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div class="hint">
+    <strong>Cách xuất hình:</strong> Mở file này bằng trình duyệt → copy sơ đồ sang https://mermaid.live để export PNG/SVG.
+  </div>
+
+  <div class="box">
+    <pre class="mermaid">
+quadrantChart
+  title Power–Interest Matrix (GreenThumb)
+  x-axis Low Interest --> High Interest
+  y-axis Low Power --> High Power
+  quadrant-1 Manage closely
+  quadrant-2 Keep satisfied
+  quadrant-3 Monitor
+  quadrant-4 Keep informed
+
+  SH3: [0.85, 0.90]
+  SH2: [0.80, 0.85]
+  SH4: [0.35, 0.70]
+  SH5: [0.40, 0.65]
+  SH1: [0.75, 0.30]
+  SH6: [0.30, 0.25]
+    </pre>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default" });
+  </script>
+</body>
+</html>

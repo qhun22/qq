@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hình 4.1 – WBS (GreenThumb)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .hint { margin-bottom: 12px; color: #333; }
+    .box { border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div class="hint">
+    <strong>Cách xuất hình:</strong> Mở file này bằng trình duyệt → copy sơ đồ sang https://mermaid.live để export PNG/SVG.
+  </div>
+
+  <div class="box">
+    <pre class="mermaid">
+mindmap
+  root((GreenThumb - Project))
+    Project Management
+      Scope & Plan
+      Schedule & Budget
+      Risk & Quality
+      Change control
+    Hardware & Firmware
+      BOM & Design
+      Procurement
+      Prototype #1
+      Telemetry + Reconnect
+      Pump Control & Safety
+      Prototype #2 + Calibration
+      HW/FW Test
+    Cloud
+      Architecture & Contract
+      Ingest Telemetry
+      Storage & Query
+      Command Path
+      Alert Rules + Notify
+      Logging/Monitoring
+    Mobile App
+      UX/Wireframe
+      Dashboard Realtime
+      History/Chart
+      Alerts + Threshold
+      Pump Control UI
+      Offline/Error Handling
+    Integration & Testing
+      Test Plan
+      E2E Integration Test
+      UAT + Fix
+    Deployment (Assumed)
+      Mass production plan
+      Store release checklist
+      Post-sale support
+    </pre>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default" });
+  </script>
+</body>
+</html>

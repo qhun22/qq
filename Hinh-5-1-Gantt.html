@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hình 5.1 – Gantt Chart (GreenThumb)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .hint { margin-bottom: 12px; color: #333; }
+    .box { border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+    .note { margin-top: 10px; font-size: 13px; color: #444; }
+  </style>
+</head>
+<body>
+  <div class="hint">
+    <strong>Cách xuất hình:</strong> Mở file này bằng trình duyệt → copy sơ đồ sang https://mermaid.live để export PNG/SVG.
+  </div>
+
+  <div class="box">
+    <pre class="mermaid">
+gantt
+  title GreenThumb - Master Schedule (7 weeks)
+  dateFormat  YYYY-MM-DD
+  axisFormat  %d/%m
+
+  section Week 1
+  T1 Kickoff + Scope + FR/NFR + Stakeholders     :t1, 2026-04-06, 5d
+  M1 Baseline approved (milestone)              :m1, 2026-04-10, 0d
+
+  section Week 2
+  T2 Architecture + MQTT/HTTP Contract          :t2, after t1, 5d
+  T3 BOM + Power/Pump Design                    :t3, after t1, 5d
+
+  section Week 3
+  T4 Procurement (02 prototypes)                :t4, after t3, 5d
+  T5 Assemble Prototype #1                      :t5, after t4, 2d
+  T6 Firmware telemetry + reconnect             :t6, after t5, 5d
+  T7 Cloud ingest + storage                     :t7, after t2, 5d
+  T8 App skeleton + dashboard (mock)            :t8, after t2, 5d
+  M2 Prototype #1 sends telemetry (milestone)   :m2, after t6, 0d
+
+  section Week 4
+  T9 Command path (Cloud<->Device)              :t9, after t6, 5d
+  T10 App integrate + pump control UI           :t10, after t8, 5d
+
+  section Week 5
+  T11 Prototype #2 stabilize + calibration      :t11, after t6, 5d
+  T12 End-to-end Integration Test               :t12, after t10, 5d
+  M3 E2E demo ready (milestone)                 :m3, after t12, 0d
+
+  section Week 6
+  T13 UAT + bug fixing                          :t13, after t12, 5d
+  M4 UAT pass (milestone)                       :m4, after t13, 0d
+
+  section Week 7
+  T14 Final report + appendix + slides          :t14, after t13, 5d
+  M5 Submission (milestone)                     :m5, after t14, 0d
+    </pre>
+    <div class="note">
+      Ghi chú: Ngày bắt đầu là giả định. Bạn có thể chỉnh lại mốc ngày để khớp lịch học, miễn giữ logic phụ thuộc (after ...).
+    </div>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default" });
+  </script>
+</body>
+</html>
