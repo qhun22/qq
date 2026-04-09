@@ -52,37 +52,37 @@ Nhóm áp dụng 4 chiến lược:
 - **Chấp nhận (Accept):** chấp nhận và chuẩn bị phương án dự phòng.
 
 ### 6.4.2. Sổ theo dõi rủi ro (Risk Register)
-Do bảng Risk Register thường dài và nhiều cột, nhóm tách thành 2 bảng để dễ trình bày trong Word: (1) nhận diện–đánh giá và (2) ứng phó–theo dõi.
+Tách thành 2 bảng để trình bày gọn.
 
 **Bảng 6.1a. Risk Register – Nhận diện & đánh giá**
 
 | ID | Rủi ro | Nhóm | Nguyên nhân | P | I | Score | Mức |
 |---|---|---|---|---:|---:|---:|---|
-| R1 | Chậm cung ứng linh kiện | Cung ứng | Nhà cung cấp/vận chuyển trễ, hết hàng | 4 | 4 | 16 | High |
-| R2 | Lỗi giao tiếp app–cloud–device | Kỹ thuật | Contract không rõ, sai payload/topic, thiếu test tích hợp | 3 | 5 | 15 | High |
-| R3 | Reset ESP32 khi bật bơm (sụt áp) | Thiết bị | Bơm kéo dòng lớn, nguồn không đủ, thiết kế mạch chưa phù hợp | 3 | 4 | 12 | Medium |
-| R4 | Sai lệch cảm biến độ ẩm theo loại đất | Chất lượng | Cảm biến giá rẻ, môi trường đo biến thiên | 4 | 3 | 12 | Medium |
-| R5 | Mất Wi‑Fi/Internet làm gián đoạn dữ liệu | Kỹ thuật | Môi trường mạng không ổn định, router lỗi | 3 | 3 | 9 | Medium |
-| R6 | Lộ token/credential (bảo mật) | Bảo mật | Hard-code key, chia sẻ repo không kiểm soát | 2 | 5 | 10 | Medium |
-| R7 | Ước lượng sai thời gian tích hợp | Tiến độ | Tích hợp IoT thường phát sinh lỗi khó đoán | 4 | 3 | 12 | Medium |
-| R8 | Lỗi cảnh báo (false positive/negative) | Chất lượng | Ngưỡng không phù hợp, dữ liệu nhiễu, rule đơn giản | 3 | 3 | 9 | Medium |
-| R9 | Bơm kẹt/chạy khô gây hỏng | Thiết bị | Không có nước, cơ khí kẹt | 2 | 4 | 8 | Medium |
-| R10 | Thiếu test bao phủ dẫn đến lỗi lọt UAT | Chất lượng | Không có test plan rõ, thiếu test case lỗi mạng | 3 | 4 | 12 | Medium |
+| R1 | Chậm linh kiện | Cung ứng | Trễ vận chuyển/hết hàng | 4 | 4 | 16 | High |
+| R2 | Lỗi app–cloud–device | Kỹ thuật | Sai topic/payload; thiếu test tích hợp | 3 | 5 | 15 | High |
+| R3 | Reset khi chạy bơm | Thiết bị | Sụt áp; nguồn/mạch chưa phù hợp | 3 | 4 | 12 | Medium |
+| R4 | Sai số cảm biến theo đất | Chất lượng | Cảm biến rẻ; môi trường biến thiên | 4 | 3 | 12 | Medium |
+| R5 | Mất Wi‑Fi/Internet | Kỹ thuật | Mạng yếu; router lỗi | 3 | 3 | 9 | Medium |
+| R6 | Lộ token/credential | Bảo mật | Hard-code key; chia sẻ repo | 2 | 5 | 10 | Medium |
+| R7 | Trễ tích hợp | Tiến độ | Phát sinh lỗi khó đoán | 4 | 3 | 12 | Medium |
+| R8 | Cảnh báo sai | Chất lượng | Ngưỡng chưa chuẩn; dữ liệu nhiễu | 3 | 3 | 9 | Medium |
+| R9 | Bơm kẹt/chạy khô | Thiết bị | Hết nước; kẹt cơ khí | 2 | 4 | 8 | Medium |
+| R10 | Thiếu bao phủ test | Chất lượng | Thiếu test plan; thiếu case mạng | 3 | 4 | 12 | Medium |
 
 **Bảng 6.1b. Risk Register – Ứng phó & theo dõi**
 
 | ID | Ứng phó (sơ bộ) | Hành động giảm thiểu | Risk owner | Trigger |
 |---|---|---|---|---|
-| R1 | Giảm thiểu | Đặt mua sớm (tuần 2), có linh kiện thay thế, mua dư hạng mục quan trọng | Đặng Thị Thu Giang | Quá hạn giao hàng/không tracking |
-| R2 | Giảm thiểu | Chốt API/MQTT contract sớm; mock dữ liệu; test contract trước tích hợp | Phạm Thị Phương | Nhiều lỗi parse/timeout khi tích hợp |
-| R3 | Giảm thiểu | Tách nguồn/đệm tụ; test tải sớm; giới hạn thời gian bơm | Đặng Thị Thu Giang / Đặng Thành Dương | Thiết bị reset khi bơm chạy |
-| R4 | Giảm thiểu | Hiệu chuẩn 2–3 điểm; lọc số; cho phép cấu hình ngưỡng theo profile | Đặng Thành Dương | Dữ liệu dao động bất thường |
-| R5 | Giảm thiểu | Reconnect/backoff; buffer dữ liệu; hiển thị offline | Đặng Thành Dương / Phạm Thị Phương | Mất dữ liệu liên tục, device offline |
-| R6 | Giảm thiểu | Không hard-code; dùng env/secret; token theo thiết bị; reset token khi lộ | Phạm Thị Phương | Thấy key trong source / log |
-| R7 | Chấp nhận/giảm thiểu | Dự phòng buffer 10–20%; ưu tiên chuỗi đường găng; demo sớm | Trương Quang Huy (#) | Trễ task tích hợp/UAT |
-| R8 | Giảm thiểu | Lọc dữ liệu; hysteresis đơn giản; test kịch bản đất khô/ẩm | Phạm Thị Phương / Nguyễn Thùy Dương | Cảnh báo sai nhiều |
-| R9 | Giảm thiểu | Giới hạn thời gian bơm; kiểm tra bơm trước demo; dự phòng bơm | Đặng Thị Thu Giang | Bơm kêu to, không hút nước |
-| R10 | Giảm thiểu | Lập test plan; chạy test theo checklist; log lỗi & ưu tiên sửa | Phạm Thị Phương | Nhiều bug phát hiện muộn ở UAT |
+| R1 | Giảm thiểu | Mua sớm; linh kiện thay thế; mua dư | Đặng Thị Thu Giang | Giao trễ/không tracking |
+| R2 | Giảm thiểu | Chốt contract; mock; contract test | Phạm Thị Phương | Timeout/parse nhiều |
+| R3 | Giảm thiểu | Tách nguồn; thêm tụ; giới hạn bơm | Đặng Thị Thu Giang / Đặng Thành Dương | Reset khi bơm chạy |
+| R4 | Giảm thiểu | Hiệu chuẩn; lọc; ngưỡng theo profile | Đặng Thành Dương | Dao động bất thường |
+| R5 | Giảm thiểu | Reconnect; buffer; UI offline | Đặng Thành Dương / Phạm Thị Phương | Device/app offline |
+| R6 | Giảm thiểu | Env/secret; token theo thiết bị; rotate | Phạm Thị Phương | Key lộ trong code/log |
+| R7 | Chấp nhận/giảm thiểu | Buffer 10–20%; ưu tiên đường găng | Trương Quang Huy (#) | Trễ tích hợp/UAT |
+| R8 | Giảm thiểu | Lọc; hysteresis; test kịch bản | Phạm Thị Phương / Nguyễn Thùy Dương | False alert nhiều |
+| R9 | Giảm thiểu | Giới hạn bơm; test trước; bơm dự phòng | Đặng Thị Thu Giang | Bơm kêu/không hút |
+| R10 | Giảm thiểu | Test plan; checklist; ưu tiên fix | Phạm Thị Phương | Bug muộn ở UAT |
 
 ### 6.4.3. Theo dõi và cập nhật
 - Cập nhật Risk Register hàng tuần (trạng thái, rủi ro mới, mức ưu tiên).
