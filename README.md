@@ -1,3 +1,375 @@
+# CHƯƠNG 1: TỔNG QUAN DỰ ÁN
+
+## 1.1. Giới thiệu dự án
+
+### 1.1.1. Tên dự án
+**Lập kế hoạch phát triển dự án IoT “Vườn thông minh GreenThumb”.**
+
+### 1.1.2. Mô tả tổng quan hệ thống
+GreenThumb là một hệ thống IoT hỗ trợ chăm sóc cây trồng tại gia thông qua việc giám sát các chỉ số môi trường và cho phép tưới nước chủ động/từ xa. Hệ thống gồm hai thành phần chính:
+
+- **Phần cứng (thiết bị IoT):** sử dụng vi điều khiển **ESP32**, tích hợp cảm biến **độ ẩm đất** và **nhiệt độ**. Thiết bị kết nối **Wi‑Fi** để gửi dữ liệu lên nền tảng cloud, đồng thời có thể nhận lệnh điều khiển **bật/tắt bơm** từ cloud.
+- **Phần mềm:** gồm **hạ tầng cloud** (MQTT/HTTP, lưu trữ dữ liệu, xử lý cảnh báo) và **ứng dụng di động** giúp người dùng theo dõi số liệu, xem lịch sử, nhận thông báo khi độ ẩm thấp và điều khiển bơm từ xa.
+
+Trong phạm vi học phần, nhóm tập trung xây dựng **kế hoạch quản lý dự án** (phạm vi, WBS, tiến độ, chi phí, rủi ro, chất lượng và triển khai). Việc triển khai sản phẩm hoàn chỉnh (nếu có) chỉ mang tính minh họa để phục vụ lập kế hoạch.
+
+**Hệ thống được thiết kế theo kiến trúc IoT điển hình, đảm bảo khả năng mở rộng và phù hợp với mục tiêu điều khiển, giám sát từ xa trong bối cảnh thực tế.**
+
+### 1.1.3. Bối cảnh và ý nghĩa dự án
+Nhu cầu chăm sóc cây trồng tại gia ngày càng tăng, tuy nhiên người dùng thường gặp khó khăn như quên tưới, tưới chưa đúng thời điểm hoặc thiếu thông tin về độ ẩm và nhiệt độ. Ứng dụng IoT giúp tự động hóa quá trình theo dõi, cung cấp cảnh báo kịp thời và hỗ trợ điều khiển tưới từ xa.
+
+Về mặt học phần, GreenThumb phù hợp để mô phỏng một dự án IoT có tính liên ngành (phần cứng–firmware–cloud–mobile), có rủi ro đặc thù và yêu cầu phối hợp song song giữa các nhánh công việc, qua đó giúp nhóm vận dụng kiến thức quản lý dự án CNTT một cách toàn diện.
+
+## 1.2. Mục tiêu dự án
+
+### 1.2.1. Mục tiêu tổng thể
+Xây dựng bộ kế hoạch quản lý dự án tương đối đầy đủ và nhất quán cho dự án IoT GreenThumb, đảm bảo tính khả thi theo nguồn lực **05 thành viên** trong **07 tuần**.
+
+### 1.2.2. Mục tiêu cụ thể
+(1) Xác định mô hình hệ thống GreenThumb theo hướng IoT kết nối **Wi‑Fi + Cloud (MQTT/HTTP) + Ứng dụng di động**.
+
+(2) Phân tích yêu cầu ban đầu và xác định phạm vi dự án (in-scope/out-of-scope) rõ ràng cho cả phần cứng và phần mềm.
+
+(3) Xây dựng kế hoạch thực hiện gồm **WBS** thể hiện các nhánh công việc song song, **lịch trình tổng hợp (Gantt)** có quan hệ phụ thuộc, các **mốc (milestones)** và đường găng ở mức tổng quan.
+
+(4) Lập dự toán ngân sách sơ bộ có cơ sở/giả định (linh kiện, tích hợp, chi phí phát sinh).
+
+(5) Xây dựng kế hoạch quản lý rủi ro và kế hoạch quản lý chất lượng/kiểm thử phù hợp đặc thù dự án IoT.
+
+(6) Đề xuất kế hoạch triển khai sản phẩm ra thị trường ở mức giả định (phát hành ứng dụng, sản xuất hàng loạt giả định, hỗ trợ sau bán).
+
+## 1.3. Phạm vi tổng quan
+
+### 1.3.1. Phạm vi hệ thống
+Hệ thống GreenThumb trong báo cáo gồm các khối chức năng chính:
+
+- **Thiết bị IoT:** đo độ ẩm đất, nhiệt độ; truyền dữ liệu lên cloud; nhận lệnh điều khiển bơm.
+- **Cloud:** tiếp nhận dữ liệu (MQTT/HTTP), lưu trữ, cung cấp API/luồng dữ liệu cho ứng dụng; xử lý cảnh báo theo ngưỡng; chuyển lệnh điều khiển xuống thiết bị.
+- **Ứng dụng di động:** hiển thị dữ liệu và lịch sử; nhận thông báo; điều khiển bơm từ xa; hiển thị trạng thái kết nối cơ bản.
+
+Các thành phần trên liên kết với nhau thông qua kiến trúc **client–server**, đảm bảo luồng dữ liệu **hai chiều** giữa thiết bị và người dùng.
+
+Nhóm giả định có **02 thiết bị mẫu (02 prototypes)** để phục vụ kiểm thử tích hợp và dự phòng rủi ro linh kiện.
+
+### 1.3.2. Đối tượng sử dụng
+- Người dùng chính: cá nhân/hộ gia đình trồng cây tại nhà.
+- Đối tượng liên quan: nhóm phát triển/vận hành (xử lý lỗi, hỗ trợ), giảng viên/đơn vị đánh giá trong bối cảnh học phần.
+
+## 1.4. Các giả định (Assumptions)
+Bảng 1.1 dưới đây liệt kê các giả định và tác động đến việc lập kế hoạch dự án.
+
+**Bảng 1.1. Assumptions**
+
+| Mã | Giả định | Tác động đến kế hoạch |
+|---|---|---|
+| A1 | Thiết bị sử dụng ESP32 và có kết nối Wi‑Fi ổn định trong điều kiện triển khai giả định. | Ảnh hưởng thiết kế kiến trúc, tiến độ tích hợp và kế hoạch kiểm thử kết nối. |
+| A2 | Kênh truyền giữa thiết bị và cloud sử dụng MQTT hoặc HTTP qua Internet; có xác thực cơ bản bằng token. | Cần đặc tả API/Topic sớm; bổ sung test bảo mật cơ bản và test giao tiếp end‑to‑end. |
+| A3 | Cloud sử dụng hạ tầng mức demo/free-tier trong giai đoạn học phần. | Ràng buộc tài nguyên; cần ưu tiên tính năng tối thiểu và phương án dự phòng khi giới hạn dịch vụ. |
+| A4 | Nhóm chuẩn bị 02 prototypes để kiểm thử và dự phòng hỏng hóc/thiếu linh kiện. | Tăng ngân sách linh kiện; giảm rủi ro tiến độ do hỏng thiết bị; hỗ trợ test song song. |
+| A5 | Yêu cầu người dùng ở mức gia đình; không yêu cầu chứng chỉ/chuẩn công nghiệp trong phạm vi bài. | Giới hạn phạm vi chất lượng (không chứng nhận); tập trung kiểm thử chức năng và độ ổn định cơ bản. |
+| A6 | Dự án thực hiện trong 07 tuần với 05 thành viên theo kế hoạch học phần. | Ảnh hưởng ước tính thời lượng, phân công, và lựa chọn phương pháp Hybrid/sprint 1 tuần. |
+
+## 1.5. Các ràng buộc (Constraints)
+Bảng 1.2 dưới đây liệt kê các ràng buộc chính và hướng xử lý sơ bộ.
+
+**Bảng 1.2. Constraints**
+
+| Mã | Ràng buộc | Hướng xử lý sơ bộ |
+|---|---|---|
+| C1 | Thời gian thực hiện: 07 tuần. | Chia theo mốc tuần/sprint; chốt baseline sớm; ưu tiên chức năng lõi để kịp tích hợp và UAT. |
+| C2 | Nguồn lực: 05 thành viên; thời gian tham gia giới hạn theo lịch học. | Phân vai rõ ràng (PM/BA, HW, FW, Cloud/QA, Mobile); dùng RACI để tránh chồng chéo. |
+| C3 | Chi phí linh kiện và phát sinh bị giới hạn theo ngân sách SV. | Ưu tiên linh kiện phổ biến; mua theo BOM tối thiểu; dự phòng khoản phát sinh; tận dụng công cụ miễn phí. |
+| C4 | Ràng buộc kỹ thuật: chất lượng cảm biến, ổn định nguồn khi điều khiển bơm, chất lượng mạng. | Đưa rủi ro kỹ thuật vào Risk Register; test tải bơm sớm; thiết kế cơ chế reconnect/buffer. |
+| C5 | Trọng tâm học phần là quản lý dự án; sản phẩm (nếu có) mang tính minh họa. | Tập trung hoàn thiện WBS/Gantt/Budget/Risk/Quality nhất quán; giới hạn phạm vi kỹ thuật chi tiết. |
+| C6 | Phụ thuộc bên ngoài: thời gian cung ứng linh kiện, nền tảng cloud/app store (giả định). | Mua linh kiện sớm; có linh kiện thay thế; mô phỏng phát hành app bằng checklist thay vì triển khai thật. |
+
+## (Gợi ý) Hình 1.1 – Kiến trúc hệ thống
+Hình 1.1 dưới đây mô tả tổng quan kiến trúc hệ thống GreenThumb.
+
+```mermaid
+flowchart LR
+  subgraph Garden["Thiết bị tại vườn"]
+    S1[Soil Moisture Sensor] --> ESP[ESP32]
+    S2[Temp Sensor] --> ESP
+    ESP -->|GPIO| P[Mini Pump]
+  end
+
+  ESP -->|Wi‑Fi| NET[(Internet)]
+  NET --> CLOUD[(Cloud: MQTT/HTTP API + DB + Rules)]
+
+  APP[Mobile App] -->|HTTPS| CLOUD
+  CLOUD -->|MQTT/HTTP Command| NET
+  NET -->|Wi‑Fi| ESP
+
+  CLOUD --> NTF[Notification Service]
+  NTF --> APP
+```
+# CHƯƠNG 2: YÊU CẦU & PHẠM VI
+
+## 2.1. Tổng quan yêu cầu hệ thống
+
+### 2.1.1. Giới thiệu chung
+Chương này trình bày các yêu cầu của hệ thống GreenThumb dưới góc nhìn **quản lý dự án** nhằm làm cơ sở cho việc xây dựng phạm vi (scope), WBS, tiến độ (Gantt), ngân sách, kế hoạch rủi ro và kế hoạch chất lượng/kiểm thử.
+
+Hệ thống GreenThumb được định hướng theo mô hình IoT gồm:
+- Thiết bị IoT (ESP32 + cảm biến + bơm)
+- Kết nối Wi‑Fi và nền tảng cloud (MQTT/HTTP)
+- Ứng dụng di động (giám sát, cảnh báo, điều khiển bơm)
+
+### 2.1.2. Mục tiêu chức năng hệ thống
+- Hỗ trợ người dùng **theo dõi** độ ẩm đất và nhiệt độ môi trường.
+- Cung cấp **cảnh báo** khi độ ẩm thấp hơn ngưỡng.
+- Cho phép **điều khiển bơm từ xa** (bật/tắt) thông qua cloud.
+- Lưu trữ dữ liệu để người dùng xem **lịch sử/biểu đồ**.
+
+## 2.2. Yêu cầu chức năng (Functional Requirements)
+
+### 2.2.1. Đối với phần cứng/firmware
+**Bảng 2.1. Yêu cầu chức năng phần cứng/firmware**
+
+| Mã | Yêu cầu | Mô tả ngắn | Tiêu chí chấp nhận (tóm tắt) |
+|---|---|---|---|
+| HW-FR1 | Đo độ ẩm đất | Đọc giá trị độ ẩm từ cảm biến theo chu kỳ cấu hình. | Có giá trị đọc được, ổn định theo chu kỳ. |
+| HW-FR2 | Đo nhiệt độ | Đọc nhiệt độ môi trường từ cảm biến. | Có giá trị đọc được và cập nhật định kỳ. |
+| HW-FR3 | Gửi dữ liệu lên cloud | Gửi telemetry (độ ẩm, nhiệt độ, thời gian, trạng thái) lên cloud bằng Wi‑Fi. | Dữ liệu xuất hiện ở cloud/app theo chu kỳ. |
+| HW-FR4 | Tự khôi phục kết nối | Tự reconnect khi mất Wi‑Fi hoặc mất kết nối cloud. | Sau khi mạng ổn định, tự gửi lại dữ liệu. |
+| HW-FR5 | Nhận lệnh điều khiển | Nhận lệnh bật/tắt bơm từ cloud. | Nhận lệnh và phản hồi trạng thái thực thi. |
+| HW-FR6 | Điều khiển bơm an toàn | Bật/tắt bơm; giới hạn thời gian bơm (chống chạy quá lâu). | Không bơm quá thời lượng tối đa cấu hình. |
+| HW-FR7 | Gửi trạng thái thiết bị | Gửi trạng thái online/offline, lỗi cơ bản (nếu có). | App hiển thị được trạng thái kết nối. |
+
+### 2.2.2. Đối với phần mềm (cloud + ứng dụng di động)
+
+#### 2.2.2.1. Yêu cầu chức năng cloud
+**Bảng 2.2. Yêu cầu chức năng cloud**
+
+| Mã | Yêu cầu | Mô tả ngắn | Tiêu chí chấp nhận (tóm tắt) |
+|---|---|---|---|
+| CL-FR1 | Tiếp nhận telemetry | Nhận dữ liệu từ thiết bị qua MQTT/HTTP. | Dữ liệu được ghi nhận đúng cấu trúc. |
+| CL-FR2 | Lưu trữ dữ liệu | Lưu dữ liệu đo để truy xuất lịch sử. | Truy vấn được theo khoảng thời gian. |
+| CL-FR3 | Cung cấp API cho app | App có thể lấy dữ liệu hiện tại và lịch sử. | App hiển thị được dữ liệu từ API. |
+| CL-FR4 | Chuyển lệnh điều khiển | Nhận lệnh từ app và gửi xuống thiết bị. | Thiết bị nhận lệnh và cập nhật trạng thái. |
+| CL-FR5 | Xử lý cảnh báo | So sánh độ ẩm với ngưỡng và tạo cảnh báo. | Có bản ghi cảnh báo/trigger khi vượt ngưỡng. |
+| CL-FR6 | Gửi thông báo | Gửi thông báo (push/in-app) đến app (mức giả định). | Người dùng nhận được thông báo trong demo. |
+
+#### 2.2.2.2. Yêu cầu chức năng ứng dụng di động
+**Bảng 2.3. Yêu cầu chức năng ứng dụng di động**
+
+| Mã | Yêu cầu | Mô tả ngắn | Tiêu chí chấp nhận (tóm tắt) |
+|---|---|---|---|
+| SW-FR1 | Xem dữ liệu hiện tại | Hiển thị độ ẩm, nhiệt độ, trạng thái thiết bị. | Số liệu hiển thị đúng và cập nhật. |
+| SW-FR2 | Xem lịch sử | Xem biểu đồ/ danh sách lịch sử theo ngày/tuần. | Có thể chọn khoảng thời gian và xem dữ liệu. |
+| SW-FR3 | Cảnh báo độ ẩm thấp | Hiển thị cảnh báo khi độ ẩm dưới ngưỡng. | Người dùng nhìn thấy cảnh báo/nhận thông báo. |
+| SW-FR4 | Cấu hình ngưỡng cảnh báo | Cho phép đặt ngưỡng độ ẩm tối thiểu. | Ngưỡng được lưu và áp dụng cho cảnh báo. |
+| SW-FR5 | Điều khiển bơm từ xa | Bật/tắt bơm và xem trạng thái. | Thiết bị phản hồi và app hiển thị trạng thái. |
+| SW-FR6 | Xử lý lỗi kết nối | Thông báo offline, lỗi mạng, retry cơ bản. | Có thông điệp rõ ràng, không “treo” UI. |
+
+## 2.3. Yêu cầu phi chức năng (Non-functional Requirements)
+
+**Bảng 2.4. Yêu cầu phi chức năng (NFR)**
+
+| Mã | Nhóm | Yêu cầu | Tiêu chí chấp nhận (tóm tắt) |
+|---|---|---|---|
+| NFR1 | Hiệu năng | Dữ liệu cập nhật gần thời gian thực. | Trễ hiển thị mục tiêu ≤ 10 giây (điều kiện mạng ổn định). |
+| NFR2 | Tin cậy | Thiết bị tự phục hồi kết nối khi mất mạng. | Sau khi mạng ổn định, tự reconnect và gửi tiếp dữ liệu. |
+| NFR3 | Bảo mật | Dùng token cho thiết bị/app; ưu tiên TLS (giả định). | Không hard-code credential trong app; có cơ chế xác thực cơ bản. |
+| NFR4 | Khả dụng | Hệ thống thông báo trạng thái offline. | App hiển thị offline khi thiết bị/cloud lỗi. |
+| NFR5 | Dễ sử dụng | Giao diện rõ ràng, thao tác điều khiển đơn giản. | Người dùng thực hiện xem dữ liệu/điều khiển trong ≤ 3 bước. |
+| NFR6 | Bảo trì | Có log sự kiện chính (gửi dữ liệu, nhận lệnh). | Truy vết được lỗi tích hợp trong demo. |
+
+## 2.4. Phân tích Use Case
+
+### 2.4.1. Danh sách Use Case
+**Actor chính:** Người dùng (User)
+
+**Bảng 2.5. Danh sách Use Case**
+
+| Mã | Use Case | Actor | Mô tả ngắn |
+|---|---|---|---|
+| UC01 | Xem dữ liệu cảm biến | User | Xem độ ẩm, nhiệt độ và trạng thái thiết bị trên app. |
+| UC02 | Xem lịch sử/biểu đồ | User | Xem dữ liệu theo khoảng thời gian. |
+| UC03 | Nhận cảnh báo | User | Nhận cảnh báo khi độ ẩm thấp hơn ngưỡng. |
+| UC04 | Cấu hình ngưỡng cảnh báo | User | Đặt ngưỡng độ ẩm tối thiểu để cảnh báo. |
+| UC05 | Điều khiển bơm từ xa | User | Bật/tắt bơm và xem trạng thái phản hồi. |
+
+### 2.4.2. Mô tả Use Case chính
+
+#### UC01 – Xem dữ liệu cảm biến
+- **Actor:** User
+- **Tiền điều kiện:** User có thể truy cập app; thiết bị đã được định danh (device id/token) (giả định).
+- **Luồng chính:**
+  1) User mở app và vào màn hình Dashboard.
+  2) App gọi API cloud để lấy dữ liệu hiện tại.
+  3) App hiển thị độ ẩm, nhiệt độ và trạng thái thiết bị.
+- **Luồng thay thế:**
+  - A1: Thiết bị offline → app hiển thị “offline” và dữ liệu gần nhất.
+  - A2: Mất mạng → app thông báo lỗi kết nối và cho phép thử lại.
+- **Hậu điều kiện:** Dữ liệu được hiển thị, user nắm được trạng thái hiện tại.
+
+#### UC05 – Điều khiển bơm từ xa
+- **Actor:** User
+- **Tiền điều kiện:** Thiết bị online; cloud sẵn sàng nhận lệnh.
+- **Luồng chính:**
+  1) User chọn chức năng điều khiển bơm.
+  2) User nhấn Bật/Tắt.
+  3) App gửi lệnh lên cloud.
+  4) Cloud chuyển lệnh tới thiết bị.
+  5) Thiết bị thực thi và phản hồi trạng thái.
+  6) App cập nhật trạng thái bơm.
+- **Luồng thay thế:**
+  - A1: Thiết bị không phản hồi → app thông báo thất bại và cho phép gửi lại.
+  - A2: Cloud lỗi → app thông báo lỗi hệ thống.
+- **Hậu điều kiện:** Bơm đổi trạng thái hoặc hệ thống ghi nhận lệnh thất bại.
+
+### 2.4.3. Sơ đồ Use Case (nếu có)
+Hình 2.1 mô tả Use Case Diagram ở mức tổng quan.
+
+```plantuml
+@startuml
+left to right direction
+actor "User (Người dùng)" as U
+rectangle "GreenThumb Mobile App" {
+  usecase "Xem dữ liệu\n(độ ẩm, nhiệt độ)" as UC01
+  usecase "Xem lịch sử/biểu đồ" as UC02
+  usecase "Nhận cảnh báo\n(độ ẩm thấp)" as UC03
+  usecase "Cấu hình ngưỡng\ncảnh báo" as UC04
+  usecase "Điều khiển bơm\n(Bật/Tắt)" as UC05
+}
+U --> UC01
+U --> UC02
+U --> UC03
+U --> UC04
+U --> UC05
+@enduml
+```
+
+*(Nếu không render PlantUML, có thể dùng hình flowchart Mermaid trong file HTML đi kèm để xuất ảnh đưa vào Word.)*
+
+## 2.5. Xác định phạm vi dự án
+
+### 2.5.1. In-scope
+- Phân tích và đặc tả yêu cầu (FR/NFR) cho thiết bị, cloud và app.
+- Thiết kế kế hoạch triển khai theo kiến trúc Wi‑Fi + cloud (MQTT/HTTP).
+- Kế hoạch WBS, tiến độ (Gantt), ngân sách, rủi ro, chất lượng/kiểm thử.
+- Giả định có **02 prototypes** để phục vụ kiểm thử tích hợp.
+- Kế hoạch phát hành ứng dụng (mức giả định) và hỗ trợ sau bán.
+
+### 2.5.2. Out-of-scope
+- Chứng nhận an toàn điện, tiêu chuẩn IP chống nước/bụi, thử nghiệm công nghiệp.
+- Sản xuất hàng loạt thực tế (chỉ lập kế hoạch giả định), tối ưu dây chuyền sản xuất.
+- Tính năng nâng cao: đa thiết bị phức tạp, chia sẻ thiết bị cho nhiều tài khoản, thanh toán, thương mại điện tử.
+- Bảo mật nâng cao/đáp ứng tiêu chuẩn tuân thủ (chỉ nêu định hướng ở mức cơ bản).
+# CHƯƠNG 3: STAKEHOLDERS & PHƯƠNG PHÁP
+
+## 3.1. Xác định các bên liên quan
+Trong dự án IoT GreenThumb, các bên liên quan (stakeholders) bao gồm cả nhóm sử dụng sản phẩm, nhóm thực hiện dự án và các bên phụ thuộc bên ngoài (nhà cung cấp, nền tảng phân phối). Việc xác định đúng stakeholders giúp nhóm xây dựng kế hoạch phạm vi, tiến độ, rủi ro và giao tiếp phù hợp.
+
+**Bảng 3.1. Danh sách stakeholders**
+
+| Mã | Stakeholder | Nhóm | Nhu cầu/kỳ vọng chính | Mức độ ảnh hưởng (sơ bộ) |
+|---|---|---|---|---|
+| SH1 | Người dùng cuối (hộ gia đình trồng cây) | Customer/User | Dễ dùng, dữ liệu rõ ràng, cảnh báo đúng, điều khiển bơm ổn định | Trung bình |
+| SH2 | Nhóm dự án (05 SV) | Project Team | Kế hoạch rõ ràng, phân công minh bạch, phối hợp HW–SW tốt | Cao |
+| SH3 | Giảng viên/Người chấm | Sponsor/Approver | Hồ sơ quản lý dự án đầy đủ, nhất quán, có minh chứng (WBS/Gantt/Budget/Risk/QA) | Cao |
+| SH4 | Nhà cung cấp linh kiện & vận chuyển | Supplier | Đơn hàng rõ ràng, thời gian cung ứng ổn định | Trung bình |
+| SH5 | Nền tảng cloud (dịch vụ demo/free-tier) | Platform | Giới hạn tài nguyên, chính sách sử dụng dịch vụ | Trung bình |
+| SH6 | App Store/Google Play (mức giả định) | Platform | Tuân thủ chính sách phát hành, mô tả ứng dụng/riêng tư | Thấp–TB |
+
+## 3.2. Vai trò và trách nhiệm
+
+### 3.2.1. Mô tả vai trò từng bên
+- **Người dùng cuối:** đưa phản hồi về trải nghiệm sử dụng, kỳ vọng về cảnh báo và điều khiển.
+- **Nhóm dự án:** chịu trách nhiệm lập kế hoạch, theo dõi tiến độ, quản lý rủi ro và đảm bảo chất lượng.
+- **Giảng viên:** đóng vai trò phê duyệt các deliverables học phần, đưa nhận xét để nhóm cập nhật kế hoạch.
+- **Nhà cung cấp linh kiện:** ảnh hưởng trực tiếp đến tiến độ prototype và rủi ro cung ứng.
+- **Nền tảng cloud/app store:** ảnh hưởng đến khả năng triển khai demo, giới hạn tài nguyên và yêu cầu chính sách.
+
+### 3.2.2. Trách nhiệm chính (tóm tắt)
+**Bảng 3.2. Vai trò & trách nhiệm (tóm tắt)**
+
+| Stakeholder | Trách nhiệm/đóng góp | Đầu ra liên quan |
+|---|---|---|
+| Người dùng cuối | Phản hồi yêu cầu, xác nhận mức “dễ dùng”, tình huống sử dụng | Use case, acceptance criteria (UAT) |
+| Nhóm dự án | Lập và quản lý kế hoạch; thực thi theo mốc; báo cáo | WBS, Gantt, Budget, Risk Register, Test Plan |
+| Giảng viên | Nhận xét/đánh giá; xác nhận mức đáp ứng rubric | Biên bản góp ý (nếu có), mốc phê duyệt |
+| Nhà cung cấp | Cung ứng linh kiện đúng chất lượng và thời gian | BOM, hóa đơn/đơn hàng (giả định) |
+| Nền tảng cloud | Cung cấp dịch vụ chạy demo theo giới hạn | Kế hoạch triển khai cloud, rủi ro giới hạn dịch vụ |
+| App store | Quy định phát hành (mức giả định) | Checklist phát hành (giả định) |
+
+## 3.3. Ma trận Stakeholder (Power – Interest)
+
+### 3.3.1. Phân loại mức độ ảnh hưởng
+Nhóm sử dụng ma trận Power–Interest để ưu tiên cách quản lý stakeholders.
+
+- **High Power / High Interest (Quản lý chặt):** Giảng viên (SH3), Nhóm dự án (SH2)
+- **High Power / Low Interest (Giữ hài lòng):** Nhà cung cấp quan trọng (SH4), Nền tảng cloud (SH5)
+- **Low Power / High Interest (Giữ cập nhật):** Người dùng cuối (SH1)
+- **Low Power / Low Interest (Theo dõi tối thiểu):** App store (SH6) trong phạm vi mô phỏng
+
+**Hình 3.1. Power–Interest Matrix**
+- File hình tham chiếu: xem [Hinh-3-1-Power-Interest.html](Hinh-3-1-Power-Interest.html) để xuất ảnh chèn Word.
+
+### 3.3.2. Chiến lược quản lý từng nhóm
+**Bảng 3.3. Chiến lược quản lý stakeholders**
+
+| Nhóm | Stakeholder | Chiến lược | Tần suất |
+|---|---|---|---|
+| Quản lý chặt | SH2, SH3 | Báo cáo tiến độ + minh chứng, cập nhật thay đổi kế hoạch | Hàng tuần |
+| Giữ hài lòng | SH4, SH5 | Theo dõi rủi ro cung ứng/giới hạn dịch vụ; có phương án thay thế | Theo mốc |
+| Giữ cập nhật | SH1 | Thu thập phản hồi về tính dễ dùng/cảnh báo | 1–2 lần/sprint |
+| Theo dõi tối thiểu | SH6 | Lập checklist phát hành giả định, nêu ràng buộc chính sách | Cuối dự án |
+
+## 3.4. Phương pháp quản lý dự án
+
+### 3.4.1. Giới thiệu các phương pháp
+- **Waterfall:** phù hợp khi yêu cầu ổn định, ít thay đổi; ưu điểm là kiểm soát tài liệu và mốc rõ ràng.
+- **Agile (Scrum/Kanban):** phù hợp khi yêu cầu có thể thay đổi; ưu điểm là lặp nhanh, phản hồi sớm.
+- **Hybrid:** kết hợp Waterfall/Stage-gate cho phần ít linh hoạt (thường là phần cứng) và Agile cho phần cần lặp nhanh (thường là phần mềm).
+
+### 3.4.2. Lựa chọn phương pháp
+Nhóm lựa chọn **Hybrid (Stage-gate cho phần cứng + Agile/Scrum cho cloud & mobile)**.
+
+### 3.4.3. Lý do lựa chọn
+- **Tính song song HW–SW:** dự án có 2 nhánh công việc (phần cứng/firmware và phần mềm). Hybrid giúp vừa giữ được mốc cứng cho prototype, vừa cho phép phần mềm phát triển theo sprint.
+- **Rủi ro cung ứng & vật lý:** phần cứng phụ thuộc linh kiện, lắp ráp, nguồn/bơm → cần mốc kiểm soát (gate) rõ ràng.
+- **Độ bất định ở phần mềm:** giao diện, trải nghiệm, logic cảnh báo thường cần điều chỉnh theo phản hồi → phù hợp sprint.
+- **Phù hợp học phần:** dễ trình bày WBS, Gantt, rủi ro và minh chứng tiến độ theo tuần.
+
+### 3.4.4. So sánh với phương pháp khác
+**Bảng 3.4. So sánh lựa chọn phương pháp (tóm tắt)**
+
+| Tiêu chí | Waterfall thuần | Agile thuần | Hybrid (lựa chọn) |
+|---|---|---|---|
+| Phù hợp phần cứng | Tốt | Trung bình | **Tốt** |
+| Phù hợp phần mềm | Trung bình | Tốt | **Tốt** |
+| Quản lý phụ thuộc HW→SW | Trung bình | Trung bình | **Tốt** (có gate + sprint) |
+| Linh hoạt thay đổi UI/logic | Thấp | **Cao** | **Cao** (ở nhánh SW) |
+| Dễ bám rubric (WBS/Gantt) | **Cao** | Trung bình | **Cao** |
+
+### 3.4.5. Cách áp dụng Hybrid trong dự án (mô tả ngắn)
+- **Phần cứng/firmware (Stage-gate):**
+  - Gate 1: Chốt BOM + thiết kế nguồn/bơm
+  - Gate 2: Prototype #1 chạy telemetry
+  - Gate 3: Prototype #2 ổn định + hiệu chuẩn
+- **Phần mềm (Sprint 1 tuần):**
+  - Lập backlog theo FR/NFR; mỗi sprint có mục tiêu rõ ràng (dashboard, lịch sử, cảnh báo, điều khiển).
+  - Cuối sprint có demo/đánh giá và cập nhật kế hoạch (nếu có thay đổi).
+
+## 3.5. Công cụ quản lý dự án (Jira) – không thuộc kiến trúc hệ thống
+Nhóm **sử dụng Jira** để quản lý backlog, phân công công việc, theo dõi tiến độ theo sprint/tuần và trích xuất báo cáo (ví dụ: % hoàn thành, burndown). Jira chỉ phục vụ **quản lý dự án** và **không nằm trong phạm vi kiến trúc sản phẩm GreenThumb** (không đưa Jira vào sơ đồ hệ thống).
+
+Minh chứng sử dụng Jira được trình bày tại **Phụ lục A (Hình A.1–A.4)**.
+
+**Bảng 3.5. Thiết lập Jira (gợi ý tối thiểu)**
+
+| Hạng mục | Thiết lập đề xuất |
+|---|---|
+| Board | Scrum board (sprint 1 tuần) hoặc Kanban (To Do/In Progress/Done) |
+| Issue types | Epic (HW/FW/Cloud/App/Test), Story/Task, Bug |
+| Trường cần dùng | Assignee, Due date, Priority, Labels, Sprint |
+| Báo cáo | Burndown (nếu Scrum), Velocity (tuỳ chọn), % Done theo tuần |
+
+*(Có thể đưa link board hoặc ảnh chụp màn hình Jira vào Phụ lục để làm minh chứng.)*
+
 # CHƯƠNG 4: WBS & PHÂN CÔNG
 
 ## 4.1. Tổng quan WBS
