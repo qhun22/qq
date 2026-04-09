@@ -1,143 +1,110 @@
-# CHƯƠNG 6: RỦI RO & CHẤT LƯỢNG
+# CHƯƠNG 7: TRIỂN KHAI & KẾT LUẬN
 
-## 6.1. Tổng quan rủi ro
+## 7.1. Kế hoạch triển khai
 
-### 6.1.1. Khái niệm
-Rủi ro là các sự kiện/điều kiện không chắc chắn, nếu xảy ra có thể ảnh hưởng tiêu cực đến mục tiêu dự án (phạm vi, tiến độ, chi phí, chất lượng). Dự án IoT GreenThumb có rủi ro đặc thù do phụ thuộc **phần cứng**, **kết nối mạng** và **tích hợp đa thành phần** (device–cloud–mobile).
+### 7.1.1. Sản xuất (giả định)
+Trong phạm vi học phần, nhóm chỉ mô phỏng kế hoạch triển khai và sản xuất. Ở bối cảnh thực tế, quy trình sản xuất có thể được triển khai theo các bước:
 
-### 6.1.2. Vai trò quản lý rủi ro
-Quản lý rủi ro giúp nhóm:
-- Nhận diện sớm các rủi ro trọng yếu (đặc biệt ở chuỗi cung ứng và tích hợp).
-- Ưu tiên xử lý dựa trên xác suất và mức độ ảnh hưởng.
-- Chuẩn bị phương án ứng phó, giảm tác động và tránh trễ tiến độ.
+- **Chốt thiết kế & BOM:** cố định danh sách linh kiện (BOM), lựa chọn phương án thay thế cho linh kiện rủi ro cao.
+- **Sản xuất thử (Pilot run):** sản xuất lô nhỏ để kiểm tra lỗi lắp ráp, độ ổn định nguồn/bơm và sai số cảm biến.
+- **Kiểm tra chất lượng (QC) đầu vào/đầu ra:** kiểm tra linh kiện chính (ESP32, cảm biến, bơm), test nhanh sau lắp ráp.
+- **Đóng gói:** hướng dẫn sử dụng, cảnh báo an toàn, tem nhãn.
 
-## 6.2. Nhận diện rủi ro
+**Bảng 7.1. Checklist triển khai sản xuất (giả định)**
 
-### 6.2.1. Nhóm rủi ro (phân loại)
-- **Rủi ro kỹ thuật:** lỗi giao tiếp, reset do sụt áp, sai số cảm biến, lỗi phần mềm.
-- **Rủi ro thiết bị/cung ứng:** chậm linh kiện, linh kiện lỗi, bơm hỏng.
-- **Rủi ro quản lý/tiến độ:** ước lượng sai, phụ thuộc task tích hợp, thay đổi yêu cầu.
-- **Rủi ro chất lượng:** test thiếu bao phủ, lỗi lọt qua UAT.
-
-### 6.2.2. Thang đo đánh giá
-Nhóm sử dụng thang đo 1–5 cho **Xác suất (P)** và **Ảnh hưởng (I)**:
-- P: 1 rất thấp … 5 rất cao
-- I: 1 nhỏ … 5 nghiêm trọng
-
-Điểm rủi ro: **Score = P × I**
-- **High:** 15–25
-- **Medium:** 8–14
-- **Low:** 1–7
-
-## 6.3. Ma trận rủi ro
-
-### 6.3.1. Xác suất
-Xác suất đánh giá dựa trên kinh nghiệm nhóm, tính phổ biến của sự cố trong dự án IoT và các phụ thuộc bên ngoài.
-
-### 6.3.2. Mức độ ảnh hưởng
-Ảnh hưởng được đánh giá theo tác động lên tiến độ (trễ milestone), chi phí (mua lại linh kiện), chất lượng (không đạt tiêu chí nghiệm thu) và trải nghiệm người dùng.
-
-### 6.3.3. Hình ma trận
-**Hình 6.1** thể hiện ma trận rủi ro (Probability–Impact) và vị trí các rủi ro chính.
-
-- File hình tham chiếu: xem [Hinh-6-1-Risk-matrix.html](Hinh-6-1-Risk-matrix.html) để xuất ảnh chèn Word.
-
-## 6.4. Kế hoạch xử lý rủi ro
-
-### 6.4.1. Chiến lược ứng phó
-Nhóm áp dụng 4 chiến lược:
-- **Tránh (Avoid):** thay đổi kế hoạch để loại bỏ rủi ro.
-- **Giảm thiểu (Mitigate):** giảm xác suất hoặc giảm tác động.
-- **Chuyển giao (Transfer):** chuyển trách nhiệm/tác động cho bên khác (hạn chế trong bài học phần).
-- **Chấp nhận (Accept):** chấp nhận và chuẩn bị phương án dự phòng.
-
-### 6.4.2. Sổ theo dõi rủi ro (Risk Register)
-**Bảng 6.1. Risk Register**
-
-| ID | Rủi ro | Nhóm | Nguyên nhân | P | I | Score | Mức | Ứng phó (sơ bộ) | Hành động giảm thiểu | Risk owner | Trigger |
-|---|---|---|---|---:|---:|---:|---|---|---|---|---|
-| R1 | Chậm cung ứng linh kiện | Cung ứng | Nhà cung cấp/vận chuyển trễ, hết hàng | 4 | 4 | 16 | High | Giảm thiểu | Đặt mua sớm (tuần 2), có linh kiện thay thế, mua dư hạng mục quan trọng | Đặng Thị Thu Giang | Quá hạn giao hàng/không tracking |
-| R2 | Lỗi giao tiếp app–cloud–device | Kỹ thuật | Contract không rõ, sai payload/topic, thiếu test tích hợp | 3 | 5 | 15 | High | Giảm thiểu | Chốt API/MQTT contract sớm; mock dữ liệu; test contract trước tích hợp | Phạm Thị Phương | Nhiều lỗi parse/timeout khi tích hợp |
-| R3 | Reset ESP32 khi bật bơm (sụt áp) | Thiết bị | Bơm kéo dòng lớn, nguồn không đủ, thiết kế mạch chưa phù hợp | 3 | 4 | 12 | Med | Giảm thiểu | Tách nguồn/đệm tụ; test tải sớm; giới hạn thời gian bơm | Đặng Thị Thu Giang / Đặng Thành Dương | Thiết bị reset khi bơm chạy |
-| R4 | Sai lệch cảm biến độ ẩm theo loại đất | Chất lượng | Cảm biến giá rẻ, môi trường đo biến thiên | 4 | 3 | 12 | Med | Giảm thiểu | Hiệu chuẩn 2–3 điểm; lọc số; cho phép cấu hình ngưỡng theo profile | Đặng Thành Dương | Dữ liệu dao động bất thường |
-| R5 | Mất Wi‑Fi/Internet làm gián đoạn dữ liệu | Kỹ thuật | Môi trường mạng không ổn định, router lỗi | 3 | 3 | 9 | Med | Giảm thiểu | Reconnect/backoff; buffer dữ liệu; hiển thị offline | Đặng Thành Dương / Phạm Thị Phương | Mất dữ liệu liên tục, device offline |
-| R6 | Lộ token/credential (bảo mật) | Bảo mật | Hard-code key, chia sẻ repo không kiểm soát | 2 | 5 | 10 | Med | Giảm thiểu | Không hard-code; dùng env/secret; token theo thiết bị; reset token khi lộ | Phạm Thị Phương | Thấy key trong source / log |
-| R7 | Ước lượng sai thời gian tích hợp | Tiến độ | Tích hợp IoT thường phát sinh lỗi khó đoán | 4 | 3 | 12 | Med | Chấp nhận/giảm thiểu | Dự phòng buffer 10–20%; ưu tiên chuỗi đường găng; demo sớm | Trương Quang Huy (#) | Trễ task tích hợp/UAT |
-| R8 | Lỗi cảnh báo (false positive/negative) | Chất lượng | Ngưỡng không phù hợp, dữ liệu nhiễu, rule đơn giản | 3 | 3 | 9 | Med | Giảm thiểu | Lọc dữ liệu; hysteresis đơn giản; test kịch bản đất khô/ẩm | Phạm Thị Phương / Nguyễn Thùy Dương | Cảnh báo sai nhiều |
-| R9 | Bơm kẹt/chạy khô gây hỏng | Thiết bị | Không có nước, cơ khí kẹt | 2 | 4 | 8 | Med | Giảm thiểu | Giới hạn thời gian bơm; kiểm tra bơm trước demo; dự phòng bơm | Đặng Thị Thu Giang | Bơm kêu to, không hút nước |
-| R10 | Thiếu test bao phủ dẫn đến lỗi lọt UAT | Chất lượng | Không có test plan rõ, thiếu test case lỗi mạng | 3 | 4 | 12 | Med | Giảm thiểu | Lập test plan; chạy test theo checklist; log lỗi & ưu tiên sửa | Phạm Thị Phương | Nhiều bug phát hiện muộn ở UAT |
-
-### 6.4.3. Theo dõi và cập nhật
-- Cập nhật Risk Register hàng tuần (trạng thái, rủi ro mới, mức ưu tiên).
-- Với rủi ro High (R1, R2), nhóm theo dõi theo **mốc** và cập nhật ngay khi có tín hiệu trigger.
-
-## 6.5. Quản lý chất lượng
-
-### 6.5.1. Tiêu chuẩn chất lượng (mức dự án học phần)
-Nhóm đặt mục tiêu chất lượng theo tiêu chí:
-- Chức năng lõi hoạt động ổn định ở mức demo: **đo cảm biến – hiển thị – cảnh báo – điều khiển bơm**.
-- Tích hợp end‑to‑end đạt mức tin cậy tối thiểu theo kịch bản UAT.
-- Tài liệu kế hoạch (WBS/Gantt/Budget/Risk/QA) **nhất quán** và có minh chứng.
-
-### 6.5.2. Quy trình kiểm thử phần cứng/firmware
-- **Kiểm thử chức năng cảm biến:** đọc dữ liệu theo chu kỳ, kiểm tra ổn định.
-- **Kiểm thử độ chính xác tương đối:** so sánh 2–3 trạng thái (đất khô/ẩm) và theo dõi xu hướng.
-- **Kiểm thử tải bơm/nguồn:** bật bơm nhiều lần, không reset; đo dòng/điện áp (nếu có điều kiện).
-- **Kiểm thử mất kết nối:** ngắt Wi‑Fi, quan sát reconnect và buffer.
-
-### 6.5.3. Quy trình kiểm thử phần mềm (cloud + mobile)
-- **Functional test:** dashboard, lịch sử, cảnh báo, điều khiển bơm.
-- **Integration test:** app↔cloud↔device, gồm cả trường hợp lỗi (timeout/offline).
-- **Connectivity test:** mạng yếu, mất mạng, reconnect.
-- **Security basic check:** không hard-code key; token kiểm soát truy cập.
-
-### 6.5.4. Vai trò và trách nhiệm chất lượng
-- **Phạm Thị Phương (Cloud/QA):** lập test plan, điều phối chạy test tích hợp, tổng hợp lỗi.
-- **Đặng Thị Thu Giang / Đặng Thành Dương:** chịu trách nhiệm test HW/FW (nguồn, bơm, ổn định).
-- **Nguyễn Thùy Dương:** test UI/UX và luồng điều khiển/cảnh báo.
-- **Trương Quang Huy (#):** chốt tiêu chí nghiệm thu và điều phối UAT.
-
-### 6.5.5. Tiêu chí nghiệm thu (Acceptance Criteria)
-**Bảng 6.2. Acceptance Criteria (tối thiểu cho demo)**
-
-| Mã | Tiêu chí | Mức đạt |
+| Hạng mục | Nội dung | Kết quả mong đợi |
 |---|---|---|
-| AC1 | App hiển thị đúng độ ẩm, nhiệt độ từ prototype #2 | Có dữ liệu cập nhật; hiển thị trạng thái online/offline |
-| AC2 | Điều khiển bơm từ app qua cloud hoạt động | Lệnh bật/tắt thành công trong điều kiện mạng ổn định |
-| AC3 | Cảnh báo độ ẩm thấp hoạt động | Khi độ ẩm dưới ngưỡng, có cảnh báo/in-app notification |
-| AC4 | Hệ thống xử lý mất kết nối cơ bản | Device/app tự phục hồi; app không “treo”, có thông báo lỗi |
+| BOM + linh kiện thay thế | Danh sách linh kiện + phương án thay thế | Giảm rủi ro thiếu hàng |
+| Quy trình lắp ráp | Các bước lắp và kiểm tra nhanh | Rút ngắn thời gian lắp |
+| Test xuất xưởng | Test nguồn/bơm, cảm biến, kết nối Wi‑Fi | Phát hiện lỗi sớm |
+| Tài liệu hướng dẫn | HDSD (hướng dẫn sử dụng), lưu ý an toàn, bảo hành | Người dùng dễ tiếp cận |
 
-## 6.6. Test Cases mẫu
+### 7.1.2. Triển khai ứng dụng (App Store/Google Play)
+Nhóm mô phỏng kế hoạch phát hành ứng dụng theo checklist chuẩn, nhằm đảm bảo sản phẩm sẵn sàng ra mắt.
 
-### 6.6.1. Test cases phần cứng/firmware
-**Bảng 6.3. Test cases HW/FW (mẫu)**
+**Bảng 7.2. Checklist phát hành ứng dụng (giả định)**
 
-| TC ID | Mục tiêu | Bước kiểm thử (tóm tắt) | Kết quả mong đợi |
-|---|---|---|---|
-| HWTC01 | Đọc cảm biến ổn định | Chạy thiết bị 30 phút, chu kỳ 10s | Dữ liệu không bị gián đoạn bất thường |
-| HWTC02 | Reconnect Wi‑Fi | Ngắt Wi‑Fi 2 phút rồi bật lại | Thiết bị tự reconnect và gửi lại dữ liệu |
-| HWTC03 | Điều khiển bơm an toàn | Gửi lệnh bật bơm liên tục 5 lần | Không reset; bơm tắt theo giới hạn thời gian |
-| HWTC04 | Sai số tương đối | So sánh đất khô vs đất ẩm | Dữ liệu phản ánh xu hướng tăng/giảm hợp lý |
+| Hạng mục | Nội dung |
+|---|---|
+| Phiên bản (versioning) | Đặt phiên bản, ghi chú phát hành (release notes) |
+| Thông tin store | Tên app, mô tả ngắn/dài, từ khóa |
+| Hình ảnh | Screenshot màn hình chính, icon, banner (nếu có) |
+| Chính sách | Mô tả quyền truy cập (network/notification), chính sách riêng tư mức cơ bản |
+| Kiểm thử trước phát hành | Smoke test, test kết nối, test điều khiển bơm |
 
-### 6.6.2. Test cases cloud
-**Bảng 6.4. Test cases Cloud (mẫu)**
+### 7.1.3. Phân phối sản phẩm
+Kế hoạch phân phối (giả định) tập trung vào kênh bán hàng đơn giản và hỗ trợ thiết lập ban đầu:
+- Kênh phân phối: online/offline (cửa hàng nhỏ, sàn thương mại điện tử – nếu mở rộng).
+- Hỗ trợ onboarding: hướng dẫn kết nối Wi‑Fi, thêm thiết bị, thiết lập ngưỡng cảnh báo.
+- Chính sách bảo hành/đổi trả (giả định) để tăng niềm tin người dùng.
 
-| TC ID | Mục tiêu | Bước kiểm thử (tóm tắt) | Kết quả mong đợi |
-|---|---|---|---|
-| CLTC01 | Ingest telemetry | Device gửi 10 bản ghi liên tiếp | Cloud nhận đủ và lưu trữ |
-| CLTC02 | Query lịch sử | App gọi API lấy dữ liệu 24h | Trả dữ liệu đúng định dạng/thời gian |
-| CLTC03 | Command delivery | App gửi lệnh bật/tắt | Cloud chuyển lệnh tới device, có ack |
-| CLTC04 | Trigger cảnh báo | Đặt độ ẩm dưới ngưỡng | Cloud tạo sự kiện cảnh báo |
+## 7.2. Bảo trì và hỗ trợ
 
-### 6.6.3. Test cases ứng dụng di động
-**Bảng 6.5. Test cases Mobile (mẫu)**
+### 7.2.1. Bảo trì hệ thống
+Nhóm đề xuất phân loại bảo trì theo 3 nhóm:
+- **Bảo trì sửa lỗi (Corrective):** sửa lỗi firmware/app/cloud khi phát sinh.
+- **Bảo trì phòng ngừa (Preventive):** cải thiện ổn định kết nối, giảm reset, tối ưu cảnh báo.
+- **Bảo trì cải tiến (Perfective):** bổ sung tính năng mới theo phản hồi (nâng cấp biểu đồ, nhiều profile cây).
 
-| TC ID | Mục tiêu | Bước kiểm thử (tóm tắt) | Kết quả mong đợi |
-|---|---|---|---|
-| SWTC01 | Hiển thị dashboard | Mở app, xem dashboard | Hiển thị độ ẩm/nhiệt/trạng thái |
-| SWTC02 | Điều khiển bơm | Nhấn bật/tắt, quan sát phản hồi | Trạng thái cập nhật đúng; có loading/error |
-| SWTC03 | Offline UI | Tắt mạng điện thoại | App báo lỗi kết nối, không crash |
-| SWTC04 | Cảnh báo | Độ ẩm thấp hơn ngưỡng | App hiển thị cảnh báo/in-app notification |
+### 7.2.2. Hỗ trợ người dùng (giả định)
+**Bảng 7.3. Kế hoạch hỗ trợ sau bán (giả định)**
 
-## 6.7. UAT (tóm tắt)
-Nhóm thực hiện UAT theo các kịch bản bám sát Use Case (UC01, UC03, UC05) và chốt nghiệm thu theo các tiêu chí AC1–AC4. Kết quả UAT (nếu có) và danh sách lỗi/khắc phục có thể đưa vào Phụ lục.
+| Nội dung | Mô tả |
+|---|---|
+| Kênh hỗ trợ | Email/Zalo/Fanpage (tùy điều kiện) |
+| Thời gian phản hồi | 24–48 giờ làm việc (giả định) |
+| Phân loại vấn đề | Kết nối Wi‑Fi, cảnh báo, điều khiển bơm, phần cứng (bơm/cảm biến) |
+| Quy trình xử lý | Tiếp nhận → phân loại → hướng dẫn khắc phục → ghi nhận lỗi → cập nhật bản vá |
+| Tài liệu hỗ trợ | FAQ, hướng dẫn reset thiết bị, hướng dẫn kết nối lại |
+
+## 7.3. KPIs theo dõi (giả định)
+Để đo lường hiệu quả quản lý và “sức khỏe” dự án, nhóm đề xuất các KPIs đơn giản (có thể báo cáo theo tuần/sprint):
+
+**Bảng 7.4. KPIs đề xuất**
+
+| KPI | Công thức/định nghĩa | Mục tiêu (giả định) |
+|---|---|---|
+| KPI1 – Tỷ lệ hoàn thành đúng hạn | Task Done đúng deadline / Task planned | ≥ 80% |
+| KPI2 – Test pass rate | Test case Pass / Tổng test case chạy | ≥ 90% |
+| KPI3 – Lỗi phát hiện ở UAT | Số lỗi phát hiện ở UAT | Giảm dần theo tuần |
+| KPI4 – Tỷ lệ lệnh điều khiển thành công | Số lệnh thành công / tổng lệnh | ≥ 95% (mạng ổn định) |
+
+*(Nếu học phần yêu cầu EVM, nhóm có thể mở rộng thêm SPI/CPI dựa trên dữ liệu giả định.)*
+
+## 7.4. Kết luận
+GreenThumb được hoàn thiện dưới dạng hồ sơ lập kế hoạch dự án IoT, bao phủ các nội dung cốt lõi từ yêu cầu–phạm vi, stakeholders, WBS, tiến độ/ngân sách đến rủi ro–chất lượng và kế hoạch triển khai/hỗ trợ, qua đó tạo cơ sở để nhóm quản lý tốt các phụ thuộc phần cứng–phần mềm và giảm rủi ro trong giai đoạn tích hợp end‑to‑end.
+
+## 7.5. Bài học kinh nghiệm (giả định)
+- Ước lượng cho các hạng mục tích hợp IoT nên có buffer do độ bất định cao (đề xuất hệ số 1.3–1.5 cho task tích hợp).
+- Chốt **API/MQTT contract** sớm giúp phần mềm phát triển song song với phần cứng và giảm rework.
+- Rủi ro về **nguồn/bơm** (sụt áp, reset) cần được test sớm ngay từ prototype #1 để tránh dồn lỗi đến giai đoạn tích hợp.
+- Việc dùng công cụ quản lý (Jira) và cập nhật trạng thái thường xuyên giúp minh bạch tiến độ và hỗ trợ báo cáo theo tuần.
+
+## 7.6. Hướng phát triển
+- Bổ sung thêm cảm biến (ánh sáng, độ ẩm không khí) và xây dựng profile theo loại cây.
+- Tự động tưới theo lịch/tham số (auto mode) thay vì chỉ bật/tắt.
+- Nâng cấp bảo mật (xoay token, audit log), cải thiện trải nghiệm onboarding.
+- Tối ưu phần cứng: vỏ chống nước, cải thiện tiêu thụ năng lượng, pin/solar (nếu mở rộng).
+
+## (Gợi ý) Hình 7.1 – Luồng triển khai (giả định)
+Hình 7.1 dưới đây mô tả luồng triển khai tổng quan.
+
+```mermaid
+flowchart LR
+  A[Chốt BOM + thiết kế] --> B[Pilot run (lô thử)]
+  B --> C[QC + Test xuất xưởng]
+  C --> D[Đóng gói + HDSD]
+  D --> E[Phân phối thiết bị]
+
+  F[Chuẩn bị phát hành app] --> G[Smoke test]
+  G --> H[Đăng tải store (giả định)]
+  H --> I[Người dùng cài app]
+
+  E --> J[Onboarding: kết nối Wi‑Fi + thêm thiết bị]
+  I --> J
+  J --> K[Vận hành + hỗ trợ sau bán]
+```
+
+- File hình tham chiếu: xem [Hinh-7-1-Deployment-flow.html](Hinh-7-1-Deployment-flow.html) để xuất ảnh chèn Word.
+
+- Tài liệu tham khảo: xem [Tai-lieu-tham-khao.md](Tai-lieu-tham-khao.md).
