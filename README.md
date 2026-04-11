@@ -101,17 +101,34 @@ Thay vì thanh toán từng dịch vụ riêng lẻ, hệ thống sử dụng **
 **Hình 1.1 – Luồng giá trị đặt lịch (minh họa)**
 
 ```mermaid
-flowchart LR
-    A[Người dùng tìm kiếm] --> B[Chọn bác sĩ/dịch vụ]
-    B --> C[Chọn khung giờ còn trống]
-    C --> D[Thêm vào giỏ đặt lịch]
-    D -->|Có thể thêm nhiều mục| D
-    D --> E[Kiểm tra giỏ / xóa mục]
-    E --> F[Thanh toán 1 lần]
-    F --> G[Tạo đơn đặt lịch]
-    G --> H[Phát hành QR/ICS]
-    H --> I[Gửi thông báo SMS/Email]
-    I --> J[Người dùng nhận xác nhận]
+flowchart TD
+        %% Hình 1.1: Luồng giá trị đặt lịch (dễ đọc, theo giai đoạn)
+
+        subgraph S1[Tìm kiếm & lựa chọn]
+            A[Tìm kiếm bác sĩ/dịch vụ] --> B[Xem chi tiết: giá, địa điểm, lịch trống]
+            B --> C[Chọn khung giờ phù hợp]
+        end
+
+        subgraph S2[Lập kế hoạch (Cart/Wishlist)]
+            C --> D[Thêm vào giỏ đặt lịch]
+            D --> E{Muốn thêm dịch vụ khác?}
+            E -->|Có| A
+            E -->|Không| F[Kiểm tra giỏ: sửa/xóa mục]
+            B -. tùy chọn .-> W[Thêm vào Wishlist]
+        end
+
+        subgraph S3[Thanh toán & tạo đơn]
+            F --> G[Thanh toán một lần]
+            G --> H[Tạo đơn đặt lịch & ghi nhận trạng thái]
+        end
+
+        subgraph S4[Xác nhận & thông báo]
+            H --> I[Phát hành QR/ICS lịch hẹn]
+            I --> J[Gửi thông báo (SMS/Email)]
+            J --> K[Người dùng nhận xác nhận]
+        end
+
+        H -. tùy chọn .-> X[Hủy/Hoàn theo chính sách]
 ```
 
 ### 1.4.2 Yêu cầu kiến trúc linh hoạt đa kênh (API-First/Headless)
