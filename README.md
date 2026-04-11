@@ -178,7 +178,7 @@ flowchart TB
 
 ### 1.4.3 Tích hợp hệ thống bên ngoài
 
-Bảng sau tóm tắt các tích hợp chính (ở mức tổng quan).
+Bảng sau tóm tắt các tích hợp chính (ở mức tổng quan). Trong phạm vi báo cáo, các tích hợp được mô tả theo hướng **trung lập nhà cung cấp** (provider-agnostic) để đảm bảo kiến trúc linh hoạt; việc lựa chọn nhà cung cấp cụ thể (ví dụ sandbox khi demo) sẽ được trình bày ở phần hiện thực hóa.
 
 | Tích hợp | Vai trò | Dữ liệu/định dạng |
 |---|---|---|
@@ -201,6 +201,7 @@ Các giả định được đặt ra để giới hạn phạm vi và làm rõ 
 - Mỗi cơ sở y tế có thể cấu hình quy định **cut-off** (mốc thời gian cuối cùng được phép hủy).
 - Hệ thống có cơ chế xác thực nhằm hạn chế tài khoản ảo, ví dụ xác thực số điện thoại qua OTP hoặc tích hợp nhà cung cấp định danh (OAuth2/SSO) ở mức khái niệm.
 - Dịch vụ gửi thông báo và phát hành QR/ICS do bên thứ ba cung cấp, hệ thống gọi qua API.
+- Trong phạm vi demo, các dịch vụ bên ngoài có thể được cấu hình qua môi trường thử nghiệm (sandbox) hoặc cấu hình SMTP để gửi email nhằm phục vụ mục tiêu minh họa luồng nghiệp vụ.
 
 ### 1.5.2 Ràng buộc (Constraints)
 
