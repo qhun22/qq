@@ -187,6 +187,10 @@ Bảng sau tóm tắt các tích hợp chính (ở mức tổng quan).
 | Phát hành QR/ICS | Tạo mã QR hoặc file ICS lịch hẹn | QR payload; ICS (iCalendar) |
 | Đối tác | Nhúng mini-catalog; trao đổi dữ liệu catalog | XML mini-catalog (theo schema thống nhất) |
 
+### 1.4.4 Các đối tượng nghiệp vụ chính (định hướng cho mô hình miền)
+
+Để thống nhất cách hiểu về miền bài toán ngay từ đầu, hệ thống được định hướng xoay quanh các đối tượng nghiệp vụ chính sau (chi tiết quan hệ và thuộc tính sẽ được trình bày ở Chương 3 – Mô hình miền): tài khoản khách hàng và hồ sơ (thông tin cá nhân, bảo hiểm), bác sĩ/cơ sở y tế/chuyên khoa, dịch vụ hoặc gói khám, khung giờ còn trống (availability/slot), giỏ đặt lịch và các mục trong giỏ, đơn đặt lịch (booking/order) và trạng thái, thanh toán và giao dịch, hủy lịch và yêu cầu hoàn tiền, đánh giá của khách hàng (review) và trạng thái kiểm duyệt, nội dung biên tập (editorial review), catalog tổng và mini-catalog (XML) cho đối tác.
+
 ## 1.5 Giả định, ràng buộc và thuật ngữ
 
 ### 1.5.1 Giả định (Assumptions)
