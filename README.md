@@ -1,160 +1,248 @@
-# CHƯƠNG 6: RỦI RO & CHẤT LƯỢNG
+# CHƯƠNG 1. TỔNG QUAN VỀ ĐỀ TÀI
 
-## 6.1. Tổng quan rủi ro
+## 1.1 Bối cảnh và lý do chọn đề tài
 
-### 6.1.1. Khái niệm
-Rủi ro là các sự kiện/điều kiện không chắc chắn, nếu xảy ra có thể ảnh hưởng tiêu cực đến mục tiêu dự án (phạm vi, tiến độ, chi phí, chất lượng). Dự án IoT GreenThumb có rủi ro đặc thù do phụ thuộc **phần cứng**, **kết nối mạng** và **tích hợp đa thành phần** (device–cloud–mobile).
+### 1.1.1 Thực trạng và nhu cầu số hóa trong y tế
 
-### 6.1.2. Vai trò quản lý rủi ro
-Quản lý rủi ro giúp nhóm:
-- Nhận diện sớm các rủi ro trọng yếu (đặc biệt ở chuỗi cung ứng và tích hợp).
-- Ưu tiên xử lý dựa trên xác suất và mức độ ảnh hưởng.
-- Chuẩn bị phương án ứng phó, giảm tác động và tránh trễ tiến độ.
+Trong bối cảnh chuyển đổi số diễn ra mạnh mẽ, lĩnh vực y tế đang có nhu cầu ngày càng lớn về các nền tảng hỗ trợ khám chữa bệnh theo hướng thuận tiện, minh bạch và có khả năng tích hợp. Việc cung cấp thông tin bác sĩ/chuyên khoa, giá dịch vụ, khung giờ còn trống và hỗ trợ đặt lịch trực tuyến giúp giảm tải cho khâu tiếp nhận, đồng thời nâng cao trải nghiệm của người bệnh.
 
-## 6.2. Nhận diện rủi ro
+Bên cạnh đó, các kịch bản hợp tác giữa cơ sở y tế và đối tác (bảo hiểm, doanh nghiệp) ngày càng phổ biến. Nền tảng đặt lịch có thể được nhúng vào website đối tác và trao đổi dữ liệu theo chuẩn thống nhất sẽ giúp mở rộng kênh tiếp cận, đồng thời giảm chi phí vận hành.
 
-### 6.2.1. Nhóm rủi ro (phân loại)
-- **Rủi ro kỹ thuật:** lỗi giao tiếp, reset do sụt áp, sai số cảm biến, lỗi phần mềm.
-- **Rủi ro thiết bị/cung ứng:** chậm linh kiện, linh kiện lỗi, bơm hỏng.
-- **Rủi ro quản lý/tiến độ:** ước lượng sai, phụ thuộc task tích hợp, thay đổi yêu cầu.
-- **Rủi ro chất lượng:** test thiếu bao phủ, lỗi lọt qua UAT.
+### 1.1.2 Các bất cập của quy trình đặt lịch truyền thống
 
-### 6.2.2. Thang đo đánh giá
-Nhóm sử dụng thang đo 1–5 cho **Xác suất (P)** và **Ảnh hưởng (I)**:
-- P: 1 rất thấp … 5 rất cao
-- I: 1 nhỏ … 5 nghiêm trọng
+Quy trình đặt lịch khám truyền thống thường gặp một số hạn chế:
 
-Điểm rủi ro: **Score = P × I**
-- **High:** 15–25
-- **Medium:** 8–14
-- **Low:** 1–7
+- Người bệnh khó tra cứu tập trung thông tin bác sĩ/chuyên khoa/dịch vụ, khó so sánh và lựa chọn.
+- Đăng ký khám chủ yếu qua điện thoại/quầy tiếp nhận dẫn đến chờ đợi, phụ thuộc thời gian làm việc và dễ quá tải.
+- Khó đồng bộ lịch trống và xác nhận lịch hẹn, đặc biệt khi có thay đổi hoặc hủy lịch.
+- Thiếu cơ chế thanh toán trực tuyến và quản lý hoàn/hủy minh bạch.
+- Khi tích hợp với đối tác, dữ liệu thường phân tán, khó chuẩn hóa và khó mở rộng.
 
-## 6.3. Ma trận rủi ro
+### 1.1.3 Ý nghĩa thực tiễn và lợi ích kỳ vọng của hệ thống
 
-### 6.3.1. Xác suất
-Xác suất đánh giá dựa trên kinh nghiệm nhóm, tính phổ biến của sự cố trong dự án IoT và các phụ thuộc bên ngoài.
+Đề tài hướng tới một nền tảng đặt lịch khám trực tuyến giúp:
 
-### 6.3.2. Mức độ ảnh hưởng
-Ảnh hưởng được đánh giá theo tác động lên tiến độ (trễ milestone), chi phí (mua lại linh kiện), chất lượng (không đạt tiêu chí nghiệm thu) và trải nghiệm người dùng.
+- Hỗ trợ người bệnh tìm kiếm, lựa chọn và đặt lịch thuận tiện.
+- Chuẩn hóa luồng nghiệp vụ đặt lịch–thanh toán–xác nhận.
+- Hỗ trợ chính sách hủy/hoàn và theo dõi trạng thái đơn đặt lịch.
+- Cho phép tích hợp đối tác thông qua mini-catalog và chuẩn trao đổi XML.
+- Định hướng kiến trúc linh hoạt để phát triển nhiều front-end khác nhau (web, mobile, desktop) mà không ảnh hưởng lõi nghiệp vụ.
 
-### 6.3.3. Hình ma trận
-**Hình 6.1** thể hiện ma trận rủi ro (Probability–Impact) và vị trí các rủi ro chính.
+## 1.2 Mục tiêu của đề tài
 
-- File hình tham chiếu: xem [Hinh-6-1-Risk-matrix.html](Hinh-6-1-Risk-matrix.html) để xuất ảnh chèn Word.
+### 1.2.1 Mục tiêu tổng quát
 
-## 6.4. Kế hoạch xử lý rủi ro
+Mô hình hóa và thiết kế một hệ thống đặt lịch khám bệnh trực tuyến theo phương pháp phát triển hướng đối tượng, đảm bảo đầy đủ các nghiệp vụ chính, có khả năng tích hợp và mở rộng theo yêu cầu đề bài.
 
-### 6.4.1. Chiến lược ứng phó
-Nhóm áp dụng 4 chiến lược:
-- **Tránh (Avoid):** thay đổi kế hoạch để loại bỏ rủi ro.
-- **Giảm thiểu (Mitigate):** giảm xác suất hoặc giảm tác động.
-- **Chuyển giao (Transfer):** chuyển trách nhiệm/tác động cho bên khác (hạn chế trong bài học phần).
-- **Chấp nhận (Accept):** chấp nhận và chuẩn bị phương án dự phòng.
+### 1.2.2 Mục tiêu cụ thể
 
-### 6.4.2. Sổ theo dõi rủi ro (Risk Register)
-Tách thành 2 bảng để trình bày gọn.
+Các mục tiêu cụ thể gồm:
 
-**Bảng 6.1a. Risk Register – Nhận diện & đánh giá**
+- Đặt lịch khám/đăng ký dịch vụ y tế trực tuyến, tiếp nhận đơn đặt lịch.
+- Quản lý giỏ đặt lịch (cart): thêm lịch khám/dịch vụ trước khi thanh toán và cho phép xóa mục khỏi giỏ.
+- Duy trì danh sách mong muốn (wishlist) để lưu bác sĩ/phòng khám yêu thích và đặt sau.
+- Thanh toán bằng thẻ hoặc ví điện tử.
+- Hủy đơn đặt lịch trước thời điểm check-in hoặc trước cut-off do cơ sở y tế quy định.
+- Yêu cầu hoàn tiền theo chính sách hoàn/hủy.
+- Nhúng mini-catalog vào website đối tác, mini-catalog được định nghĩa bằng XML.
+- Phát hành xác nhận lịch hẹn (QR/ICS) và gửi thông báo qua dịch vụ bên thứ ba (SMS/email/CDN).
+- Quản lý tài khoản khách hàng và hồ sơ: tên, email, số điện thoại, ngày sinh, thông tin bảo hiểm.
+- Cho phép đăng đánh giá (review) kèm xếp hạng 1–5; đánh giá được kiểm duyệt trước khi xuất bản; đánh giá dài được rút gọn trên trang chi tiết.
+- Cho phép biên tập viên đăng bài nhận định/hướng dẫn (editorial review) hiển thị tại trang chi tiết.
 
-| ID | Rủi ro | Nhóm | Nguyên nhân | P | I | Score | Mức |
-|---|---|---|---|---:|---:|---:|---|
-| R1 | Chậm linh kiện | Cung ứng | Trễ vận chuyển/hết hàng | 4 | 4 | 16 | High |
-| R2 | Lỗi app–cloud–device | Kỹ thuật | Sai topic/payload; thiếu test tích hợp | 3 | 5 | 15 | High |
-| R3 | Reset khi chạy bơm | Thiết bị | Sụt áp; nguồn/mạch chưa phù hợp | 3 | 4 | 12 | Medium |
-| R4 | Sai số cảm biến theo đất | Chất lượng | Cảm biến rẻ; môi trường biến thiên | 4 | 3 | 12 | Medium |
-| R5 | Mất Wi‑Fi/Internet | Kỹ thuật | Mạng yếu; router lỗi | 3 | 3 | 9 | Medium |
-| R6 | Lộ token/credential | Bảo mật | Hard-code key; chia sẻ repo | 2 | 5 | 10 | Medium |
-| R7 | Trễ tích hợp | Tiến độ | Phát sinh lỗi khó đoán | 4 | 3 | 12 | Medium |
-| R8 | Cảnh báo sai | Chất lượng | Ngưỡng chưa chuẩn; dữ liệu nhiễu | 3 | 3 | 9 | Medium |
-| R9 | Bơm kẹt/chạy khô | Thiết bị | Hết nước; kẹt cơ khí | 2 | 4 | 8 | Medium |
-| R10 | Thiếu bao phủ test | Chất lượng | Thiếu test plan; thiếu case mạng | 3 | 4 | 12 | Medium |
+## 1.3 Phạm vi và đối tượng sử dụng
 
-**Bảng 6.1b. Risk Register – Ứng phó & theo dõi**
+### 1.3.1 Phạm vi chức năng
 
-| ID | Ứng phó (sơ bộ) | Hành động giảm thiểu | Risk owner | Trigger |
-|---|---|---|---|---|
-| R1 | Giảm thiểu | Mua sớm; linh kiện thay thế; mua dư | Đặng Thị Thu Giang | Giao trễ/không tracking |
-| R2 | Giảm thiểu | Chốt contract; mock; contract test | Phạm Thị Phương | Timeout/parse nhiều |
-| R3 | Giảm thiểu | Tách nguồn; thêm tụ; giới hạn bơm | Đặng Thị Thu Giang / Đặng Thành Dương | Reset khi bơm chạy |
-| R4 | Giảm thiểu | Hiệu chuẩn; lọc; ngưỡng theo profile | Đặng Thành Dương | Dao động bất thường |
-| R5 | Giảm thiểu | Reconnect; buffer; UI offline | Đặng Thành Dương / Phạm Thị Phương | Device/app offline |
-| R6 | Giảm thiểu | Env/secret; token theo thiết bị; rotate | Phạm Thị Phương | Key lộ trong code/log |
-| R7 | Chấp nhận/giảm thiểu | Buffer 10–20%; ưu tiên đường găng | Trương Quang Huy (#) | Trễ tích hợp/UAT |
-| R8 | Giảm thiểu | Lọc; hysteresis; test kịch bản | Phạm Thị Phương / Nguyễn Thùy Dương | False alert nhiều |
-| R9 | Giảm thiểu | Giới hạn bơm; test trước; bơm dự phòng | Đặng Thị Thu Giang | Bơm kêu/không hút |
-| R10 | Giảm thiểu | Test plan; checklist; ưu tiên fix | Phạm Thị Phương | Bug muộn ở UAT |
+Bảng dưới đây tóm tắt phạm vi chức năng chính trong báo cáo.
 
-### 6.4.3. Theo dõi và cập nhật
-- Cập nhật Risk Register hàng tuần (trạng thái, rủi ro mới, mức ưu tiên).
-- Với rủi ro High (R1, R2), nhóm theo dõi theo **mốc** và cập nhật ngay khi có tín hiệu trigger.
+| Nhóm chức năng | Mô tả ngắn |
+|---|---|
+| Tìm kiếm & xem chi tiết | Tìm theo tên bác sĩ/chuyên khoa/từ khóa/địa điểm/khung giờ; xem hồ sơ, giá, lịch trống |
+| Giỏ đặt lịch (Cart) | Thêm lịch khám/dịch vụ vào giỏ; xóa mục; chuẩn bị thanh toán |
+| Đặt lịch & xác nhận | Tạo đơn đặt lịch; phát hành QR/ICS; gửi thông báo |
+| Thanh toán | Thanh toán bằng thẻ/ ví điện tử; lưu trạng thái thanh toán |
+| Hủy & hoàn | Hủy trước check-in/cut-off; yêu cầu hoàn theo chính sách |
+| Wishlist | Lưu bác sĩ/phòng khám yêu thích để đặt sau |
+| Tài khoản & hồ sơ | Tạo tài khoản, đăng nhập; lưu hồ sơ và bảo hiểm |
+| Review & kiểm duyệt | Khách hàng gửi review (1–5); nhân viên kiểm duyệt; rút gọn review dài |
+| Nội dung biên tập | Biên tập viên đăng editorial review |
+| Đối tác & mini-catalog | Nhúng mini-catalog sinh từ catalog tổng; trao đổi XML; nhập dữ liệu đối tác |
 
-## 6.5. Quản lý chất lượng
+### 1.3.2 Ngoài phạm vi
 
-### 6.5.1. Tiêu chuẩn chất lượng (mức dự án học phần)
-Nhóm đặt mục tiêu chất lượng theo tiêu chí:
-- Chức năng lõi hoạt động ổn định ở mức demo: **đo cảm biến – hiển thị – cảnh báo – điều khiển bơm**.
-- Tích hợp end‑to‑end đạt mức tin cậy tối thiểu theo kịch bản UAT.
-- Tài liệu kế hoạch (WBS/Gantt/Budget/Risk/QA) **nhất quán** và có minh chứng.
+Trong phạm vi học phần và báo cáo thiết kế, các nội dung sau chỉ nêu định hướng (không triển khai đầy đủ):
 
-### 6.5.2. Quy trình kiểm thử phần cứng/firmware
-- **Kiểm thử chức năng cảm biến:** đọc dữ liệu theo chu kỳ, kiểm tra ổn định.
-- **Kiểm thử độ chính xác tương đối:** so sánh 2–3 trạng thái (đất khô/ẩm) và theo dõi xu hướng.
-- **Kiểm thử tải bơm/nguồn:** bật bơm nhiều lần, không reset; đo dòng/điện áp (nếu có điều kiện).
-- **Kiểm thử mất kết nối:** ngắt Wi‑Fi, quan sát reconnect và buffer.
+- Tối ưu thuật toán tìm kiếm nâng cao (xếp hạng theo ML, gợi ý cá nhân hóa).
+- Quy trình nghiệp vụ nội bộ của bệnh viện (quản trị lịch trực tiếp của bác sĩ, phân công phòng).
+- Kết nối trực tiếp với hệ thống HIS/EMR thực tế (chỉ mô tả tích hợp ở mức khái niệm).
+- Kiểm toán/báo cáo tài chính chuyên sâu.
 
-### 6.5.3. Quy trình kiểm thử phần mềm (cloud + mobile)
-- **Functional test:** dashboard, lịch sử, cảnh báo, điều khiển bơm.
-- **Integration test:** app↔cloud↔device, gồm cả trường hợp lỗi (timeout/offline).
-- **Connectivity test:** mạng yếu, mất mạng, reconnect.
-- **Security basic check:** không hard-code key; token kiểm soát truy cập.
+### 1.3.3 Đối tượng sử dụng và các bên liên quan (stakeholders)
 
-### 6.5.4. Vai trò và trách nhiệm chất lượng
-- **Phạm Thị Phương (Cloud/QA):** lập test plan, điều phối chạy test tích hợp, tổng hợp lỗi.
-- **Đặng Thị Thu Giang / Đặng Thành Dương:** chịu trách nhiệm test HW/FW (nguồn, bơm, ổn định).
-- **Nguyễn Thùy Dương:** test UI/UX và luồng điều khiển/cảnh báo.
-- **Trương Quang Huy (#):** chốt tiêu chí nghiệm thu và điều phối UAT.
+Bảng sau liệt kê các nhóm tác nhân/bên liên quan chính.
 
-### 6.5.5. Tiêu chí nghiệm thu (Acceptance Criteria)
-**Bảng 6.2. Acceptance Criteria (tối thiểu cho demo)**
+| Nhóm | Vai trò trong hệ thống |
+|---|---|
+| Khách hàng | Tìm kiếm, đặt lịch, thanh toán, hủy/hoàn, wishlist, review |
+| Nhân viên kiểm duyệt | Duyệt/ẩn review trước khi hiển thị |
+| Biên tập viên y tế | Đăng bài nhận định/hướng dẫn (editorial review) |
+| Cơ sở y tế đối tác | Cung cấp catalog bác sĩ/dịch vụ; cấu hình cut-off; tiếp nhận đơn đặt lịch |
+| Hệ thống đối tác (bảo hiểm/doanh nghiệp) | Nhúng mini-catalog; trao đổi dữ liệu XML |
+| Cổng thanh toán | Xử lý thanh toán thẻ/ ví; phản hồi trạng thái |
+| Dịch vụ thông báo/ phát hành xác nhận | Gửi SMS/email; phát hành QR/ICS; phân phối qua CDN (nếu có) |
 
-| Mã | Tiêu chí | Mức đạt |
+## 1.4 Mô tả tổng quan hệ thống (Problem Overview)
+
+### 1.4.1 Mô hình hoạt động tổng quát theo luồng giá trị (Value Stream)
+
+Thay vì thanh toán từng dịch vụ riêng lẻ, hệ thống sử dụng **giỏ đặt lịch** để người dùng có thể gom nhiều dịch vụ cho cùng một buổi khám (ví dụ: khám tổng quát + xét nghiệm + chẩn đoán hình ảnh), sau đó thực hiện **một lần thanh toán**. Cách tiếp cận này giúp giảm thao tác, giảm phí giao dịch và nâng cao trải nghiệm.
+
+**Hình 1.1 – Luồng giá trị đặt lịch (minh họa)**
+
+```mermaid
+flowchart LR
+    A[Người dùng tìm kiếm] --> B[Chọn bác sĩ/dịch vụ]
+    B --> C[Chọn khung giờ còn trống]
+    C --> D[Thêm vào giỏ đặt lịch]
+    D -->|Có thể thêm nhiều mục| D
+    D --> E[Kiểm tra giỏ / xóa mục]
+    E --> F[Thanh toán 1 lần]
+    F --> G[Tạo đơn đặt lịch]
+    G --> H[Phát hành QR/ICS]
+    H --> I[Gửi thông báo SMS/Email]
+    I --> J[Người dùng nhận xác nhận]
+```
+
+### 1.4.2 Yêu cầu kiến trúc linh hoạt đa kênh (API-First/Headless)
+
+Đề bài yêu cầu hệ thống ban đầu là nền web nhưng phải linh hoạt để phát triển các front-end thay thế. Vì vậy, hệ thống được định hướng theo **API-First/Headless Architecture**:
+
+- Web chỉ là **một client** của hệ thống.
+- Lõi nghiệp vụ (business logic) được tổ chức trong backend (các service/use case) và được truy cập thông qua API.
+- Các client khác (mobile/desktop/đối tác) có thể tái sử dụng cùng API, hạn chế phụ thuộc vào giao diện.
+
+**Hình 1.2 – Kiến trúc tổng quan (minh họa)**
+
+```mermaid
+flowchart TB
+    subgraph Clients[Clients]
+        W[Web App]
+        M[Mobile App]
+        D[Desktop App]
+        P[Partner Website (embed mini-catalog)]
+    end
+
+    subgraph Backend[Backend API (Headless/API-First)]
+        API[API Gateway / Backend API]
+        S1[Booking Service]
+        S2[Catalog Service]
+        S3[Identity/Profile Service]
+        S4[Review & Moderation Service]
+        S5[Payment & Refund Service]
+    end
+
+    subgraph Data[Central Data]
+        DB[(CSDL trung tâm)]
+    end
+
+    subgraph External[Third-party]
+        Pay[Payment Gateway]
+        Noti[SMS/Email Provider]
+        Ticket[QR/ICS Issuer]
+        CDN[CDN (tùy chọn)]
+    end
+
+    W --> API
+    M --> API
+    D --> API
+    P --> API
+
+    API --> S1
+    API --> S2
+    API --> S3
+    API --> S4
+    API --> S5
+
+    S1 --> DB
+    S2 --> DB
+    S3 --> DB
+    S4 --> DB
+    S5 --> DB
+
+    S5 --> Pay
+    S1 --> Ticket
+    Ticket --> Noti
+    Noti --> CDN
+```
+
+### 1.4.3 Tích hợp hệ thống bên ngoài
+
+Bảng sau tóm tắt các tích hợp chính (ở mức tổng quan).
+
+| Tích hợp | Vai trò | Dữ liệu/định dạng |
 |---|---|---|
-| AC1 | App hiển thị đúng độ ẩm, nhiệt độ từ prototype #2 | Có dữ liệu cập nhật; hiển thị trạng thái online/offline |
-| AC2 | Điều khiển bơm từ app qua cloud hoạt động | Lệnh bật/tắt thành công trong điều kiện mạng ổn định |
-| AC3 | Cảnh báo độ ẩm thấp hoạt động | Khi độ ẩm dưới ngưỡng, có cảnh báo/in-app notification |
-| AC4 | Hệ thống xử lý mất kết nối cơ bản | Device/app tự phục hồi; app không “treo”, có thông báo lỗi |
+| Cổng thanh toán | Xử lý giao dịch thẻ/ ví; trả kết quả | Request/response theo API của cổng thanh toán |
+| SMS/Email/CDN | Gửi thông báo lịch hẹn và trạng thái | Nội dung thông báo; liên kết/đính kèm |
+| Phát hành QR/ICS | Tạo mã QR hoặc file ICS lịch hẹn | QR payload; ICS (iCalendar) |
+| Đối tác | Nhúng mini-catalog; trao đổi dữ liệu catalog | XML mini-catalog (theo schema thống nhất) |
 
-## 6.6. Test Cases mẫu
+## 1.5 Giả định, ràng buộc và thuật ngữ
 
-### 6.6.1. Test cases phần cứng/firmware
-**Bảng 6.3. Test cases HW/FW (mẫu)**
+### 1.5.1 Giả định (Assumptions)
 
-| TC ID | Mục tiêu | Bước kiểm thử (tóm tắt) | Kết quả mong đợi |
-|---|---|---|---|
-| HWTC01 | Đọc cảm biến ổn định | Chạy thiết bị 30 phút, chu kỳ 10s | Dữ liệu không bị gián đoạn bất thường |
-| HWTC02 | Reconnect Wi‑Fi | Ngắt Wi‑Fi 2 phút rồi bật lại | Thiết bị tự reconnect và gửi lại dữ liệu |
-| HWTC03 | Điều khiển bơm an toàn | Gửi lệnh bật bơm liên tục 5 lần | Không reset; bơm tắt theo giới hạn thời gian |
-| HWTC04 | Sai số tương đối | So sánh đất khô vs đất ẩm | Dữ liệu phản ánh xu hướng tăng/giảm hợp lý |
+Các giả định được đặt ra để giới hạn phạm vi và làm rõ cách hệ thống vận hành:
 
-### 6.6.2. Test cases cloud
-**Bảng 6.4. Test cases Cloud (mẫu)**
+- Dữ liệu bác sĩ/dịch vụ/giá/lịch trống được cung cấp từ cơ sở y tế hoặc đối tác và được nhập vào catalog tổng.
+- Mỗi cơ sở y tế có thể cấu hình quy định **cut-off** (mốc thời gian cuối cùng được phép hủy).
+- Hệ thống có cơ chế xác thực nhằm hạn chế tài khoản ảo, ví dụ xác thực số điện thoại qua OTP hoặc tích hợp nhà cung cấp định danh (OAuth2/SSO) ở mức khái niệm.
+- Dịch vụ gửi thông báo và phát hành QR/ICS do bên thứ ba cung cấp, hệ thống gọi qua API.
 
-| TC ID | Mục tiêu | Bước kiểm thử (tóm tắt) | Kết quả mong đợi |
-|---|---|---|---|
-| CLTC01 | Ingest telemetry | Device gửi 10 bản ghi liên tiếp | Cloud nhận đủ và lưu trữ |
-| CLTC02 | Query lịch sử | App gọi API lấy dữ liệu 24h | Trả dữ liệu đúng định dạng/thời gian |
-| CLTC03 | Command delivery | App gửi lệnh bật/tắt | Cloud chuyển lệnh tới device, có ack |
-| CLTC04 | Trigger cảnh báo | Đặt độ ẩm dưới ngưỡng | Cloud tạo sự kiện cảnh báo |
+### 1.5.2 Ràng buộc (Constraints)
 
-### 6.6.3. Test cases ứng dụng di động
-**Bảng 6.5. Test cases Mobile (mẫu)**
+Các ràng buộc quan trọng từ đề bài:
 
-| TC ID | Mục tiêu | Bước kiểm thử (tóm tắt) | Kết quả mong đợi |
-|---|---|---|---|
-| SWTC01 | Hiển thị dashboard | Mở app, xem dashboard | Hiển thị độ ẩm/nhiệt/trạng thái |
-| SWTC02 | Điều khiển bơm | Nhấn bật/tắt, quan sát phản hồi | Trạng thái cập nhật đúng; có loading/error |
-| SWTC03 | Offline UI | Tắt mạng điện thoại | App báo lỗi kết nối, không crash |
-| SWTC04 | Cảnh báo | Độ ẩm thấp hơn ngưỡng | App hiển thị cảnh báo/in-app notification |
+- **CSDL trung tâm** lưu danh sách tài khoản và catalog tổng; các module truy cập thống nhất.
+- Khi đăng nhập, mật khẩu phải được đối chiếu với danh sách tài khoản gốc trong CSDL trung tâm.
+- Mini-catalog nhúng vào website đối tác phải được **định nghĩa bằng XML** để trao đổi với hệ thống bên ngoài.
+- Review của khách hàng phải được **kiểm duyệt bởi nhân viên** trước khi xuất bản.
+- Review dài phải được **rút gọn** trên trang chi tiết và có khả năng xem đầy đủ.
+- Đáp ứng khả năng mở rộng theo lộ trình:
+  - Tài khoản: tối đa 100.000 trong 6 tháng đầu, sau đó tăng đến 1.000.000.
+  - Người dùng đồng thời: 1.000, sau đó tăng đến 10.000.
+  - Tìm kiếm: 100 yêu cầu/phút, sau đó tăng đến 1.000/phút.
+  - Đơn đặt lịch: 100 đơn/giờ, sau đó tăng đến 1.000/giờ.
 
-## 6.7. UAT (tóm tắt)
-Nhóm thực hiện UAT theo các kịch bản bám sát Use Case (UC01, UC03, UC05) và chốt nghiệm thu theo các tiêu chí AC1–AC4. Kết quả UAT (nếu có) và danh sách lỗi/khắc phục có thể đưa vào Phụ lục.
+**Bảng 1.1 – Tóm tắt chỉ tiêu mở rộng (đặt nền cho Chương 2)**
+
+| Hạng mục | Giai đoạn 1 | Sau 6 tháng |
+|---|---:|---:|
+| Số tài khoản | 100.000 | 1.000.000 |
+| Người dùng đồng thời | 1.000 | 10.000 |
+| Tìm kiếm / phút | 100 | 1.000 |
+| Đơn đặt lịch / giờ | 100 | 1.000 |
+
+### 1.5.3 Thuật ngữ/viết tắt
+
+| Thuật ngữ | Ý nghĩa |
+|---|---|
+| Cart (Giỏ đặt lịch) | Danh sách lịch khám/dịch vụ người dùng chọn trước khi thanh toán |
+| Wishlist | Danh sách mong muốn (bác sĩ/phòng khám yêu thích) |
+| Booking/Order | Đơn đặt lịch khám/dịch vụ (trạng thái: tạo, thanh toán, hủy, hoàn…) |
+| Cut-off | Mốc thời gian cuối cùng cho phép hủy lịch theo quy định cơ sở y tế |
+| QR | Mã xác nhận (có thể dùng khi check-in) |
+| ICS | Định dạng iCalendar để lưu lịch hẹn vào ứng dụng lịch |
+| Mini-catalog | Danh mục con dành cho đối tác, sinh từ catalog tổng |
+| Moderation | Quy trình kiểm duyệt review trước khi xuất bản |
+
+## 1.6 Cấu trúc báo cáo
+
+### 1.6.1 Tóm tắt nội dung từng chương và mối liên hệ (Analysis → Design)
+
+- **Chương 1** trình bày bối cảnh, mục tiêu, phạm vi, các giả định/ràng buộc và mô tả tổng quan hệ thống.
+- **Chương 2** cụ thể hóa các yêu cầu từ Chương 1 thành yêu cầu chức năng/phi chức năng, các tác nhân và mô hình Use Case, đồng thời đặc tả một số Use Case quan trọng.
+- **Chương 3** sử dụng kết quả từ Chương 2 để xây dựng mô hình miền và phân tích luồng điều khiển thông qua sơ đồ Robustness cho các kịch bản nghiệp vụ chính.
+- **Chương 4** chuyển các mô hình phân tích ở Chương 3 thành mô hình thiết kế chi tiết: kiến trúc, sơ đồ trình tự và sơ đồ lớp, đồng thời ánh xạ tổng quan sang thiết kế dữ liệu.
+- **Chương 5** đề xuất hướng hiện thực hóa và đánh giá khả năng đáp ứng theo các chỉ tiêu mở rộng, nêu kết luận và hướng phát triển.
+
+> Ghi chú trình bày: Các hình minh họa trong Chương 1 có thể được dựng bằng Mermaid để thuận tiện chỉnh sửa; khi đưa vào Word/PDF có thể xuất hình hoặc chụp màn hình sau khi render.
