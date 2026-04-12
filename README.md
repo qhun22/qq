@@ -15,7 +15,7 @@ Mục tiêu của sơ đồ là phân tích luồng sự kiện (BASIC/ALTERNATE
 *   Boundary KHÔNG nối trực tiếp với Boundary (ngoại trừ điều hướng hiển thị).
 *   Actor chỉ tương tác với Boundary.
 
-Do Mermaid.js không hỗ trợ chuẩn format UML Robustness truyền thống nguyên thủy, báo cáo dùng quy ước hình tối giản, tiêu chuẩn (Clean format) sau đây để thay thế:
+Để thống nhất cách trình bày sơ đồ trong báo cáo (dễ đọc và dễ đối chiếu theo ICONIX), phần Robustness sử dụng quy ước ký hiệu tối giản (Clean format) sau đây:
 *   `Actor[[Tác nhân]]` (Cặp ngoặc vuông kép thể hiện đối tượng ngoại cảnh)
 *   `Boundary([Tên Giao diện])` (Cặp ngoặc đơn oval lồi thể hiện Boundary)
 *   `Control((Tên Xử lý))` (Hình tròn lõi thể hiện Control)
