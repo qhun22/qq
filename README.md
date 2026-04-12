@@ -15,11 +15,14 @@ Mục tiêu của sơ đồ là phân tích luồng sự kiện (BASIC/ALTERNATE
 *   Boundary KHÔNG nối trực tiếp với Boundary (ngoại trừ điều hướng hiển thị).
 *   Actor chỉ tương tác với Boundary.
 
-Để thống nhất cách trình bày sơ đồ trong báo cáo (dễ đọc và dễ đối chiếu theo ICONIX), phần Robustness sử dụng quy ước ký hiệu tối giản (Clean format) sau đây:
-*   `Actor[[Tác nhân]]` (Cặp ngoặc vuông kép thể hiện đối tượng ngoại cảnh)
-*   `Boundary([Tên Giao diện])` (Cặp ngoặc đơn oval lồi thể hiện Boundary)
-*   `Control((Tên Xử lý))` (Hình tròn lõi thể hiện Control)
-*   `Entity[(Tên Thực Thể)]` (Hình trụ Database thể hiện kho lưu trữ Entity)
+Để thống nhất cách trình bày sơ đồ trong báo cáo (dễ đọc và dễ đối chiếu theo ICONIX), phần Robustness được mô tả theo chuẩn Boundary–Control–Entity (BCE) với 4 nhóm đối tượng:
+
+*   **Actor**: tác nhân bên ngoài hệ thống.
+*   **Boundary**: điểm tương tác (màn hình, form, trang, cổng/gateway API, v.v.).
+*   **Control**: lớp điều phối xử lý nghiệp vụ, kiểm tra hợp lệ, áp quy tắc.
+*   **Entity**: dữ liệu nghiệp vụ (các lớp trong Domain Model).
+
+Khi vẽ bằng StarUML, có thể gắn stereotype tương ứng (<<boundary>>, <<control>>, <<entity>>) để phân biệt; Actor dùng ký pháp UML chuẩn.
 
 ---
 
