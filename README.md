@@ -80,6 +80,8 @@ Nội dung Hình 3.1: Khách hàng thao tác trên màn hình Đăng ký/Đăng 
 |---|
 | **BASIC COURSE (Luồng chính)**<br>1. Khách hàng nhập tiêu chí tìm kiếm (tên bác sĩ, chuyên khoa, từ khóa, địa điểm, khung giờ).<br>2. Hệ thống truy vấn catalog tổng và hiển thị danh sách kết quả.<br>3. Khách hàng chọn một bác sĩ/cơ sở/dịch vụ.<br>4. Hệ thống hiển thị trang chi tiết (hồ sơ, giá, review rút gọn tối đa 200 ký tự) và danh sách slot còn trống.<br><br>**ALTERNATE COURSE (Luồng thay thế/ngoại lệ)**<br>- Không có kết quả: hệ thống hiển thị thông báo và gợi ý điều chỉnh tiêu chí.<br>- Slot vừa hết: hệ thống cập nhật lại danh sách slot khi người dùng thao tác. |
 
+Sơ đồ thể hiện luồng tìm kiếm từ lúc khách hàng nhập tiêu chí (Boundary) đến khi hệ thống xử lý truy vấn và tải dữ liệu chi tiết/slot (Control), truy xuất các Entity như `Catalog`, `Doctor`, `Specialty`, `MedicalService`, `ProviderClinic`, `AvailabilitySlot`; đồng thời phản ánh các nhánh ngoại lệ khi không có kết quả hoặc slot vừa hết để UI cập nhật lại.
+
 ```mermaid
 flowchart TD
   A_CUS[[Khách hàng]]
