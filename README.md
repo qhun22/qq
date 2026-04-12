@@ -60,6 +60,10 @@ flowchart TD
   C_PROF -.->|Báo lỗi format| B_PROF
 ```
 
+**Hình 3.1 – RB-UC00: Đăng ký/Đăng nhập & quản lý hồ sơ**
+
+Nội dung Hình 3.1: Khách hàng thao tác trên màn hình Đăng ký/Đăng nhập và Hồ sơ (Boundary). Hệ thống xử lý xác thực/đăng ký và cập nhật hồ sơ (Control), đọc/ghi các Entity `Credential`, `CustomerAccount`, `CustomerProfile`, `InsuranceInfo`; có nhánh báo lỗi khi trùng/sai hoặc dữ liệu không hợp lệ.
+
 ### 3.2.2 Sơ đồ thiết kế cho UC-01 – Tìm kiếm & xem chi tiết (RB-UC01)
 
 ```mermaid
@@ -96,6 +100,10 @@ flowchart TD
   C_FETCH -.->|Nếu hết Slot cảnh báo| B_DETAIL
 ```
 
+**Hình 3.2 – RB-UC01: Tìm kiếm & xem chi tiết**
+
+Nội dung Hình 3.2: Khách hàng tìm kiếm và xem chi tiết (Boundary). Control xử lý truy vấn và tải chi tiết/slot, truy cập `Catalog` và các Entity `ProviderClinic`, `Doctor`, `Specialty`, `MedicalService`, `AvailabilitySlot`; có nhánh cảnh báo khi slot vừa hết.
+
 ### 3.2.3 Sơ đồ thiết kế cho UC-02 – Quản lý Wishlist (RB-UC02)
 
 ```mermaid
@@ -114,6 +122,10 @@ flowchart TD
   C_MAN_WISH -->|Cập nhật item| E_WISH_ITEM
   C_MAN_WISH -.->|Lỗi trạng thái| B_WISH
 ```
+
+**Hình 3.3 – RB-UC02: Quản lý Wishlist**
+
+Nội dung Hình 3.3: Khách hàng thêm/xóa mục yêu thích trên Trang Wishlist (Boundary). Control quản lý wishlist kiểm tra trạng thái và cập nhật `Wishlist`/`WishlistItem`, trả thông báo lỗi khi trạng thái không hợp lệ.
 
 ### 3.2.4 Sơ đồ thiết kế cho UC-03 – Quản lý Cart (RB-UC03)
 
@@ -135,6 +147,10 @@ flowchart TD
   C_MAN_CART -->|Tạo Item| E_CART_ITEM
   C_MAN_CART -.->|Báo lỗi xung đột| B_CART
 ```
+
+**Hình 3.4 – RB-UC03: Quản lý Cart (giỏ đặt lịch)**
+
+Nội dung Hình 3.4: Khách hàng thao tác trên Trang Giỏ hàng (Boundary). Control quản lý cart kiểm tra khả dụng của `AvailabilitySlot`, kiểm tra `Cart` và tạo/cập nhật `CartItem`; có nhánh báo lỗi khi xung đột/lỗi trạng thái.
 
 ### 3.2.5 Sơ đồ thiết kế cho UC-04 – Đặt lịch & Thanh toán (RB-UC04)
 
@@ -175,6 +191,10 @@ flowchart TD
   C_PAY --> C_CALL_12
 ```
 
+**Hình 3.5 – RB-UC04: Đặt lịch & Thanh toán**
+
+Nội dung Hình 3.5: Khách hàng checkout (Boundary). Control khởi tạo đơn lock slot (`AvailabilitySlot`), đọc `CartItem`, tạo `BookingItem` và `BookingOrder`. Control thanh toán giao tiếp với gateway/cổng thanh toán, ghi `PaymentTransaction`, cập nhật trạng thái đơn và gọi UC-12 khi đủ điều kiện.
+
 ### 3.2.6 Sơ đồ thiết kế cho UC-05 & UC-06 – Hủy lịch & Hoàn tiền (RB-UC05-06)
 
 ```mermaid
@@ -213,6 +233,10 @@ flowchart TD
   C_REFUND --> C_CALL_12
 ```
 
+**Hình 3.6 – RB-UC05-06: Hủy lịch & Hoàn tiền**
+
+Nội dung Hình 3.6: Khách hàng yêu cầu hủy/hoàn tiền trên Trang Lịch khám (Boundary). Control hủy đơn kiểm tra `CancelPolicy` và `BookingOrder` theo cut-off, cập nhật trạng thái; Control hoàn tiền tạo `RefundRequest` và giao tiếp gateway thanh toán. Sau các thay đổi quan trọng, hệ thống gọi UC-12 để cập nhật ticket/thông báo.
+
 ### 3.2.7 Sơ đồ thiết kế cho UC-07 & UC-08 – Đánh giá & Kiểm duyệt (RB-UC07-08)
 
 Đã bổ sung liên kết Review tới cả Doctor và ProviderClinic như kịch bản đặt ra.
@@ -246,6 +270,10 @@ flowchart TD
   C_MOD -->|Update Approved| E_REV
 ```
 
+**Hình 3.7 – RB-UC07-08: Đánh giá & Kiểm duyệt**
+
+Nội dung Hình 3.7: Khách hàng gửi đánh giá qua Form Đánh giá (Boundary). Control lưu & chờ duyệt tạo `Review` và liên kết tới `Doctor` hoặc `ProviderClinic`. Nhân viên kiểm duyệt thao tác trên Trang Kiểm duyệt (Boundary); Control duyệt trạng thái cập nhật kết quả và ghi `ReviewModeration`.
+
 ### 3.2.8 Sơ đồ thiết kế cho UC-09 – Quản lý nội dung biên tập (RB-UC09)
 
 ```mermaid
@@ -260,6 +288,10 @@ flowchart TD
   B_EDT --> C_POST
   C_POST -->|Save/Update| E_POST
 ```
+
+**Hình 3.8 – RB-UC09: Quản lý nội dung biên tập**
+
+Nội dung Hình 3.8: Biên tập viên thao tác trên Trang soạn thảo (Boundary). Control đăng bài/biên tập tạo hoặc cập nhật Entity `EditorialPost`.
 
 ### 3.2.9 Sơ đồ thiết kế nhóm Đối tác & XML (RB-UC10-11)
 
@@ -298,6 +330,10 @@ flowchart TD
   C_GEN -->|Response| B_EXP
 ```
 
+**Hình 3.9 – RB-UC10-11: Nhập catalog đối tác & Xuất mini-catalog XML**
+
+Nội dung Hình 3.9: Nhân viên cơ sở y tế nhập catalog qua Giao diện Nhập (Boundary), Control xác thực định dạng và hợp nhất catalog ghi log `PartnerCatalogImport` và cập nhật `Catalog`. Khi xuất XML, Control sinh schema kiểm tra quyền theo `Partner`, đọc `Catalog`, ghi log `MiniCatalogExport` và trả kết quả qua Cổng API XML.
+
 ### 3.2.10 Sơ đồ thiết kế phân đoạn cho UC-12 (RB-UC12)
 
 ```mermaid
@@ -333,6 +369,10 @@ flowchart TD
   B_NOT -->|Lưu vết trạng thái gửi| E_NOT
   B_NOT -.->|Báo lỗi / Retry| C_NOT
 ```
+
+**Hình 3.10 – RB-UC12: Phát hành QR/ICS & gửi thông báo**
+
+Nội dung Hình 3.10: UC-12 được kích hoạt bởi sự kiện trạng thái đơn (từ UC-04/05/06) hoặc yêu cầu gửi lại từ Trang Chi tiết đơn (Boundary). Control phát hành tương tác dịch vụ QR/ICS và lưu `AppointmentTicket`; Control điều phối thông báo gửi qua cổng push, lưu vết `Notification` và xử lý retry khi lỗi.
 
 ---
 *Ghi chú đánh giá độ bền vững (Robustness Verification)*: 
