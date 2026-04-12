@@ -32,15 +32,16 @@ Khi vẽ bằng StarUML, có thể gắn stereotype tương ứng (<<boundary>>,
 
 | Use Case: UC-00 – Đăng ký/Đăng nhập & quản lý hồ sơ |
 |---|
-| **BASIC COURSE (Luồng chính)**<br>1. Khách hàng chọn đăng ký hoặc đăng nhập.<br>2. Hệ thống hiển thị form và yêu cầu nhập email/số điện thoại + mật khẩu.<br>3. Với đăng ký: hệ thống kiểm tra trùng; tạo tài khoản; khởi tạo hồ sơ.<br>4. Với đăng nhập: hệ thống đối chiếu mật khẩu với tài khoản gốc trong CSDL trung tâm; tạo phiên đăng nhập.<br>5. Khách hàng cập nhật hồ sơ (họ tên, ngày sinh, thông tin liên hệ) và thông tin bảo hiểm (nếu có).<br>6. Hệ thống lưu thay đổi và hiển thị thông báo thành công.<br><br>**ALTERNATE COURSE (Luồng thay thế/ngoại lệ)**<br>- Email/số điện thoại đã tồn tại: hệ thống yêu cầu dùng thông tin khác.<br>- Thông tin đăng nhập sai: hệ thống thông báo và yêu cầu nhập lại.<br>- Dữ liệu hồ sơ/bảo hiểm không hợp lệ: hệ thống từ chối và nêu rõ trường lỗi. |
+| **Tác nhân chính**: Khách hàng<br>**Mục tiêu**: Đăng ký/đăng nhập và quản lý hồ sơ cá nhân (kèm bảo hiểm nếu có).<br>**Tiền điều kiện**: Không (đăng ký) hoặc đã có tài khoản (đăng nhập).<br>**Hậu điều kiện**: Tạo tài khoản/phiên đăng nhập; hồ sơ được lưu nếu cập nhật thành công.<br><br>**BASIC COURSE (Luồng chính)**<br>1. Khách hàng chọn đăng ký hoặc đăng nhập.<br>2. Hệ thống hiển thị form và yêu cầu nhập email/số điện thoại + mật khẩu.<br>3. Với đăng ký: hệ thống kiểm tra trùng; tạo tài khoản; khởi tạo hồ sơ.<br>4. Với đăng nhập: hệ thống đối chiếu mật khẩu với tài khoản gốc trong CSDL trung tâm; tạo phiên đăng nhập.<br>5. Khách hàng cập nhật hồ sơ (họ tên, ngày sinh, thông tin liên hệ) và thông tin bảo hiểm (nếu có).<br>6. Hệ thống lưu thay đổi và hiển thị thông báo thành công.<br><br>**ALTERNATE COURSE (Luồng thay thế/ngoại lệ)**<br>- Email/số điện thoại đã tồn tại: hệ thống yêu cầu dùng thông tin khác.<br>- Thông tin đăng nhập sai: hệ thống thông báo và yêu cầu nhập lại.<br>- Dữ liệu hồ sơ/bảo hiểm không hợp lệ: hệ thống từ chối và nêu rõ trường lỗi. |
 
-Sơ đồ thể hiện chu trình nhận form Đăng nhập đến việc đối chiếu và khởi tạo `CustomerAccount` hoặc `CustomerProfile`.
+Sơ đồ thể hiện chu trình nhận form Đăng ký/Đăng nhập đến việc đối chiếu và khởi tạo `CustomerAccount` hoặc `CustomerProfile`.
 
 ```mermaid
 flowchart TD
   A_CUS[[Khách hàng]]
   B_UI((<<boundary>> Màn hình Đăng ký/Đăng nhập))
   B_PROF((<<boundary>> Màn hình Hồ sơ))
+  B_NOTICE((<<boundary>> Thông báo KQ))
   
   C_AUTH((<<control>> Xác thực / Đăng ký))
   C_PROF((<<control>> Cập nhật Hồ sơ))
@@ -53,15 +54,20 @@ flowchart TD
   A_CUS -->|1. Nhập liệu| B_UI
   B_UI -->|2. Request| C_AUTH
   
-  C_AUTH -.->|Báo lỗi trùng/sai| B_UI
+  C_AUTH -.->|Báo lỗi trùng/sai| B_NOTICE
+  B_NOTICE -->|Hiển thị| A_CUS
   C_AUTH -->|3. Đối chiếu Credential| E_CRED
-  C_AUTH -->|4. Lưu CustomerAccount| E_ACC
+  C_AUTH -->|4. Đọc/Tạo CustomerAccount| E_ACC
+  C_AUTH -->|Khởi tạo Profile (đăng ký)| E_PROF
+  C_AUTH -->|OK| B_NOTICE
+  B_NOTICE -->|Điều hướng| B_PROF
   
   A_CUS -->|5. Sửa thông tin| B_PROF
   B_PROF -->|6. Gửi request| C_PROF
   C_PROF -->|7. Cập nhật| E_PROF
   C_PROF -->|Cập nhật BH| E_INS
-  C_PROF -.->|Báo lỗi format| B_PROF
+  C_PROF -.->|Báo lỗi format| B_NOTICE
+  C_PROF -->|OK| B_NOTICE
 ```
 
 **Hình 3.1 – RB-UC00: Đăng ký/Đăng nhập & quản lý hồ sơ**
@@ -172,8 +178,7 @@ Nội dung Hình 3.4: Khách hàng thao tác trên Trang Giỏ hàng (Boundary).
 
 | Use Case: UC-04 – Đặt lịch & Thanh toán |
 |---|
-| **BASIC COURSE (Luồng chính)**<br>1. Khách hàng xác nhận thông tin giỏ và thông tin hồ sơ cần thiết.<br>2. Hệ thống kiểm tra tính hợp lệ từng mục (slot còn trống, giá hiện hành) và đảm bảo các mục thanh toán thuộc cùng một cơ sở y tế.<br>3. Khách hàng chọn phương thức thanh toán (thẻ/ ví điện tử).<br>4. Hệ thống tạo yêu cầu thanh toán và chuyển sang cổng thanh toán.<br>5. Cổng thanh toán xử lý và trả kết quả thành công.<br>6. Hệ thống ghi nhận giao dịch, cập nhật trạng thái đơn đặt lịch sang “Paid” và (nếu tự xác nhận) “Confirmed”.<br>7. Khi đơn ở trạng thái “Confirmed”, hệ thống gọi **[UC-12 - Phát hành QR/ICS & gửi thông báo]** để phát hành QR/ICS và gửi thông báo xác nhận.<br><br>**ALTERNATE COURSE (Luồng thay thế/ngoại lệ)**<br>- Slot không còn trống: hệ thống thông báo và yêu cầu chọn slot khác hoặc xóa mục.<br>- Giỏ có mục thuộc nhiều cơ sở y tế: hệ thống yêu cầu tách thành nhiều đơn (mỗi đơn thuộc một cơ sở y tế) trước khi thanh toán.
-- Thanh toán thất bại/hủy: hệ thống ghi nhận trạng thái và cho phép retry theo chính sách.<br>- Lỗi phát hành QR/ICS hoặc gửi thông báo: đơn vẫn hợp lệ; hệ thống ghi nhận lỗi và retry. |
+| **BASIC COURSE (Luồng chính)**<br>1. Khách hàng xác nhận thông tin giỏ và thông tin hồ sơ cần thiết.<br>2. Hệ thống kiểm tra tính hợp lệ từng mục (slot còn trống, giá hiện hành) và đảm bảo các mục thanh toán thuộc cùng một cơ sở y tế.<br>3. Khách hàng chọn phương thức thanh toán (thẻ/ ví điện tử).<br>4. Hệ thống tạo yêu cầu thanh toán và chuyển sang cổng thanh toán.<br>5. Cổng thanh toán xử lý và trả kết quả thành công.<br>6. Hệ thống ghi nhận giao dịch, cập nhật trạng thái đơn đặt lịch sang “Paid” và (nếu tự xác nhận) “Confirmed”.<br>7. Khi đơn ở trạng thái “Confirmed”, hệ thống gọi **[UC-12 - Phát hành QR/ICS & gửi thông báo]** để phát hành QR/ICS và gửi thông báo xác nhận.<br><br>**ALTERNATE COURSE (Luồng thay thế/ngoại lệ)**<br>- Slot không còn trống: hệ thống thông báo và yêu cầu chọn slot khác hoặc xóa mục.<br>- Giỏ có mục thuộc nhiều cơ sở y tế: hệ thống yêu cầu tách thành nhiều đơn (mỗi đơn thuộc một cơ sở y tế) trước khi thanh toán.<br>- Thanh toán thất bại/hủy: hệ thống ghi nhận trạng thái và cho phép retry theo chính sách.<br>- Lỗi phát hành QR/ICS hoặc gửi thông báo: đơn vẫn hợp lệ; hệ thống ghi nhận lỗi và retry. |
 
 ```mermaid
 flowchart TD
