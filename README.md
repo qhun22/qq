@@ -1,11 +1,28 @@
 # CHƯƠNG 4. BIỂU ĐỒ TRÌNH TỰ (SEQUENCE DIAGRAM)
 
 ## 4.1 Nền tảng và quy ước trình bày
-Trong ICONIX, Sequence Diagram được phát triển dựa trên kịch bản Use Case (Chương 2) và các đối tượng BCE trong Robustness Diagram (Chương 3). Mục tiêu là mô tả tuần tự thông điệp giữa Actor – Boundary – Control – Entity theo luồng BASIC/ALTERNATE để làm cơ sở thiết kế chi tiết và triển khai.
+Trong ICONIX, Sequence Diagram là bước “thiết kế động” (dynamic design) được phát triển dựa trên kịch bản Use Case (Chương 2) và các đối tượng BCE trong Robustness Diagram (Chương 3). Nếu Robustness trả lời câu hỏi “ai tương tác với ai” (Actor–Boundary–Control–Entity), thì Sequence Diagram trả lời câu hỏi “tương tác theo thứ tự nào” (trình tự message theo thời gian) để hoàn thành mục tiêu use case.
 
-Quy ước:
-- Mỗi use case có 1 sơ đồ trình tự mô tả luồng chính, kèm khối `alt/opt` cho các nhánh ngoại lệ quan trọng.
-- Chỉ thể hiện các thông điệp ở mức nghiệp vụ (không đi sâu chi tiết kỹ thuật), đảm bảo bám sát Robustness đã trình bày.
+Mục tiêu của các sơ đồ trình tự trong chương này:
+- Chuẩn hóa luồng xử lý nghiệp vụ theo đúng BASIC/ALTERNATE COURSE đã mô tả.
+- Làm rõ vai trò điều phối của lớp Control (điểm đặt logic nghiệp vụ/kiểm tra hợp lệ), và phạm vi đọc/ghi của các Entity liên quan.
+- Tạo nền tảng trực tiếp cho việc triển khai (API/service), kiểm thử (test case theo nhánh alt), và đối chiếu tính nhất quán giữa Use Case ↔ Robustness ↔ Domain.
+
+Nguyên tắc ánh xạ từ Robustness (Chương 3) sang Sequence (Chương 4):
+- Actor trong Robustness trở thành tác nhân khởi phát message vào Boundary.
+- Boundary đại diện cho màn hình/UI hoặc gateway/endpoint; Boundary chỉ gửi/nhận request/response mức nghiệp vụ.
+- Control là nơi điều phối: nhận request từ Boundary, thực hiện kiểm tra/ra quyết định, gọi Entity để truy xuất/cập nhật dữ liệu.
+- Entity thể hiện trạng thái dữ liệu nghiệp vụ (đọc/ghi). Các tương tác Entity được thể hiện ở mức “read/save/update” thay vì đi sâu chi tiết truy vấn.
+
+Quy ước trình bày:
+- Mỗi use case có 1 sơ đồ trình tự mô tả luồng chính; các nhánh ngoại lệ quan trọng được gom trong khối `alt` (rẽ nhánh loại trừ) hoặc `opt` (tùy chọn).
+- Chỉ thể hiện thông điệp ở mức nghiệp vụ (không mô tả chi tiết kỹ thuật như HTTP status, SQL, cache…), nhưng vẫn đủ rõ để truy vết từng bước trong BASIC/ALTERNATE COURSE.
+- Tên lifeline ưu tiên bám theo stereotype ICONIX: `<<boundary>>`, `<<control>>`, `<<entity>>` như ở Chương 3 để đối chiếu nhanh.
+- Thông điệp dạng gọi xử lý dùng mũi tên liền (`->>`), phản hồi/hiển thị/nhắc lỗi dùng mũi tên nét đứt (`-->>`) để nhấn mạnh đây là kết quả trả về cho Boundary/Actor.
+- Với các dịch vụ ngoài hệ thống (cổng thanh toán, dịch vụ QR/ICS, dịch vụ thông báo…), lifeline được biểu diễn như tác nhân/hệ thống bên ngoài để làm rõ ranh giới hệ thống.
+- Các bước có điều hướng UI (Boundary→Boundary) chỉ dùng để biểu diễn chuyển màn hình hoặc render/refresh; không dùng để thay thế logic nghiệp vụ vốn phải nằm ở Control.
+
+Lưu ý đánh giá: các sơ đồ trong chương này được thiết kế để bám sát Robustness đã trình bày và tuân thủ quy tắc ICONIX (Actor chỉ tương tác Boundary; Boundary không gọi Entity trực tiếp; Control là trung tâm điều phối nghiệp vụ).
 
 ---
 
