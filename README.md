@@ -101,7 +101,7 @@ Nội dung Hình 4.1: Thể hiện luồng đăng ký/đăng nhập qua Boundary
 |---|
 | **BASIC COURSE**<br>1. Khách hàng nhập tiêu chí tìm kiếm.<br>2. Hệ thống truy vấn catalog và hiển thị danh sách kết quả.<br>3. Khách hàng chọn 1 mục.<br>4. Hệ thống hiển thị trang chi tiết và danh sách slot còn trống.<br><br>**ALTERNATE COURSE**<br>- Không có kết quả.<br>- Slot vừa hết: UI cập nhật lại. |
 
-Để sơ đồ dễ đọc và tránh quá dày đối tượng, UC-01 được tách thành 2 sơ đồ: (1) luồng tìm kiếm và hiển thị danh sách; (2) luồng xem chi tiết và tải slot.
+Sơ đồ mô tả truy vấn danh sách từ catalog, điều hướng sang trang chi tiết và tải dữ liệu chi tiết/slot theo mẫu Robustness UC-01.
 
 ```mermaid
 sequenceDiagram
@@ -109,25 +109,6 @@ sequenceDiagram
   participant SEARCH as <<boundary>> Màn hình Tìm kiếm
   participant Q as <<control>> Xử lý Truy vấn
   participant CAT as <<entity>> Catalog
-
-  CUS->>SEARCH: Nhập tiêu chí
-  SEARCH->>Q: search(criteria)
-  Q->>CAT: query(criteria)
-  alt Không có kết quả
-    Q-->>SEARCH: showNoResult()
-  else Có kết quả
-    Q-->>SEARCH: showList(results)
-  end
-```
-
-**Hình 4.2a – SD-UC01: Tìm kiếm & hiển thị danh sách**
-
-Nội dung Hình 4.2a: Khách hàng nhập tiêu chí trên Boundary, Control truy vấn `Catalog` và trả kết quả để UI hiển thị danh sách hoặc thông báo không có kết quả.
-
-```mermaid
-sequenceDiagram
-  actor CUS as Khách hàng
-  participant SEARCH as <<boundary>> Màn hình Tìm kiếm
   participant DETAIL as <<boundary>> Trang Chi tiết
   participant F as <<control>> Lấy Chi tiết & Slot
   participant CLINIC as <<entity>> ProviderClinic
@@ -136,24 +117,32 @@ sequenceDiagram
   participant SERV as <<entity>> MedicalService
   participant SLOT as <<entity>> AvailabilitySlot
 
-  CUS->>SEARCH: Click chọn một mục
-  SEARCH-->>DETAIL: navigateToDetail(itemId)
-  DETAIL->>F: loadDetail(itemId)
-  F->>CLINIC: readClinic()
-  F->>DOC: readDoctor()
-  F->>SPEC: readSpecialty()
-  F->>SERV: readService()
-  F->>SLOT: listAvailableSlots()
-  alt Slot vừa hết
-    F-->>DETAIL: warnSlotExhausted()
-  else OK
-    F-->>DETAIL: renderDetail(detail+slots)
+  CUS->>SEARCH: Nhập tiêu chí
+  SEARCH->>Q: search(criteria)
+  Q->>CAT: query(criteria)
+  alt Không có kết quả
+    Q-->>SEARCH: showNoResult()
+  else Có kết quả
+    Q-->>SEARCH: showList(results)
+    CUS->>SEARCH: Click chọn một mục
+    SEARCH-->>DETAIL: navigateToDetail(itemId)
+    DETAIL->>F: loadDetail(itemId)
+    F->>CLINIC: readClinic()
+    F->>DOC: readDoctor()
+    F->>SPEC: readSpecialty()
+    F->>SERV: readService()
+    F->>SLOT: listAvailableSlots()
+    alt Slot vừa hết
+      F-->>DETAIL: warnSlotExhausted()
+    else OK
+      F-->>DETAIL: renderDetail(detail+slots)
+    end
   end
 ```
 
-**Hình 4.2b – SD-UC01: Xem chi tiết & tải slot**
+**Hình 4.2 – SD-UC01: Tìm kiếm & xem chi tiết**
 
-Nội dung Hình 4.2b: Từ danh sách kết quả, Boundary điều hướng sang trang chi tiết. Control tải dữ liệu chi tiết từ các Entity và danh sách slot còn trống, kèm nhánh ngoại lệ khi slot vừa hết.
+Nội dung Hình 4.2: Khách hàng tìm kiếm trên Boundary, Control truy vấn `Catalog` và trả danh sách. Khi chọn 1 mục, hệ thống điều hướng sang trang chi tiết, Control tải dữ liệu các Entity và danh sách slot, kèm nhánh cảnh báo khi slot vừa hết.
 
 ### 4.2.3 Sơ đồ trình tự cho UC-02 – Quản lý Wishlist (SD-UC02)
 
