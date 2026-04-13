@@ -34,47 +34,67 @@ Lưu ý đánh giá: các sơ đồ trong chương này được thiết kế đ
 |---|
 | **BASIC COURSE**<br>1. Khách hàng chọn đăng ký hoặc đăng nhập.<br>2. Hệ thống hiển thị form và yêu cầu nhập email/số điện thoại + mật khẩu.<br>3. Với đăng ký: kiểm tra trùng; tạo tài khoản; khởi tạo hồ sơ.<br>4. Với đăng nhập: đối chiếu mật khẩu; tạo phiên đăng nhập.<br>5. Khách hàng cập nhật hồ sơ/bảo hiểm (nếu có).<br>6. Hệ thống lưu và thông báo thành công.<br><br>**ALTERNATE COURSE**<br>- Trùng email/số điện thoại / sai thông tin đăng nhập.<br>- Dữ liệu hồ sơ/bảo hiểm không hợp lệ. |
 
-Sơ đồ mô tả chuỗi tương tác từ UI đăng ký/đăng nhập đến các xử lý xác thực, sau đó chuyển sang UI hồ sơ để cập nhật thông tin.
+Để sơ đồ dễ đọc (không quá tải lifeline), UC-00 được tách thành 3 sơ đồ tương ứng 3 nhóm thao tác: đăng ký, đăng nhập và quản lý hồ sơ.
 
 ```mermaid
 sequenceDiagram
   actor CUS as Khách hàng
-  participant UI as <<boundary>> Màn hình Đăng ký/Đăng nhập
-  participant AUTH as <<control>> Xác thực/Đăng ký
-  participant CRED as <<entity>> Credential
+  participant UI as <<boundary>> Màn hình Đăng ký
+  participant AUTH as <<control>> Xử lý Đăng ký
   participant ACC as <<entity>> CustomerAccount
   participant PROF as <<entity>> CustomerProfile
   participant NOTICE as <<boundary>> Thông báo KQ
+
+  CUS->>UI: Nhập email/sđt + mật khẩu
+  UI->>AUTH: register(data)
+  AUTH->>ACC: checkDuplicate(email/phone)
+  alt Trùng email/sđt
+    AUTH-->>NOTICE: error(duplicate)
+    NOTICE-->>CUS: hiển thị lỗi
+  else Hợp lệ
+    AUTH->>ACC: createAccount()
+    AUTH->>PROF: initProfile()
+    AUTH-->>NOTICE: ok()
+    NOTICE-->>CUS: thông báo thành công
+  end
+```
+
+**Hình 4.1a – SD-UC00: Đăng ký tài khoản**
+
+Nội dung Hình 4.1a: Khách hàng thao tác trên Boundary đăng ký; Control kiểm tra trùng và tạo tài khoản/khởi tạo hồ sơ, kèm nhánh ngoại lệ khi trùng email/số điện thoại.
+
+```mermaid
+sequenceDiagram
+  actor CUS as Khách hàng
+  participant UI as <<boundary>> Màn hình Đăng nhập
+  participant AUTH as <<control>> Xử lý Đăng nhập
+  participant ACC as <<entity>> CustomerAccount
+  participant NOTICE as <<boundary>> Thông báo KQ
+
+  CUS->>UI: Nhập email/sđt + mật khẩu
+  UI->>AUTH: login(data)
+  AUTH->>ACC: verifyCredential()
+  alt Sai thông tin
+    AUTH-->>NOTICE: error(invalid)
+    NOTICE-->>CUS: hiển thị lỗi
+  else OK
+    AUTH-->>NOTICE: ok(session)
+    NOTICE-->>CUS: đăng nhập thành công
+  end
+```
+
+**Hình 4.1b – SD-UC00: Đăng nhập**
+
+Nội dung Hình 4.1b: Control xác thực thông tin đăng nhập và trả kết quả về Boundary để hiển thị, kèm nhánh ngoại lệ khi sai thông tin.
+
+```mermaid
+sequenceDiagram
+  actor CUS as Khách hàng
   participant PROF_UI as <<boundary>> Màn hình Hồ sơ
   participant PROF_C as <<control>> Cập nhật Hồ sơ
+  participant PROF as <<entity>> CustomerProfile
   participant INS as <<entity>> InsuranceInfo
-
-  CUS->>UI: Chọn đăng ký/đăng nhập + nhập thông tin
-  UI->>AUTH: requestLoginOrRegister(data)
-
-  alt Đăng ký
-    AUTH->>ACC: checkDuplicate(email/phone)
-    alt Trùng email/sđt
-      AUTH-->>NOTICE: error(duplicate)
-      NOTICE-->>CUS: hiển thị lỗi
-    else Hợp lệ
-      AUTH->>CRED: createCredential(hashPwd)
-      AUTH->>ACC: createAccount()
-      AUTH->>PROF: initProfile()
-      AUTH-->>NOTICE: ok()
-      NOTICE-->>PROF_UI: điều hướng sang hồ sơ
-    end
-  else Đăng nhập
-    AUTH->>CRED: verifyCredential()
-    alt Sai thông tin
-      AUTH-->>NOTICE: error(invalid)
-      NOTICE-->>CUS: hiển thị lỗi
-    else OK
-      AUTH->>ACC: readAccount()
-      AUTH-->>NOTICE: ok(session)
-      NOTICE-->>PROF_UI: điều hướng sang hồ sơ
-    end
-  end
+  participant NOTICE as <<boundary>> Thông báo KQ
 
   CUS->>PROF_UI: Cập nhật hồ sơ/bảo hiểm
   PROF_UI->>PROF_C: updateProfile(data)
@@ -91,9 +111,9 @@ sequenceDiagram
   end
 ```
 
-**Hình 4.1 – SD-UC00: Đăng ký/Đăng nhập & quản lý hồ sơ**
+**Hình 4.1c – SD-UC00: Quản lý hồ sơ**
 
-Nội dung Hình 4.1: Thể hiện luồng đăng ký/đăng nhập qua Boundary, Control xử lý xác thực và đọc/ghi các Entity liên quan; sau đó chuyển sang cập nhật hồ sơ/bảo hiểm, kèm nhánh ngoại lệ khi trùng/sai hoặc dữ liệu không hợp lệ.
+Nội dung Hình 4.1c: Khách hàng cập nhật thông tin trên Boundary hồ sơ; Control kiểm tra hợp lệ, lưu `CustomerProfile` và (tùy chọn) `InsuranceInfo`, kèm nhánh ngoại lệ khi dữ liệu không hợp lệ.
 
 ### 4.2.2 Sơ đồ trình tự cho UC-01 – Tìm kiếm & xem chi tiết (SD-UC01)
 
@@ -130,19 +150,13 @@ sequenceDiagram
   participant SEARCH as <<boundary>> Màn hình Tìm kiếm
   participant DETAIL as <<boundary>> Trang Chi tiết
   participant F as <<control>> Lấy Chi tiết & Slot
-  participant CLINIC as <<entity>> ProviderClinic
-  participant DOC as <<entity>> Doctor
-  participant SPEC as <<entity>> Specialty
-  participant SERV as <<entity>> MedicalService
+  participant CAT as <<entity>> Catalog
   participant SLOT as <<entity>> AvailabilitySlot
 
   CUS->>SEARCH: Click chọn một mục
   SEARCH-->>DETAIL: navigateToDetail(itemId)
   DETAIL->>F: loadDetail(itemId)
-  F->>CLINIC: readClinic()
-  F->>DOC: readDoctor()
-  F->>SPEC: readSpecialty()
-  F->>SERV: readService()
+  F->>CAT: readDetail(itemId)
   F->>SLOT: listAvailableSlots()
   alt Slot vừa hết
     F-->>DETAIL: warnSlotExhausted()
@@ -201,7 +215,6 @@ sequenceDiagram
   participant CART_C as <<control>> Quản lý Cart
   participant SLOT as <<entity>> AvailabilitySlot
   participant CART as <<entity>> Cart
-  participant ITEM as <<entity>> CartItem
 
   CUS->>CART_UI: Thêm/Xóa mục
   CART_UI->>CART_C: updateCart(action,slotId)
@@ -210,7 +223,7 @@ sequenceDiagram
     CART_C-->>CART_UI: reject(slotNotAvailable)
   else OK
     CART_C->>CART: readCart()
-    CART_C->>ITEM: addOrRemoveItem()
+    CART_C->>CART: addOrRemoveItem(slotId)
     alt Xung đột thời gian
       CART_C-->>CART_UI: warn(conflict)
     else OK
@@ -221,7 +234,7 @@ sequenceDiagram
 
 **Hình 4.4 – SD-UC03: Quản lý Cart**
 
-Nội dung Hình 4.4: Control kiểm tra slot, cập nhật `Cart`/`CartItem`, và trả thông báo lỗi/xung đột hoặc danh sách giỏ mới.
+Nội dung Hình 4.4: Control kiểm tra slot, cập nhật `Cart`, và trả thông báo lỗi/xung đột hoặc danh sách giỏ mới.
 
 ### 4.2.5 Sơ đồ trình tự cho UC-04 – Đặt lịch & Thanh toán (SD-UC04)
 
@@ -235,10 +248,8 @@ Sơ đồ mô tả luồng checkout và thanh toán, đồng thời thể hiện
 sequenceDiagram
   actor CUS as Khách hàng
   participant CHK_UI as <<boundary>> Màn hình Checkout
-  participant CHK as <<control>> Khởi tạo BookingOrder
+  participant CHK as <<control>> Khởi tạo Đơn đặt lịch
   participant SLOT as <<entity>> AvailabilitySlot
-  participant CART_ITEM as <<entity>> CartItem
-  participant ORDER_ITEM as <<entity>> BookingItem
   participant ORDER as <<entity>> BookingOrder
   participant PAY as <<control>> Xử lý Thanh Toán
   participant GW as <<boundary>> Gateway Giao tiếp API
@@ -252,8 +263,6 @@ sequenceDiagram
   alt Hết slot
     CHK-->>CHK_UI: reject(slotExhausted)
   else OK
-    CHK->>CART_ITEM: readCartItems()
-    CHK->>ORDER_ITEM: createItems()
     CHK->>ORDER: createOrder(PendingPayment)
     alt Nhiều cơ sở y tế
       CHK-->>CHK_UI: reject(multiClinic)
@@ -282,7 +291,7 @@ sequenceDiagram
 
 **Hình 4.5 – SD-UC04: Đặt lịch & Thanh toán**
 
-Nội dung Hình 4.5: Control khởi tạo đơn kiểm tra/lock slot, tạo `BookingOrder` và `BookingItem`. Control thanh toán giao tiếp cổng thanh toán qua gateway, ghi `PaymentTransaction`, cập nhật trạng thái đơn; sau đó kích hoạt UC-12 phát hành QR/ICS và gửi thông báo, kèm nhánh ngoại lệ khi lỗi hoặc thanh toán thất bại.
+Nội dung Hình 4.5: Control khởi tạo đơn kiểm tra/lock slot và tạo `BookingOrder` (PendingPayment). Control thanh toán giao tiếp cổng thanh toán qua gateway, ghi `PaymentTransaction`, cập nhật trạng thái đơn; sau đó kích hoạt UC-12 phát hành QR/ICS và gửi thông báo, kèm nhánh ngoại lệ khi lỗi hoặc thanh toán thất bại.
 
 ### 4.2.6 Sơ đồ trình tự cho UC-05 & UC-06 – Hủy lịch & Hoàn tiền (SD-UC05-06)
 
@@ -290,60 +299,72 @@ Nội dung Hình 4.5: Control khởi tạo đơn kiểm tra/lock slot, tạo `Bo
 |---|
 | **UC-05 – BASIC COURSE**<br>1. Khách hàng yêu cầu hủy đơn.<br>2. Hệ thống kiểm tra cut-off và cập nhật Cancelled.<br>3. Hệ thống gọi UC-12 để thông báo kết quả.<br><br>**UC-06 – BASIC COURSE**<br>1. Khách hàng yêu cầu hoàn tiền.<br>2. Hệ thống kiểm tra chính sách, tạo `RefundRequest`, gửi cổng thanh toán.<br>3. Cập nhật trạng thái và gọi UC-12 thông báo.<br><br>**ALTERNATE COURSE**<br>- Quá cut-off / không đủ điều kiện / gateway lỗi. |
 
-Sơ đồ mô tả xử lý hủy và hoàn tiền, bám các đối tượng đã thể hiện ở Robustness UC-05/06.
+Để trình bày gọn theo từng chức năng, mục này được tách thành 2 sơ đồ: UC-05 (hủy lịch) và UC-06 (hoàn tiền).
 
 ```mermaid
 sequenceDiagram
   actor CUS as Khách hàng
   participant ORD_UI as <<boundary>> Trang Lịch Khám
   participant CANCEL as <<control>> Xử lý Hủy Đơn
+  participant POL as <<entity>> CancelPolicy
+  participant ORD as <<entity>> BookingOrder
+  participant NOTICE as <<boundary>> Thông báo KQ
+
+  CUS->>ORD_UI: Yêu cầu hủy đơn
+  ORD_UI->>CANCEL: cancel(orderId)
+  CANCEL->>POL: checkCutoff(orderId)
+  CANCEL->>ORD: readOrder()
+  alt Quá cut-off/không hợp lệ
+    CANCEL-->>NOTICE: reject(cancelNotAllowed)
+    NOTICE-->>CUS: hiển thị lý do
+  else OK
+    CANCEL->>ORD: updateStatus(Cancelled)
+    CANCEL-->>NOTICE: ok()
+    NOTICE-->>CUS: thông báo hủy thành công
+  end
+```
+
+**Hình 4.6a – SD-UC05: Hủy lịch**
+
+Nội dung Hình 4.6a: Khách hàng gửi yêu cầu hủy; Control kiểm tra chính sách cut-off, cập nhật trạng thái `BookingOrder` và trả kết quả để UI thông báo.
+
+```mermaid
+sequenceDiagram
+  actor CUS as Khách hàng
+  participant ORD_UI as <<boundary>> Trang Lịch Khám
   participant REFUND as <<control>> Xử lý Hoàn Tiền
   participant POL as <<entity>> CancelPolicy
   participant ORD as <<entity>> BookingOrder
-  participant REF as <<entity>> RefundRequest
   participant GW as <<boundary>> Gateway Refund API
   participant PAYG as Cổng thanh toán
-  participant UC12 as <<control>> Gọi UC-12 cập nhật
+  participant NOTICE as <<boundary>> Thông báo KQ
 
-  CUS->>ORD_UI: Yêu cầu hủy/hoàn
-
-  alt UC-05: Hủy đơn
-    ORD_UI->>CANCEL: cancel(orderId)
-    CANCEL->>POL: readCutoff()
-    CANCEL->>ORD: readOrder()
-    alt Quá cut-off/không hợp lệ
-      CANCEL-->>ORD_UI: reject(cancelNotAllowed)
+  CUS->>ORD_UI: Yêu cầu hoàn tiền
+  ORD_UI->>REFUND: requestRefund(orderId)
+  REFUND->>POL: checkRefundPolicy(orderId)
+  REFUND->>ORD: readOrder()
+  alt Không đủ điều kiện
+    REFUND-->>NOTICE: reject(refundNotAllowed)
+    NOTICE-->>CUS: hiển thị lý do
+  else OK
+    REFUND->>GW: callRefundAPI(payload)
+    GW->>PAYG: processRefund()
+    PAYG-->>GW: refundResult()
+    alt Gateway lỗi/tạm thời
+      GW-->>REFUND: error()
+      REFUND-->>NOTICE: pendingRetry()
+      NOTICE-->>CUS: thông báo đang xử lý
     else OK
-      CANCEL->>ORD: updateStatus(Cancelled)
-      CANCEL->>UC12: notifyCancelResult()
-      UC12-->>ORD_UI: showResult()
-    end
-
-  else UC-06: Hoàn tiền
-    ORD_UI->>REFUND: requestRefund(orderId)
-    REFUND->>POL: readRefundPolicy()
-    REFUND->>ORD: readOrder()
-    alt Không đủ điều kiện
-      REFUND-->>ORD_UI: reject(refundNotAllowed)
-    else OK
-      REFUND->>REF: createRefundRequest()
-      REFUND->>GW: callRefundAPI(payload)
-      GW->>PAYG: processRefund()
-      PAYG-->>GW: refundResult()
-      GW-->>REFUND: result()
-      alt Gateway lỗi/tạm thời
-        REFUND-->>ORD_UI: pendingRetry()
-      else OK
-        REFUND->>UC12: notifyRefundResult()
-        UC12-->>ORD_UI: showResult()
-      end
+      GW-->>REFUND: ok()
+      REFUND-->>NOTICE: ok()
+      NOTICE-->>CUS: thông báo hoàn tiền thành công
     end
   end
 ```
 
-**Hình 4.6 – SD-UC05-06: Hủy lịch & Hoàn tiền**
+**Hình 4.6b – SD-UC06: Yêu cầu hoàn tiền**
 
-Nội dung Hình 4.6: Control hủy/hoàn kiểm tra `CancelPolicy`, đọc/cập nhật `BookingOrder`, tạo `RefundRequest` và giao tiếp gateway/cổng thanh toán khi hoàn tiền; sau đó gọi UC-12 để gửi thông báo kết quả, có nhánh ngoại lệ khi quá cut-off, không đủ điều kiện hoặc gateway lỗi.
+Nội dung Hình 4.6b: Control kiểm tra điều kiện hoàn, gọi gateway/cổng thanh toán để xử lý hoàn, và trả trạng thái thành công/đang retry hoặc từ chối theo chính sách.
 
 ### 4.2.7 Sơ đồ trình tự cho UC-07 & UC-08 – Đánh giá & Kiểm duyệt (SD-UC07-08)
 
@@ -351,51 +372,62 @@ Nội dung Hình 4.6: Control hủy/hoàn kiểm tra `CancelPolicy`, đọc/cậ
 |---|
 | **UC-07 – BASIC COURSE**<br>1. Khách hàng gửi review (rating + nội dung).<br>2. Hệ thống lưu review ở trạng thái Pending và thông báo đã tiếp nhận.<br><br>**UC-08 – BASIC COURSE**<br>1. Nhân viên kiểm duyệt duyệt hoặc từ chối review.<br>2. Hệ thống cập nhật trạng thái và ghi nhận log.<br><br>**ALTERNATE COURSE**<br>- Chưa đăng nhập / nội dung không hợp lệ / spam.<br>- Review không còn hợp lệ khi kiểm duyệt. |
 
-Sơ đồ mô tả hai luồng: gửi review của khách hàng và kiểm duyệt của nhân viên, bám BCE đã trình bày.
+Để dễ theo dõi, mục này được tách thành 2 sơ đồ: UC-07 (gửi review) và UC-08 (kiểm duyệt review).
 
 ```mermaid
 sequenceDiagram
   actor CUS as Khách hàng
-  actor MOD as NV Kiểm duyệt
   participant REV_UI as <<boundary>> Form Đánh Giá
-  participant MOD_UI as <<boundary>> Trang Kiểm duyệt
-  participant SEND as <<control>> Lưu & Chờ duyệt
-  participant MODC as <<control>> Duyệt Trạng Thái
-  participant DOC as <<entity>> Doctor
-  participant CLINIC as <<entity>> ProviderClinic
+  participant SEND as <<control>> Lưu Review
   participant REV as <<entity>> Review
-  participant LOG as <<entity>> ReviewModeration
+  participant NOTICE as <<boundary>> Thông báo KQ
 
   CUS->>REV_UI: Nhập review + gửi
   REV_UI->>SEND: submitReview(data)
   alt Chưa đăng nhập
-    SEND-->>REV_UI: requireLogin()
+    SEND-->>NOTICE: requireLogin()
+    NOTICE-->>CUS: yêu cầu đăng nhập
   else Dữ liệu không hợp lệ
-    SEND-->>REV_UI: reject(validation)
+    SEND-->>NOTICE: reject(validation)
+    NOTICE-->>CUS: hiển thị lỗi
   else OK
-    SEND->>DOC: bindIfDoctor()
-    SEND->>CLINIC: bindIfClinic()
     SEND->>REV: save(Pending)
     opt Cảnh báo spam
-      SEND-->>REV_UI: warn(spam)
+      SEND-->>NOTICE: warn(spam)
+      NOTICE-->>CUS: hiển thị cảnh báo
     end
-    SEND-->>REV_UI: ack(received)
+    SEND-->>NOTICE: ack(received)
+    NOTICE-->>CUS: thông báo đã tiếp nhận
   end
+```
+
+**Hình 4.7a – SD-UC07: Gửi review**
+
+Nội dung Hình 4.7a: Khách hàng gửi review qua Boundary; Control kiểm tra điều kiện và lưu `Review` ở trạng thái Pending, kèm nhánh ngoại lệ khi chưa đăng nhập/không hợp lệ và tùy chọn cảnh báo spam.
+
+```mermaid
+sequenceDiagram
+  actor MOD as NV Kiểm duyệt
+  participant MOD_UI as <<boundary>> Trang Kiểm duyệt
+  participant MODC as <<control>> Duyệt Review
+  participant REV as <<entity>> Review
+  participant LOG as <<entity>> ReviewModeration
 
   MOD->>MOD_UI: Mở danh sách chờ duyệt
   MOD_UI->>MODC: moderate(reviewId,decision)
+  MODC->>REV: readReview()
   alt Review không còn hợp lệ
     MODC-->>MOD_UI: reject(stale)
   else OK
-    MODC->>LOG: createModerationLog()
     MODC->>REV: updateStatus(Approved/Rejected)
+    MODC->>LOG: createModerationLog()
     MODC-->>MOD_UI: refreshList()
   end
 ```
 
-**Hình 4.7 – SD-UC07-08: Đánh giá & Kiểm duyệt**
+**Hình 4.7b – SD-UC08: Kiểm duyệt review**
 
-Nội dung Hình 4.7: Khách hàng gửi review qua Boundary; Control kiểm tra điều kiện và lưu `Review` ở trạng thái chờ duyệt. Nhân viên kiểm duyệt duyệt/từ chối, Control cập nhật trạng thái và ghi `ReviewModeration`, có nhánh ngoại lệ khi review không còn hợp lệ.
+Nội dung Hình 4.7b: Nhân viên kiểm duyệt thao tác trên Boundary; Control đọc review, cập nhật trạng thái và ghi log kiểm duyệt, kèm nhánh ngoại lệ khi review không còn hợp lệ.
 
 ### 4.2.8 Sơ đồ trình tự cho UC-09 – Quản lý nội dung biên tập (SD-UC09)
 
@@ -437,54 +469,58 @@ Nội dung Hình 4.8: Biên tập viên thao tác trên Boundary, Control lưu n
 |---|
 | **UC-10 – BASIC COURSE**<br>1. NV cơ sở y tế gửi dữ liệu catalog.<br>2. Hệ thống xác thực định dạng và hợp nhất vào catalog tổng.<br>3. Ghi log kết quả nhập.<br><br>**UC-11 – BASIC COURSE**<br>1. Đối tác yêu cầu xuất mini-catalog XML.<br>2. Hệ thống kiểm tra quyền, đọc catalog tổng và sinh XML theo schema.<br>3. Ghi log xuất và trả XML.<br><br>**ALTERNATE COURSE**<br>- Dữ liệu sai định dạng/thiếu trường; thiếu dữ liệu; cảnh báo trùng ID. |
 
-Sơ đồ mô tả 2 luồng nhập và xuất dữ liệu đối tác theo các Control xác thực/hợp nhất/sinh XML.
+Để tránh quá tải, mục này được tách thành 2 sơ đồ: UC-10 (nhập catalog) và UC-11 (xuất mini-catalog XML).
 
 ```mermaid
 sequenceDiagram
   actor PRO as NV Cơ sở y tế
-  actor PRT as Hệ thống đối tác
   participant IMP_UI as <<boundary>> Giao diện Nhập Catalog
-  participant EXP_API as <<boundary>> Cổng API XML
-  participant VAL as <<control>> Xác thực Định dạng
-  participant MERGE as <<control>> Hợp nhất Catalog
-  participant GEN as <<control>> Sinh Schema XML
+  participant IMP as <<control>> Nhập & Hợp nhất Catalog
   participant CAT as <<entity>> Catalog
-  participant PARTNER as <<entity>> Partner
   participant IMP_LOG as <<entity>> PartnerCatalogImport
-  participant EXP_LOG as <<entity>> MiniCatalogExport
 
-  alt UC-10: Nhập catalog
-    PRO->>IMP_UI: Gửi dữ liệu catalog
-    IMP_UI->>VAL: validate(payload)
-    alt Sai định dạng/thiếu trường
-      VAL-->>IMP_UI: reject(formatError)
-    else OK
-      VAL->>MERGE: accept(payload)
-      MERGE->>IMP_LOG: writeImportLog()
-      opt Cảnh báo trùng/không khớp ID
-        MERGE-->>IMP_UI: warn(idConflict)
-      end
-      MERGE->>CAT: upsertCatalog()
-      MERGE-->>IMP_UI: importResult(ok)
+  PRO->>IMP_UI: Gửi dữ liệu catalog
+  IMP_UI->>IMP: import(payload)
+  alt Sai định dạng/thiếu trường
+    IMP-->>IMP_UI: reject(formatError)
+  else OK
+    IMP->>CAT: upsertCatalog()
+    IMP->>IMP_LOG: writeImportLog()
+    opt Cảnh báo trùng/không khớp ID
+      IMP-->>IMP_UI: warn(idConflict)
     end
-
-  else UC-11: Xuất mini-catalog XML
-    PRT->>EXP_API: GET /mini-catalog
-    EXP_API->>GEN: generateXML(scope)
-    GEN->>PARTNER: authorize()
-    GEN->>CAT: readCatalog(scope)
-    alt Thiếu dữ liệu
-      GEN-->>EXP_API: emptyXMLOrError()
-    else OK
-      GEN->>EXP_LOG: writeExportLog()
-      GEN-->>EXP_API: xmlResponse()
-    end
+    IMP-->>IMP_UI: importResult(ok)
   end
 ```
 
-**Hình 4.9 – SD-UC10-11: Nhập catalog đối tác & Xuất mini-catalog XML**
+**Hình 4.9a – SD-UC10: Nhập catalog đối tác**
 
-Nội dung Hình 4.9: UC-10 nhận dữ liệu, xác thực định dạng và hợp nhất vào `Catalog`, ghi log nhập. UC-11 kiểm tra quyền theo `Partner`, đọc `Catalog`, sinh XML, ghi log xuất và trả kết quả; có nhánh ngoại lệ khi dữ liệu sai định dạng hoặc thiếu dữ liệu.
+Nội dung Hình 4.9a: Boundary nhận dữ liệu catalog; Control kiểm tra hợp lệ, hợp nhất vào `Catalog` và ghi `PartnerCatalogImport`, kèm nhánh từ chối khi sai định dạng.
+
+```mermaid
+sequenceDiagram
+  actor PRT as Hệ thống đối tác
+  participant EXP_API as <<boundary>> Cổng API XML
+  participant GEN as <<control>> Sinh XML
+  participant PARTNER as <<entity>> Partner
+  participant CAT as <<entity>> Catalog
+  participant EXP_LOG as <<entity>> MiniCatalogExport
+
+  PRT->>EXP_API: GET /mini-catalog
+  EXP_API->>GEN: generateXML(scope)
+  GEN->>PARTNER: authorize()
+  GEN->>CAT: readCatalog(scope)
+  alt Thiếu dữ liệu
+    GEN-->>EXP_API: emptyXMLOrError()
+  else OK
+    GEN->>EXP_LOG: writeExportLog()
+    GEN-->>EXP_API: xmlResponse()
+  end
+```
+
+**Hình 4.9b – SD-UC11: Xuất mini-catalog XML**
+
+Nội dung Hình 4.9b: Đối tác gọi Boundary API; Control kiểm tra quyền theo `Partner`, đọc `Catalog` để sinh XML, ghi log `MiniCatalogExport`, và trả kết quả hoặc thông báo thiếu dữ liệu.
 
 ### 4.2.10 Sơ đồ trình tự cho UC-12 – Phát hành QR/ICS & gửi thông báo (SD-UC12)
 
