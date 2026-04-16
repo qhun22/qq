@@ -44,7 +44,7 @@ Các chỉ tiêu (KPI) cụ thể được xác định và trình bày ở Chư
 
 ### 1.2.1. Thông tin chung
 - **Tên thương hiệu:** Bánh Chuối Chiên QT
-- **Lĩnh vực:** Kinh doanh đồ ăn vặt (sản phẩm chủ lực: bánh chuối chiên)
+- **Lĩnh vực:** Kinh doanh đồ ăn vặt (sản phẩm chủ lực: bánh chuối chiên; có bán thêm khoai chiên)
 - **Hình thức kinh doanh:** Bán mang đi và giao hàng theo đơn đặt, phục vụ chủ yếu khách hàng trong khu vực.
 - **Kênh bán hàng/chăm sóc khách:** Fanpage Facebook (bình luận/inbox) là kênh chính; hỗ trợ xác nhận đơn và chăm sóc khách trong quá trình giao nhận.
 
@@ -89,7 +89,8 @@ Số liệu về “Đối tượng” (độ tuổi và khu vực) trong Meta I
 ## 1.4. Sản phẩm/dịch vụ áp dụng
 
 ### 1.4.1. Mô tả sản phẩm
-- **Sản phẩm chủ lực:** Bánh chuối chiên, thành phẩm giòn và thơm, được chế biến và bán trong ngày.
+- **Sản phẩm chính:** Bánh chuối chiên; ngoài ra thương hiệu có bán thêm khoai chiên. Trong cơ cấu bán, bánh chuối chiên chiếm khoảng 70% và khoai chiên chiếm khoảng 30%.
+- **Đặc điểm:** thành phẩm giòn và thơm, được chế biến và bán trong ngày.
 - **Hình thức bán:** Bán theo phần hoặc theo combo; thực đơn linh hoạt theo thời điểm.
 - **Kênh phục vụ:** Bán mang đi và giao hàng trong khu vực.
 
