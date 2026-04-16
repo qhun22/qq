@@ -17,7 +17,7 @@ Trong bối cảnh hành vi tiêu dùng dịch chuyển mạnh sang môi trườ
 
 ### 1.1.3. Vấn đề marketing đặt ra
 Một số vấn đề thường gặp khi triển khai Facebook Marketing cho mô hình kinh doanh địa phương gồm:
-- Nội dung đăng tải chưa đều, thiếu **trụ nội dung** (content pillar) rõ ràng.
+- Nội dung đăng tải chưa đều, thiếu **trụ nội dung** rõ ràng.
 - Hình ảnh và giọng điệu chưa thống nhất, gây khó khăn trong việc tạo nhận diện.
 - Chỉ số tiếp cận và tương tác có thể tăng nhưng **chưa thúc đẩy được hành động** (inbox/đặt hàng) do CTA chưa cụ thể hoặc quy trình phản hồi chưa tối ưu.
 
@@ -31,13 +31,13 @@ Vì vậy, dự án tập trung xây dựng chiến lược theo lộ trình: **
 - **Mục tiêu truyền thông:** Tăng độ phủ nội dung và mức độ tương tác trên Fanpage.
 - **Mục tiêu hành động:** Tăng số lượng khách hỏi/đặt hàng qua bình luận và inbox.
 
-> Lưu ý: Các chỉ tiêu (KPI) cụ thể sẽ được xác định và trình bày ở Chương 4 để làm cơ sở đối chiếu kết quả tại Chương 5.
+Các chỉ tiêu (KPI) cụ thể được xác định và trình bày ở Chương 4, làm cơ sở đối chiếu kết quả đánh giá tại Chương 5.
 
 ### 1.1.5. Phạm vi triển khai và đối tượng nghiên cứu
-- **Kênh triển khai chính:** Fanpage Facebook của thương hiệu.
-- **Hình thức triển khai:** Tập trung tối ưu nội dung tự nhiên (organic), tối ưu trang và quy trình tương tác. Trường hợp có triển khai quảng cáo trả phí sẽ mô tả riêng trong Chương 4.
-- **Giai đoạn theo dõi:** *(điền theo thực tế, ví dụ: từ … đến …)*.
-- **Nguồn số liệu:** Meta Business Suite/Insights trong giai đoạn theo dõi của đề tài.
+- **Kênh triển khai chính:** Fanpage Facebook của thương hiệu **Bánh Chuối Chiên QT**.
+- **Phạm vi triển khai:** Tập trung tối ưu nội dung tự nhiên (organic) gồm bài viết/ảnh/video/Reels; đồng thời tối ưu thông tin Fanpage và quy trình tương tác (bình luận/inbox). Các nội dung liên quan đến quảng cáo trả phí được trình bày riêng ở Chương 4.
+- **Giai đoạn theo dõi:** Từ 01/01/2026 đến 16/04/2026.
+- **Nguồn số liệu:** Meta Business Suite/Insights trong giai đoạn theo dõi; kết hợp thống kê nội dung đăng tải trên Fanpage.
 - **Đối tượng nghiên cứu:** Hoạt động Facebook Marketing của Fanpage **Bánh Chuối Chiên QT** (nội dung đăng tải, mức độ tiếp cận, tương tác và tín hiệu chuyển đổi như tin nhắn/bình luận).
 
 ## 1.2. Giới thiệu đơn vị/cơ sở/doanh nghiệp
@@ -45,8 +45,8 @@ Vì vậy, dự án tập trung xây dựng chiến lược theo lộ trình: **
 ### 1.2.1. Thông tin chung
 - **Tên thương hiệu:** Bánh Chuối Chiên QT
 - **Lĩnh vực:** Kinh doanh đồ ăn vặt (sản phẩm chủ lực: bánh chuối chiên)
-- **Hình thức kinh doanh:** *(điền theo thực tế: bán tại điểm/bán mang đi/giao hàng)*
-- **Kênh bán hàng/chăm sóc khách:** Fanpage Facebook; *(điền theo thực tế: Zalo/điện thoại/đối tác giao hàng…)*
+- **Hình thức kinh doanh:** Bán mang đi và giao hàng theo đơn đặt, phục vụ chủ yếu khách hàng trong khu vực.
+- **Kênh bán hàng/chăm sóc khách:** Fanpage Facebook (bình luận/inbox) là kênh chính; hỗ trợ xác nhận đơn và chăm sóc khách trong quá trình giao nhận.
 
 ### 1.2.2. Điểm mạnh nội tại (nguồn lực)
 - Sản phẩm dễ quay/chụp, phù hợp định dạng video ngắn (cận cảnh chiên, thành phẩm, topping…). 
@@ -67,7 +67,7 @@ Khách hàng mục tiêu của thương hiệu trên Facebook có thể chia the
 - **Nhóm 2 – Nhân viên văn phòng:** ưu tiên tiện lợi, giao nhanh, đặt qua inbox vào giờ nghỉ.
 - **Nhóm 3 – Nội trợ/khách mua cho gia đình:** quan tâm vệ sinh, chất lượng, khẩu phần.
 
-> Gợi ý bổ sung: Nếu Fanpage có số liệu “Đối tượng” (độ tuổi/khu vực), có thể sử dụng để minh họa ở Chương 4 hoặc phân tích sâu ở Chương 5.
+Số liệu về “Đối tượng” (độ tuổi và khu vực) trong Meta Insights được sử dụng để minh họa ở Chương 4 và phân tích sâu hơn ở Chương 5.
 
 ### 1.3.2. Chân dung khách hàng (persona tham khảo)
 **Persona A – “Khách đặt nhanh”**
@@ -89,12 +89,12 @@ Khách hàng mục tiêu của thương hiệu trên Facebook có thể chia the
 ## 1.4. Sản phẩm/dịch vụ áp dụng
 
 ### 1.4.1. Mô tả sản phẩm
-- **Sản phẩm chủ lực:** Bánh chuối chiên (thành phẩm giòn, thơm; có thể bán theo phần/combo).
-- **Biến thể/đề xuất bổ sung (nếu có):** *(điền theo thực tế: topping/nước chấm/combo…)*
-- **Kênh phục vụ:** *(điền theo thực tế: mang đi/giao hàng)*
+- **Sản phẩm chủ lực:** Bánh chuối chiên, thành phẩm giòn và thơm, được chế biến và bán trong ngày.
+- **Hình thức bán:** Bán theo phần hoặc theo combo; thực đơn linh hoạt theo thời điểm.
+- **Kênh phục vụ:** Bán mang đi và giao hàng trong khu vực.
 
 ### 1.4.2. Lợi thế cạnh tranh (USP)
-Có thể xác định USP theo các hướng sau (chọn 1–2 ý phù hợp nhất với thực tế):
+Các lợi thế cạnh tranh của sản phẩm được xác định theo những điểm nổi bật sau:
 - **Giòn ngon – làm mới trong ngày**
 - **Nguyên liệu rõ ràng, đảm bảo vệ sinh**
 - **Đóng gói gọn, giao nhanh trong khu vực**
@@ -102,7 +102,7 @@ Có thể xác định USP theo các hướng sau (chọn 1–2 ý phù hợp nh
 
 ### 1.4.3. Giá trị thương hiệu cần truyền thông
 - **Tin cậy:** minh bạch quy trình, hình ảnh thật.
-- **Ngon và hấp dẫn:** nội dung cận cảnh; tối ưu ánh sáng/âm thanh khi quay video (nếu có).
+- **Ngon và hấp dẫn:** ưu tiên nội dung cận cảnh; đối với video, chú trọng ánh sáng và âm thanh để tăng trải nghiệm.
 - **Tiện lợi:** hướng dẫn đặt hàng rõ ràng; đặt nhanh, nhận nhanh.
 
 ### 1.4.4. Hành trình khách hàng (tóm tắt)
