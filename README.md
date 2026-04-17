@@ -1,22 +1,21 @@
-# CHƯƠNG 4. KẾ HOẠCH TRIỂN KHAI FACEBOOK MARKETING VÀ HỆ THỐNG KPI
+# CHƯƠNG 5. ĐÁNH GIÁ KẾT QUẢ VÀ KIẾN NGHỊ
 
-## 4.1. Căn cứ xây dựng kế hoạch
+## 5.1. Khái quát kết quả theo dữ liệu Meta Insights
 
-Kế hoạch Facebook Marketing cho thương hiệu **Bánh Chuối Chiên QT** được xây dựng dựa trên:
-- Định hướng mục tiêu theo lộ trình **Nhận diện → Tương tác → Chuyển đổi** (Chương 1, Chương 2).
-- Dữ liệu hiệu quả nội dung từ **Meta Business Suite/Insights** trong giai đoạn **01/01/2026–16/04/2026** (Chương 3).
-- Đặc thù sản phẩm đồ ăn vặt địa phương: quyết định mua nhanh, chuyển đổi chủ yếu qua **bình luận/inbox**, và nội dung trực quan (ảnh/video/Reels) có vai trò quyết định.
+Căn cứ bộ dữ liệu xuất từ **Meta Business Suite/Insights** trong giai đoạn **01/01/2026–16/04/2026**, mẫu phân tích gồm **09 bài viết** (07 bài ảnh, 02 bài video). Các chỉ số tổng hợp của toàn bộ mẫu như sau:
+- **Tổng reach:** 1.789
+- **Tổng lượt xem (views):** 5.583
+- **Tổng tương tác (cảm xúc + bình luận + chia sẻ):** 464 (trong đó: cảm xúc 280; bình luận 177; chia sẻ 7)
+- **Tổng lượt click:** 380 (trong đó: **link click** 16)
 
-Từ dữ liệu CSV xuất trong giai đoạn theo dõi (9 bài viết), một số chỉ số nền (baseline) phục vụ đặt KPI được tóm tắt như sau:
-- **Reach trung bình/bài:** khoảng 198,78
-- **Tương tác (cảm xúc + bình luận + chia sẻ) trung bình/bài:** khoảng 51,56
-- **Lượt xem trung bình/bài:** khoảng 620,33
-- **Tổng lượt click trung bình/bài:** khoảng 42,22
-- **Link click trung bình/bài:** khoảng 1,78
+Chỉ số trung bình theo bài:
+- **Reach/bài:** 198,78
+- **Views/bài:** 620,33
+- **Tương tác/bài:** 51,56
+- **Tổng click/bài:** 42,22
+- **Link click/bài:** 1,78
 
-Ngoài các chỉ số hiệu quả nội dung trên Facebook, dữ liệu vận hành tổng hợp trong cùng giai đoạn cho thấy số đơn được chốt theo kênh gồm **10 đơn qua Messenger** và **30 đơn qua web** (tổng **40 đơn**). Các số liệu này được dùng để tham chiếu khi đặt KPI chuyển đổi cho giai đoạn kế hoạch.
-
-Tỷ lệ tổng hợp theo reach trong giai đoạn theo dõi:
+Tỷ lệ tổng hợp theo reach:
 
 $$
 ER_{tổng} = \frac{464}{1789} \times 100\% \approx 25{,}94\%
@@ -26,186 +25,161 @@ $$
 CTR_{tổng\ click} = \frac{380}{1789} \times 100\% \approx 21{,}25\%
 $$
 
-Khi so sánh theo **định dạng**, nhóm **Video** có mức reach và tương tác trung bình cao hơn so với nhóm **Ảnh**, do đó kế hoạch ưu tiên tăng tỷ trọng video/Reels để cải thiện phân phối và tạo “độ thèm” sản phẩm.
+Trong đó, cần lưu ý chỉ số **Tổng lượt click** trong báo cáo Insights bao gồm nhiều loại hành động (ví dụ: click ảnh, click mở bài, click liên kết…), do đó được sử dụng như chỉ báo về mức độ quan tâm/hành động, không đồng nhất với chuyển đổi đặt hàng.
 
-## 4.2. Mục tiêu triển khai theo giai đoạn
+Lưu ý về định dạng thời gian: dữ liệu trong file CSV xuất từ Insights hiển thị thời gian theo dạng **MM/DD/YYYY**; trong các bảng dưới đây, thời gian đã được **quy đổi sang DD/MM/YYYY** để thống nhất với cách trình bày trong báo cáo.
 
-### 4.2.1. Mục tiêu tổng quát
-Nâng cao hiệu quả Facebook Marketing cho **Bánh Chuối Chiên QT** trong giai đoạn theo dõi, nhằm:
-- Củng cố nhận diện thương hiệu đồ ăn vặt địa phương (ngon – sạch – làm mới trong ngày).
-- Duy trì tương tác ổn định và tăng tín hiệu chuyển đổi qua bình luận/inbox.
+Lưu ý về cấu trúc dữ liệu: trong file CSV xuất từ Insights, trường “Ngày” hiển thị “Trọn đời”, do đó số liệu phản ánh hiệu quả **tích lũy (lifetime)** của từng bài tại thời điểm xuất báo cáo trong giai đoạn nghiên cứu.
 
-### 4.2.2. Mục tiêu theo tầng phễu
-- **Nhận diện (TOFU):** tăng mức độ tiếp cận và lượt xem video; mở rộng tệp người dùng trong khu vực.
-- **Cân nhắc (MOFU):** tăng tương tác chất lượng (bình luận hỏi giá/ship, phản hồi về chất lượng), tăng lượt click vào thông tin trang.
-- **Chuyển đổi (BOFU):** tăng số lượng hội thoại (inbox) và bình luận thể hiện ý định mua; rút ngắn thời gian phản hồi và chuẩn hóa quy trình chốt đơn.
+### 5.1.1. Bảng tổng hợp chỉ số theo bài viết (n = 9)
 
-## 4.3. Định hướng STP và thông điệp triển khai
+**Bảng 5.1. Tổng hợp chỉ số hiệu quả theo bài viết** (Nguồn: Meta Business Suite/Insights – file CSV; xử lý và tính toán của nhóm tác giả)
 
-### 4.3.1. Phân khúc và lựa chọn khách hàng mục tiêu
-Căn cứ theo mô hình STP, kế hoạch tập trung vào 3 nhóm khách hàng phù hợp với mô hình địa phương:
-- **Học sinh/sinh viên (18–25):** mua theo nhóm, nhạy ưu đãi, dễ bị thu hút bởi Reels “cận cảnh giòn rụm”.
-- **Nhân viên văn phòng (22–35):** ưu tiên giao nhanh/đặt nhanh; quyết định mua trong giờ nghỉ.
-- **Khách mua cho gia đình (25–40):** quan tâm vệ sinh, chất lượng, đóng gói và độ tin cậy.
+| Mã | Thời gian đăng (DD/MM/YYYY) | Định dạng | Nội dung (rút gọn) | Reach | Views | Cảm xúc | Bình luận | Chia sẻ | Tương tác | Tổng click | Link click | ER (%) | CTR (%) |
+|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| P01 | 16/01/2026 03:15 | Ảnh | Bánh chuối chiên giòn rụm – nóng hổi mỗi ngày | 436 | 1.611 | 38 | 44 | 1 | 83 | 134 | 0 | 19,04 | 30,73 |
+| P02 | 23/01/2026 17:48 | Ảnh | Bánh chuối vàng giòn + bánh khoai bùi béo | 92 | 384 | 12 | 7 | 0 | 19 | 27 | 0 | 20,65 | 29,35 |
+| P03 | 04/02/2026 06:06 | Ảnh | Thông báo còn bánh; đặt số lượng lớn đặt trước | 76 | 463 | 21 | 7 | 0 | 28 | 25 | 0 | 36,84 | 32,89 |
+| P04 | 05/02/2026 01:05 | Video | Trời se lạnh – bánh chuối chiên nóng giòn (có giá/ship) | 617 | 1.600 | 74 | 69 | 6 | 149 | 79 | 16 | 24,15 | 12,80 |
+| P05 | 09/03/2026 07:46 | Ảnh | Nội dung khai xuân – nhắc liên hệ đặt đồ ăn | 57 | 187 | 11 | 2 | 0 | 13 | 10 | 0 | 22,81 | 17,54 |
+| P06 | 10/03/2026 21:03 | Ảnh | Ra lò mẻ mới + ưu đãi mua 5 tặng 1 | 110 | 290 | 16 | 5 | 0 | 21 | 24 | 0 | 19,09 | 21,82 |
+| P07 | 10/04/2026 00:21 | Ảnh | Chuối về nguyên kho; nhấn mạnh nguyên liệu tươi | 67 | 199 | 17 | 3 | 0 | 20 | 9 | 0 | 29,85 | 13,43 |
+| P08 | 15/04/2026 03:13 | Ảnh | Sẵn bánh rồi; kêu gọi đặt hàng – ship liền | 120 | 316 | 24 | 6 | 0 | 30 | 26 | 0 | 25,00 | 21,67 |
+| P09 | 15/04/2026 22:52 | Video | Bài ưu đãi theo số lượng (10 tặng 1; 100 giảm 10%) | 214 | 533 | 67 | 34 | 0 | 101 | 46 | 0 | 47,20 | 21,50 |
 
-### 4.3.2. Định vị và thông điệp chính
-- **Định vị:** “Đồ ăn vặt nóng giòn – làm mới trong ngày – giao nhanh trong khu vực”.
-- **Thông điệp cốt lõi:** ngon (giòn – thơm – nóng), sạch (làm thật – quy trình rõ), tiện (đặt nhanh – giao nhanh).
-- **Trọng tâm sản phẩm:** bánh chuối chiên là sản phẩm chủ lực (khoảng 70%), khoai chiên là sản phẩm bổ trợ (khoảng 30%) để đa dạng lựa chọn và tạo combo.
+Trong bảng, $ER = \frac{Engagements}{Reach} \times 100\%$ và $CTR = \frac{Clicks}{Reach} \times 100\%$; số liệu được làm tròn ở mức 2 chữ số thập phân.
 
-## 4.4. Chiến lược nội dung (content strategy)
+### 5.1.2. Vị trí chèn hình minh họa từ dữ liệu Insights
 
-### 4.4.1. Trụ nội dung và mục tiêu truyền thông
-Kế hoạch sử dụng 5 trụ nội dung chính để đảm bảo cân bằng giữa “ngon mắt” và “chốt đơn”:
-1) **Sản phẩm – cận cảnh (chuối/khoai):** nhấn mạnh độ giòn, nóng, màu sắc; phù hợp video ngắn.
-2) **Giá/Combo/Ưu đãi:** thông tin rõ ràng, tạo lý do mua ngay.
-3) **Hậu trường – quy trình – vệ sinh:** tăng tin cậy (nguyên liệu, chiên mới, đóng gói).
-4) **Feedback/UGC:** bằng chứng xã hội (ảnh khách gửi, phản hồi, đánh giá).
-5) **Thông tin đặt hàng:** giờ bán, khu vực giao, phí ship, hotline; giảm câu hỏi lặp lại.
+**Hình 5.1. Biểu đồ Reach theo từng bài viết** (Nguồn: Insights CSV; xử lý từ Excel/Google Sheets)
 
-Bảng dưới đây mô tả cách gắn trụ nội dung với phễu nội dung và định dạng ưu tiên.
+![Hình 5.1. Biểu đồ Reach theo từng bài viết (Nguồn: Insights CSV)](img/hinh5_1_reach.png)
 
-**Bảng 4.1. Trụ nội dung và định dạng ưu tiên trong kế hoạch triển khai**
+**Hình 5.2. Biểu đồ tổng tương tác theo từng bài viết** (Nguồn: Insights CSV; xử lý từ Excel/Google Sheets)
 
-| Trụ nội dung | Tầng phễu | Định dạng ưu tiên | Vai trò chính | CTA đề xuất |
-|---|---|---|---|---|
-| Sản phẩm – cận cảnh | TOFU | Video/Reels | Tăng reach, tăng lượt xem | “Inbox để nhận menu + phí ship” |
-| Ưu đãi/Combo | BOFU | Ảnh + caption ngắn | Chốt đơn nhanh | “Comment ‘QT’ để chốt combo” |
-| Hậu trường – vệ sinh | MOFU | Video ngắn/album ảnh | Tăng tin cậy | “Hỏi shop món hợp khẩu vị” |
-| Feedback/UGC | MOFU → BOFU | Ảnh + trích phản hồi | Bằng chứng xã hội | “Inbox đặt phần giống khách” |
-| Thông tin đặt hàng | MOFU | Bài ghim/ảnh infographics | Giảm ma sát đặt hàng | “Nhắn khu vực để báo phí ship” |
+![Hình 5.2. Biểu đồ tổng tương tác theo từng bài viết (Nguồn: Insights CSV)](img/hinh5_2_engagements.png)
 
-### 4.4.2. Nguyên tắc triển khai nội dung
-- **Ưu tiên video/Reels:** duy trì tỷ trọng video để tận dụng phân phối tốt hơn; tập trung “hook 1–2 giây đầu” (âm thanh chiên, cận cảnh bẻ bánh, khói nóng).
-- **Thông tin rõ ràng:** mỗi bài có tối thiểu 3 yếu tố: (1) sản phẩm, (2) giá/combo hoặc lợi ích, (3) cách đặt.
-- **Giọng điệu nhất quán:** thân thiện, ngắn gọn, ưu tiên câu hành động.
-- **Hình ảnh thật:** chụp/quay tại quán, ánh sáng tốt; tránh lạm dụng filter làm sai màu món.
+## 5.2. Đánh giá theo hệ thống KPI (đối chiếu Chương 4)
 
-### 4.4.3. Chuẩn hóa CTA và kịch bản nội dung
-Các mẫu CTA dùng xuyên suốt để tăng tính nhất quán và giảm bước đặt hàng:
-- “Inbox để nhận menu + phí ship theo khu vực.”
-- “Comment số lượng + khu vực để shop xác nhận nhanh.”
-- “Đặt trước 15–30 phút để nhận bánh nóng.”
+Chương 4 đã đặt KPI theo hướng tăng trưởng so với mức trung bình giai đoạn theo dõi. Bảng dưới đây đối chiếu **mức hiện tại** (kết quả giai đoạn 01/01/2026–16/04/2026) với **mục tiêu kế hoạch**.
 
-**Bảng 4.2. Cấu trúc caption khuyến nghị theo loại nội dung**
+| Nhóm KPI | Chỉ số | Mức hiện tại | Mục tiêu kế hoạch | Đánh giá |
+|---|---|---:|---:|---|
+| Nhận diện | Reach/bài | 198,78 | ≥ 240 | Chưa đạt |
+| Nhận diện | Views/bài | 620,33 | ≥ 750 | Chưa đạt |
+| Tương tác | Tương tác/bài | 51,56 | ≥ 60 | Chưa đạt |
+| Tương tác | $ER = \frac{Engagements}{Reach}$ | 25,94% | ≥ 20% | Đạt |
+| Hành động | Tổng click/bài | 42,22 | ≥ 50 | Chưa đạt |
+| Hành động | Link click/bài | 1,78 | ≥ 3 | Chưa đạt |
 
-| Loại nội dung | Cấu trúc caption (tóm tắt) | Mục tiêu |
-|---|---|---|
-| Video/Reels cận cảnh (TOFU) | Hook 1 câu + 2–3 lợi ích (nóng/giòn/chiên mới) + giá (nếu ổn định) + CTA inbox | Tăng views/reach và tạo nhu cầu |
-| Ảnh ưu đãi/combo (BOFU) | Ưu đãi rõ ràng + điều kiện (số lượng/khung giờ) + cách đặt + nhắc khu vực giao | Chốt đơn nhanh |
-| Hậu trường/quy trình (MOFU) | 1–2 ý về vệ sinh/nguyên liệu + minh chứng thao tác + CTA hỏi món phù hợp | Tăng tin cậy |
-| Feedback/UGC (MOFU→BOFU) | Trích phản hồi ngắn + ảnh/quote + CTA “đặt phần giống khách” | Tăng bằng chứng xã hội |
+Nhìn chung, mức hiện tại cho thấy Fanpage có **tỷ lệ tương tác theo reach** tương đối tốt (ER đạt ngưỡng mục tiêu), nhưng còn hạn chế ở các chỉ số thuộc nhóm **phân phối nội dung** (reach, views) và **hành động** (click, link click). Trong báo cáo này, các KPI ở Chương 4 được xem là mục tiêu cho giai đoạn triển khai kế hoạch tiếp theo; vì vậy, kết quả giai đoạn 01/01/2026–16/04/2026 đóng vai trò **mức nền (baseline)** để xác định khoảng cách cần cải thiện. Do đó, các mục “chưa đạt” được hiểu là các điểm cần ưu tiên tối ưu trong kế hoạch triển khai, không phải tiêu chí “đạt/không đạt” của toàn bộ đề tài.
 
-## 4.5. Kế hoạch lịch đăng (content calendar)
+## 5.3. Phân tích hiệu quả theo định dạng nội dung
 
-### 4.5.1. Tần suất và cơ cấu định dạng
-Kế hoạch nhịp đăng tối thiểu theo tuần:
-- **03 nội dung/tuần** gồm: **02 video/Reels** + **01 ảnh** (ưu đãi/combo/feedback).
-- **Story hằng ngày** (tối thiểu 01 story/ngày trong khung giờ bán): thông báo “đang chiên”, “còn bánh”, “đơn đang ship”.
+Khi phân tích theo định dạng, kết quả trung bình cho thấy **video** có ưu thế rõ rệt so với **ảnh**:
 
-Cơ cấu nội dung theo trụ (mục tiêu):
-- Sản phẩm cận cảnh (40%)
-- Ưu đãi/Combo (20%)
-- Hậu trường – vệ sinh (20%)
-- Feedback/UGC (10%)
-- Thông tin đặt hàng (10%)
+| Định dạng | Số bài | Reach TB | Views TB | Tương tác TB | Click TB |
+|---|---:|---:|---:|---:|---:|
+| Video | 2 | 415,50 | 1.066,50 | 125,00 | 62,50 |
+| Ảnh | 7 | 136,86 | 492,86 | 30,57 | 36,43 |
 
-### 4.5.2. Khung giờ đăng ưu tiên
-Khung giờ đăng ưu tiên bám theo thói quen tiêu dùng đồ ăn vặt:
-- Trưa: 10h30–12h30
-- Chiều/tối: 16h30–20h30
+**Hình 5.3. Biểu đồ so sánh hiệu quả trung bình theo định dạng (Ảnh vs Video)** (Nguồn: Insights CSV; xử lý từ Excel/Google Sheets)
 
-### 4.5.3. Lịch mẫu 4 tuần (có thể lặp theo chu kỳ)
+![Hình 5.3. Biểu đồ so sánh hiệu quả trung bình theo định dạng (Nguồn: Insights CSV)](img/hinh5_3_format_compare.png)
 
-**Bảng 4.3. Lịch mẫu 4 tuần theo TOFU–MOFU–BOFU**
+Kết quả này phù hợp với đặc thù ngành đồ ăn vặt: video/Reels thể hiện tốt hơn các yếu tố “nóng – giòn – đã mắt”, từ đó tăng khả năng phân phối và tạo tương tác. Do tỷ trọng video trong mẫu còn thấp (2/9), việc tăng tỷ lệ video là hướng trọng tâm để cải thiện nhóm KPI nhận diện và tương tác.
 
-| Tuần | Video/Reels 1 (TOFU) | Video/Reels 2 (MOFU) | Ảnh (BOFU) | Story (hằng ngày) |
-|---|---|---|---|---|
-| 1 | Cận cảnh bánh chuối chiên “nóng giòn” | Hậu trường chiên mới/đóng gói | Bảng giá + combo phổ biến | Đang chiên, nhận đơn, ship nhanh |
-| 2 | Cận cảnh khoai chiên + gợi ý combo chuối–khoai | Giải đáp: “bánh có ngấm dầu không?” | Ưu đãi theo số lượng | Đơn khách, phản hồi nhanh, giờ bán |
-| 3 | Reels “ra lò mẻ mới” (âm thanh + close-up) | Feedback khách (chèn ảnh/quote) | Bài chốt đơn theo khung giờ | Còn bánh/đặt trước/ship |
-| 4 | Reels giới thiệu combo/ưu đãi tuần | Quy trình vệ sinh – nguyên liệu | Mini-campaign “mua theo nhóm” | Nhắc ưu đãi, cập nhật đơn |
+## 5.4. Phân tích theo trụ nội dung (content pillars)
 
-## 4.6. Kế hoạch quảng cáo trả phí (mức tối thiểu)
+Phân tích theo trụ nội dung được sử dụng để kiểm tra cơ cấu nội dung trong giai đoạn theo dõi và liên hệ với hiệu quả theo từng nhóm bài. Việc phân loại trong mục này dựa trên nội dung caption/chủ đề thể hiện rõ nhất trong từng bài; do số lượng bài trong mẫu còn ít (n = 9), kết quả được dùng để định hướng triển khai kế hoạch ở Chương 4.
 
-Trong phạm vi dự án, quảng cáo trả phí được xác định là lớp hỗ trợ nhằm tăng phân phối ở các tuần cần đẩy đơn. Kế hoạch tối thiểu tập trung vào 2 mục tiêu:
+### 5.4.1. Phân loại bài theo trụ nội dung
 
-### 4.6.1. Mục tiêu “Tin nhắn” (Messages)
-- **Mục tiêu:** tăng số cuộc hội thoại bắt đầu từ quảng cáo.
-- **Tệp đối tượng:** bán kính quanh khu vực bán/giao; ưu tiên nhóm 18–40.
-- **Nội dung quảng cáo:** video/Reels “cận cảnh nóng giòn” + CTA đặt hàng.
-- **Kịch bản đích (inbox):** menu + combo + phí ship theo khu vực.
+**Bảng 5.2. Phân loại bài theo trụ nội dung** (Nguồn: Meta Business Suite/Insights – file CSV; tổng hợp của nhóm tác giả)
 
-### 4.6.2. Mục tiêu “Tương tác” (Engagement) cho bài ưu đãi
-- **Mục tiêu:** tăng bình luận và tương tác cho bài ưu đãi/combo.
-- **Nội dung:** bài có ưu đãi theo số lượng hoặc theo khung giờ.
+| Mã | Thời gian đăng | Định dạng | Trụ nội dung | Tầng phễu | Ghi chú ngắn |
+|---|---|---|---|---|---|
+| P01 | 16/01/2026 03:15 | Ảnh | Sản phẩm – cận cảnh | TOFU/MOFU | Nêu lợi ích “giòn – nóng” kèm thông tin liên hệ |
+| P02 | 23/01/2026 17:48 | Ảnh | Sản phẩm – cận cảnh | TOFU | Giới thiệu cả chuối và khoai; nhấn vị/đặc điểm |
+| P03 | 04/02/2026 06:06 | Ảnh | Thông báo bán/nhận đơn | BOFU | Nhấn mạnh “đủ bánh”, khuyến khích đặt trước số lượng lớn |
+| P04 | 05/02/2026 01:05 | Video | Sản phẩm – cận cảnh | TOFU/MOFU | Gắn bối cảnh thời tiết + có giá/ship + CTA đặt ngay |
+| P05 | 09/03/2026 07:46 | Ảnh | Ưu đãi/nhắc đặt theo dịp | BOFU | Nội dung theo bối cảnh “liên hoan/khai xuân” |
+| P06 | 10/03/2026 21:03 | Ảnh | Ưu đãi/Combo | BOFU | Vừa “ra lò” vừa có ưu đãi mua 5 tặng 1 |
+| P07 | 10/04/2026 00:21 | Ảnh | Hậu trường – nguyên liệu | MOFU | Nêu nguyên liệu “chuối tươi nguyên quả” nhằm tăng tin cậy |
+| P08 | 15/04/2026 03:13 | Ảnh | Thông báo bán/nhận đơn | BOFU | Nội dung ngắn, tập trung kêu gọi đặt – ship liền |
+| P09 | 15/04/2026 22:52 | Video | Ưu đãi/Combo | BOFU | Ưu đãi theo số lượng, phù hợp bài chốt đơn |
 
-### 4.6.3. Ngân sách và nguyên tắc tối ưu
-- **Ngân sách đề xuất:** triển khai theo đợt ngắn (3–5 ngày/đợt) để dễ kiểm soát.
-- **Nguyên tắc:** ưu tiên đẩy bài có nội dung rõ giá/combo và CTA đặt hàng; theo dõi chi phí/tin nhắn và điều chỉnh tệp đối tượng theo kết quả.
+Từ cơ cấu trên có thể thấy nhóm bài tập trung nhiều vào **sản phẩm** và **ưu đãi/thông báo bán**, trong khi trụ **feedback/UGC** (bằng chứng xã hội) hầu như chưa xuất hiện rõ trong mẫu. Đây là một khoảng trống nội dung quan trọng vì feedback thường hỗ trợ tăng tin cậy và thúc đẩy chuyển đổi qua inbox/bình luận.
 
-## 4.7. Kế hoạch vận hành chuyển đổi (inbox/bình luận)
+**Hình 5.4. Biểu đồ cơ cấu trụ nội dung (số bài theo trụ)** (Nguồn: tổng hợp từ Bảng 5.2)
 
-### 4.7.1. Chuẩn hóa thông tin đặt hàng
-- Ghim 01 bài “Cách đặt hàng” gồm: menu/giá, combo, giờ bán, khu vực giao, cách báo phí ship.
-- Chuẩn hóa ảnh “bảng giá + combo” để dùng lại trong bình luận/inbox.
+![Hình 5.4. Biểu đồ cơ cấu trụ nội dung (Nguồn: tổng hợp từ Bảng 5.2)](img/hinh5_4_pillars.png)
 
-**Bảng 4.4. Checklist tối ưu thông tin đặt hàng trên Fanpage**
+### 5.4.2. So sánh chỉ số theo trụ nội dung (tham khảo)
 
-| Hạng mục | Tiêu chí kiểm tra | Mục tiêu |
-|---|---|---|
-| Bài ghim “Cách đặt hàng” | Có menu/giá/combo + khu vực giao + cách tính phí ship + giờ bán | Giảm ma sát hỏi/đặt |
-| Ảnh bảng giá/combo | Ảnh rõ chữ, dùng lại được trong bình luận/inbox | Rút ngắn thời gian tư vấn |
-| Nút hành động (CTA button) | Thiết lập phù hợp (Gọi ngay/Nhắn tin) | Tăng hội thoại |
-| Thông tin trang | Địa chỉ/khu vực, hotline, khung giờ phản hồi | Tăng tin cậy |
-| Highlight/album | Có album “Menu – Bảng giá”, “Feedback khách” | Tăng bằng chứng xã hội |
+**Bảng 5.3. Chỉ số trung bình theo trụ nội dung** (Nguồn: Insights CSV; tính toán của nhóm tác giả)
 
-**Hình 4.1. Minh họa bài ghim “Cách đặt hàng” trên Fanpage (ảnh chụp từ trang)**
+| Trụ nội dung | Số bài | Reach TB | Views TB | Tương tác TB | Bình luận TB |
+|---|---:|---:|---:|---:|---:|
+| Sản phẩm – cận cảnh | 3 | 381,67 | 1.198,33 | 83,67 | 40,00 |
+| Ưu đãi/Combo/nhắc đặt theo dịp | 3 | 127,00 | 336,67 | 45,00 | 13,67 |
+| Thông báo bán/nhận đơn | 2 | 98,00 | 389,50 | 29,00 | 6,50 |
+| Hậu trường – nguyên liệu | 1 | 67,00 | 199,00 | 20,00 | 3,00 |
+| Feedback/UGC | 0 | – | – | – | – |
 
-![Hình 4.1. Minh họa bài ghim “Cách đặt hàng” trên Fanpage](img/hinh4_1_pinned_post.png)
+Kết quả gợi ý rằng nhóm **sản phẩm – cận cảnh** đang tạo hiệu quả tốt nhất về reach, views và bình luận; nhóm **ưu đãi/Combo** cho thấy tỷ lệ tương tác cao ở một số bài (ví dụ bài ưu đãi theo số lượng), phù hợp triển khai ở tầng chốt đơn. Do trụ **feedback/UGC** chưa có trong mẫu, kế hoạch ở Chương 4 cần bổ sung nhóm nội dung này để tăng tính thuyết phục và hỗ trợ chuyển đổi.
 
-### 4.7.2. Mục tiêu tốc độ phản hồi
-- Thiết lập mục tiêu **phản hồi trong 5–10 phút** trong khung giờ bán.
-- Xây dựng mẫu trả lời nhanh cho các câu hỏi lặp: giá, combo, ship, thời gian nhận.
+## 5.5. Phân tích bài viết nổi bật và yếu tố tạo hiệu quả
 
-### 4.7.3. Quy trình chốt đơn (tóm tắt)
-1) Xác nhận số lượng và sản phẩm (chuối/khoai/combo).
-2) Xác nhận khu vực, phí ship, thời gian nhận.
-3) Chốt đơn và nhắc khách chuẩn bị nhận hàng.
-4) Sau bán: xin phản hồi ngắn để làm nội dung feedback.
+Dựa theo reach, bình luận và tổng tương tác, có thể nhận diện một số bài nổi bật:
 
-## 4.8. Hệ thống KPI và cơ chế theo dõi
+| Thời điểm đăng | Định dạng | Reach | Views | Tương tác | Bình luận | Link click | Nhận xét ngắn |
+|---|---|---:|---:|---:|---:|---:|---|
+| 05/02/2026 | Video | 617 | 1.600 | 149 | 69 | 16 | Nội dung gắn “thời tiết se lạnh” + mô tả lợi ích “nóng giòn” + có giá; tạo nhiều bình luận và hành động |
+| 16/01/2026 | Ảnh | 436 | 1.611 | 83 | 44 | 0 | Ảnh sản phẩm rõ ràng, có địa chỉ/điện thoại; tạo nhiều click và bình luận hỏi mua |
+| 15/04/2026 | Video | 214 | 533 | 101 | 34 | 0 | Bài ưu đãi (theo số lượng) tạo tỷ lệ tương tác cao; phù hợp tầng chốt đơn |
 
-### 4.8.1. KPI theo tầng mục tiêu
-Hệ thống KPI chia theo 3 nhóm:
-- **Nhận diện:** reach, views/video views.
-- **Tương tác:** tổng tương tác (cảm xúc + bình luận + chia sẻ), $ER$.
-- **Hành động:** tổng lượt click, link click, số hội thoại bắt đầu (khi theo dõi được), số bình luận có ý định mua.
-- **Chuyển đổi (đa kênh):** số đơn chốt qua Messenger và số đơn chốt qua web (tổng hợp theo tuần/tháng).
+Các đặc điểm chung của nhóm bài hiệu quả:
+- Nội dung mô tả rõ “lợi ích ngay lập tức” của sản phẩm (nóng, giòn, chiên mới).
+- CTA hướng về hành động cụ thể (đặt hàng/inbox), kèm thông tin giá/địa chỉ giúp giảm câu hỏi lặp.
+- Bối cảnh (thời tiết, khung giờ, ưu đãi) giúp tăng động lực ra quyết định.
 
-### 4.8.2. KPI mục tiêu (đặt theo baseline từ dữ liệu theo dõi)
-Bảng KPI dưới đây đặt mục tiêu theo hướng tăng trưởng so với mức trung bình giai đoạn theo dõi.
+## 5.6. Đánh giá tín hiệu chuyển đổi (bình luận, inbox, link click)
 
-**Bảng 4.5. KPI mục tiêu theo tầng phễu (đặt theo baseline giai đoạn 01/01–16/04/2026)**
+Trong bộ dữ liệu CSV được xuất, chỉ số tin nhắn (messages/inbox initiated) không nằm trong nhóm cột sử dụng để tổng hợp. Tuy nhiên, theo ghi nhận thực tế vận hành:
+- **Số đơn chốt qua nhắn tin Facebook (Messenger):** 10 đơn
+- **Số đơn chốt qua web:** 30 đơn
 
-| Nhóm KPI | Chỉ số | Baseline (01/01–16/04) | Mục tiêu kế hoạch | Nguồn đo lường | Chu kỳ theo dõi |
-|---|---|---:|---:|---|---|
-| Nhận diện | Reach/bài | 198,78 | ≥ 240 | Insights (CSV) | Tuần/Tháng |
-| Nhận diện | Views/bài | 620,33 | ≥ 750 | Insights (CSV) | Tuần/Tháng |
-| Tương tác | Tương tác/bài | 51,56 | ≥ 60 | Insights (CSV) | Tuần/Tháng |
-| Tương tác | $ER = \frac{Engagements}{Reach}$ | 25,94% (tổng hợp) | ≥ 20% | Insights (tính toán) | Tuần/Tháng |
-| Hành động | Tổng click/bài | 42,22 | ≥ 50 | Insights (CSV) | Tuần/Tháng |
-| Hành động | Link click/bài | 1,78 | ≥ 3 | Insights (CSV) | Tuần/Tháng |
-| Chuyển đổi | Inbox bắt đầu | Theo ghi nhận trang | Tăng theo tuần | Meta Inbox/Insights | Tuần |
-| Chuyển đổi | Bình luận có ý định mua | Theo ghi nhận bài | Tăng theo tuần | Tổng hợp thủ công | Tuần |
-| Chuyển đổi | Số đơn qua Messenger | 10 | Tăng so với baseline | Tổng hợp vận hành (Meta Inbox) | Tháng |
-| Chuyển đổi | Số đơn qua web | 30 | Tăng so với baseline | Hệ thống web | Tháng |
-| Chuyển đổi | Tổng số đơn (đa kênh) | 40 | Tăng so với baseline | Tổng hợp đa kênh | Tháng |
+Như vậy, tổng số đơn hàng trong giai đoạn nghiên cứu là **40 đơn**, trong đó kênh web chiếm tỷ trọng lớn hơn. Điều này cho thấy hành vi khách hàng có thể bắt đầu từ Facebook (xem bài, nhắn tin hỏi) nhưng chuyển sang đặt hàng qua web để thuận tiện xác nhận, hoặc ngược lại. Việc tích hợp và đối chiếu dữ liệu giữa các kênh giúp đánh giá chính xác hơn hiệu quả chuyển đổi tổng thể.
 
-### 4.8.3. Cơ chế báo cáo và tối ưu
-- Theo dõi chỉ số theo **tuần** để phát hiện bài/định dạng hiệu quả.
-- Mỗi tuần chọn 1–2 nội dung hiệu quả để nhân rộng (cùng định dạng và cấu trúc CTA), đồng thời điều chỉnh nội dung kém hiệu quả theo 3 yếu tố: **hook**, **thông tin giá/combo**, **CTA**.
-- Đánh giá theo tháng để điều chỉnh cơ cấu trụ nội dung và nhịp đăng.
+## 5.7. Hạn chế chính trong kết quả hiện tại
 
-## 4.9. Tiểu kết chương
-Chương 4 đã trình bày kế hoạch triển khai Facebook Marketing cho **Bánh Chuối Chiên QT** theo lộ trình Nhận diện → Tương tác → Chuyển đổi, bao gồm định hướng STP, chiến lược nội dung, lịch đăng, vận hành chuyển đổi và hệ thống KPI. Các KPI được đặt dựa trên chỉ số nền trong giai đoạn theo dõi, làm cơ sở để đối chiếu và đánh giá kết quả ở Chương 5.
+Từ kết quả tổng hợp và so sánh KPI, một số hạn chế đáng chú ý gồm:
+- **Tần suất và cơ cấu định dạng:** số bài trong giai đoạn theo dõi còn ít; tỷ trọng video thấp, trong khi video có hiệu quả vượt trội.
+- **Nội dung chưa tạo được mức reach/views theo mục tiêu:** mức tiếp cận trung bình/bài chưa đạt mục tiêu kế hoạch, khiến nhóm KPI nhận diện bị hạn chế.
+- **Hành động theo liên kết thấp:** link click thấp phản ánh liên kết chưa phải điểm chạm chính; cần tối ưu hướng “inbox/bình luận” và thông tin đặt hàng.
+
+## 5.8. Kiến nghị điều chỉnh để đạt KPI kế hoạch
+
+Để cải thiện các chỉ số chưa đạt và tiệm cận KPI Chương 4, đề xuất tập trung vào các hướng sau:
+1) **Tăng tỷ lệ video/Reels** trong lịch đăng (ưu tiên cận cảnh, âm thanh chiên, thành phẩm nóng).
+2) **Chuẩn hóa cấu trúc caption**: lợi ích chính (ngon – nóng – giòn) + giá/combo + cách đặt + khu vực giao.
+3) **Tăng bài chốt đơn theo bối cảnh**: ưu đãi theo khung giờ hoặc theo số lượng ở các ngày cao điểm.
+4) **Tăng nội dung tạo tin cậy**: hậu trường quy trình, đóng gói, feedback khách; dùng làm lớp hỗ trợ cho chuyển đổi qua inbox.
+5) **Theo dõi bình luận có ý định mua theo tuần** để xác định mẫu CTA hiệu quả và nhân rộng.
+
+## 5.9. Tiểu kết chương
+
+Chương 5 đã tổng hợp và đánh giá kết quả hoạt động Facebook Marketing của **Bánh Chuối Chiên QT** trong giai đoạn 01/01/2026–16/04/2026, đối chiếu với KPI kế hoạch ở Chương 4. Kết quả cho thấy tỷ lệ tương tác theo reach đạt mức tốt, tuy nhiên reach/views và nhóm chỉ số hành động chưa đạt mục tiêu kế hoạch. Trên cơ sở đó, chương đã đề xuất các hướng điều chỉnh trọng tâm (tăng tỷ trọng video/Reels, chuẩn hóa CTA và tối ưu nội dung chốt đơn) nhằm cải thiện hiệu quả triển khai trong giai đoạn tiếp theo.
+
+# KẾT LUẬN
+
+Qua quá trình nghiên cứu tình huống và phân tích dữ liệu Meta Insights giai đoạn 01/01/2026–16/04/2026, đề tài đã xác định được bức tranh hiện trạng Facebook Marketing của **Bánh Chuối Chiên QT** theo lộ trình Nhận diện → Tương tác → Chuyển đổi, trong đó tỷ lệ tương tác theo reach đạt mức tốt nhưng các chỉ số phân phối (reach, views) và hành động (click, link click) chưa đạt mục tiêu kế hoạch; đồng thời kết quả theo định dạng cho thấy video/Reels có hiệu quả vượt trội so với ảnh, vì vậy hướng triển khai phù hợp trong giai đoạn tiếp theo là tăng tỷ trọng video/Reels, chuẩn hóa cấu trúc nội dung và CTA theo mục tiêu chốt đơn qua bình luận/inbox, kết hợp nội dung tạo tin cậy (hậu trường, feedback) và theo dõi chỉ số theo tuần để tối ưu liên tục, qua đó từng bước nâng hiệu quả truyền thông và hỗ trợ tăng chuyển đổi đặt hàng cho thương hiệu.
+
+# TÀI LIỆU THAM KHẢO
+
+1. Meta for Business. *Meta Business Suite: Manage Facebook and Instagram in one place*. https://www.facebook.com/business/tools/meta-business-suite (Truy cập: 17/04/2026).
+2. Meta Business Help Centre. *Meta Business Help Centre: Help, support and troubleshooting*. https://www.facebook.com/business/help (Truy cập: 17/04/2026).
+3. Wikipedia contributors. *AIDA (marketing)*. https://en.wikipedia.org/wiki/AIDA_(marketing) (Truy cập: 17/04/2026).
+4. Wikipedia contributors. *STP marketing*. https://en.wikipedia.org/wiki/STP_marketing (Truy cập: 17/04/2026).
+5. Wikipedia contributors. *Engagement rate*. https://en.wikipedia.org/wiki/Engagement_rate (Truy cập: 17/04/2026).
