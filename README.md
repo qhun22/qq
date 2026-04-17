@@ -1,135 +1,186 @@
-# CHƯƠNG 1. TỔNG QUAN VỀ DỰ ÁN VÀ ĐỐI TƯỢNG NGHIÊN CỨU
+# CHƯƠNG 2. CƠ SỞ LÝ THUYẾT VÀ MÔ HÌNH ÁP DỤNG CHO ĐỀ TÀI
 
-## 1.1. Giới thiệu tổng quan về dự án
+## 2.1. Cơ sở lý luận về thương hiệu
 
-Chương này trình bày bối cảnh triển khai Facebook Marketing đối với thương hiệu **Bánh Chuối Chiên QT**, xác định vấn đề marketing cần giải quyết, mục tiêu của dự án và phạm vi nghiên cứu làm cơ sở cho các chương tiếp theo.
+### 2.1.1. Khái niệm thương hiệu
+Thương hiệu (brand) là tập hợp các dấu hiệu và nhận thức giúp phân biệt sản phẩm/dịch vụ của một đơn vị với các đối thủ khác; đồng thời phản ánh kỳ vọng của khách hàng về chất lượng, trải nghiệm và mức độ tin cậy. Thương hiệu không chỉ là tên gọi hay logo mà còn bao gồm: giá trị cốt lõi, cá tính thương hiệu, lời hứa thương hiệu (brand promise), trải nghiệm thực tế và cảm nhận tích lũy của khách hàng.
 
-### 1.1.1. Tên dự án
-**Xây dựng chiến lược Facebook Marketing trong phát triển thương hiệu cho sản phẩm/dịch vụ tại đơn vị/doanh nghiệp – Trường hợp thương hiệu Bánh Chuối Chiên QT.**
+Trong bối cảnh kinh doanh địa phương, thương hiệu thường được hình thành qua ba yếu tố chính:
+- **Nhận diện dễ nhớ:** tên, màu sắc, thông điệp, hình ảnh nhất quán.
+- **Trải nghiệm đáng tin:** chất lượng sản phẩm, vệ sinh, thái độ phục vụ, giao hàng.
+- **Bằng chứng xã hội:** phản hồi khách hàng, đánh giá, nội dung do người dùng tạo (UGC).
 
-### 1.1.2. Bối cảnh và lý do triển khai
-Trong bối cảnh hành vi tiêu dùng dịch chuyển mạnh sang môi trường số, các thương hiệu kinh doanh địa phương (đồ ăn vặt, đồ uống, dịch vụ cá nhân…) có thể tiếp cận khách hàng nhanh và hiệu quả thông qua Facebook nhờ:
-- Lượng người dùng lớn, phù hợp thói quen **“lướt – xem – hỏi – đặt”** của khách hàng.
-- Định dạng nội dung đa dạng (bài viết, ảnh, video ngắn/Reels) giúp tăng khả năng ghi nhớ thương hiệu.
-- Công cụ đo lường của Meta (Meta Business Suite/Insights) hỗ trợ theo dõi các chỉ số về lượt xem, tương tác, truy cập trang, tin nhắn…
+### 2.1.2. Vai trò của thương hiệu trong kinh doanh địa phương
+Đối với mô hình kinh doanh địa phương (đồ ăn vặt, đồ uống, dịch vụ cá nhân, v.v.), thương hiệu có vai trò:
+- **Tạo khác biệt trong thị trường “na ná nhau”:** khi sản phẩm tương đồng, khác biệt thường đến từ trải nghiệm và cảm xúc.
+- **Tăng mức độ tin cậy:** giảm rủi ro cảm nhận của khách hàng (đặc biệt với thực phẩm: vệ sinh, nguồn nguyên liệu).
+- **Hỗ trợ chuyển đổi nhanh:** khách thường ra quyết định dựa trên ấn tượng nhanh (hình ảnh món, phản hồi, giá/ship rõ ràng).
+- **Tăng khả năng quay lại và giới thiệu:** khách hài lòng dễ mua lại và giới thiệu cho bạn bè.
 
-Đối với **Bánh Chuối Chiên QT**, việc xây dựng hình ảnh thương hiệu (ngon – sạch – làm thật), duy trì tương tác và tăng chuyển đổi sang đặt hàng qua inbox hoặc bình luận là nhu cầu thiết thực nhằm tạo tăng trưởng bền vững.
+### 2.1.3. Nhận diện thương hiệu trên nền tảng số
+Nhận diện thương hiệu trên nền tảng số (digital brand identity) là cách thương hiệu “xuất hiện” và “được nhớ” trong môi trường trực tuyến. Trên Facebook Fanpage, nhận diện thường thể hiện qua:
+- **Hệ thống hình ảnh:** avatar, cover, tone màu, bố cục ảnh/video, phong cách chụp/quay.
+- **Giọng điệu nội dung:** cách xưng hô, cách kể chuyện, mức độ gần gũi, cách trả lời bình luận/inbox.
+- **Thông tin và cấu trúc trang:** mô tả ngắn, địa chỉ/khu vực, giờ hoạt động, cách đặt hàng, highlight.
+- **Trải nghiệm tương tác:** tốc độ phản hồi, kịch bản tư vấn, cách xử lý phản hồi tiêu cực.
 
-### 1.1.3. Vấn đề marketing đặt ra
-Một số vấn đề thường gặp khi triển khai Facebook Marketing cho mô hình kinh doanh địa phương gồm:
-- Nội dung đăng tải chưa đều, thiếu **trụ nội dung** rõ ràng.
-- Hình ảnh và giọng điệu chưa thống nhất, gây khó khăn trong việc tạo nhận diện.
-- Chỉ số tiếp cận và tương tác có thể tăng nhưng **chưa thúc đẩy được hành động** (inbox/đặt hàng) do CTA chưa cụ thể hoặc quy trình phản hồi chưa tối ưu.
+Trong đề tài này, nhận diện số đóng vai trò nền tảng cho các hoạt động Facebook Marketing nhằm đưa khách đi theo lộ trình **Nhận diện → Tương tác → Chuyển đổi**.
 
-Vì vậy, dự án tập trung xây dựng chiến lược theo lộ trình: **Nhận diện → Tương tác → Chuyển đổi**; ưu tiên cải thiện khả năng tiếp cận và mức độ tin cậy trước, sau đó tối ưu hành vi đặt hàng.
+## 2.2. Tổng quan về Facebook Marketing
 
-### 1.1.4. Mục tiêu dự án
-**Mục tiêu tổng quát:** Nâng cao hiệu quả Facebook Marketing nhằm phát triển thương hiệu và hỗ trợ chuyển đổi đặt hàng cho **Bánh Chuối Chiên QT**.
+### 2.2.1. Khái niệm và đặc điểm
+Facebook Marketing là hoạt động sử dụng các công cụ và định dạng nội dung trên Facebook để đạt mục tiêu truyền thông/kinh doanh (nhận diện, tương tác, chuyển đổi). Facebook Marketing có thể bao gồm:
+- **Nội dung tự nhiên (organic):** đăng bài, ảnh, video, Reels; tối ưu Fanpage; tương tác cộng đồng.
+- **Quảng cáo trả phí (paid):** chạy quảng cáo tăng tiếp cận, tin nhắn hoặc chuyển đổi. Trong phạm vi đề tài, nội dung organic là trọng tâm; quảng cáo trả phí chỉ được đề cập khi có triển khai thực tế.
 
-**Mục tiêu cụ thể:**
-- **Mục tiêu thương hiệu:** Củng cố hình ảnh “Bánh Chuối Chiên QT” là lựa chọn đồ ăn vặt hấp dẫn, chất lượng và đáng tin cậy.
-- **Mục tiêu truyền thông:** Tăng độ phủ nội dung và mức độ tương tác trên Fanpage.
-- **Mục tiêu hành động:** Tăng số lượng khách hỏi/đặt hàng qua bình luận và inbox.
+Đặc điểm nổi bật khi áp dụng cho thương hiệu địa phương:
+- **Hành vi “xem nhanh – hỏi nhanh – chốt nhanh”:** khách thường ra quyết định trong thời gian ngắn.
+- **Tính trực quan cao:** nội dung “ngon mắt” (cận cảnh món, âm thanh chiên rán) có thể tạo kích thích mua.
+- **Chuyển đổi qua hội thoại:** nhiều đơn phát sinh từ inbox/bình luận hơn là website.
 
-Các chỉ tiêu (KPI) cụ thể được xác định và trình bày ở Chương 4, làm cơ sở đối chiếu kết quả đánh giá tại Chương 5.
+### 2.2.2. Vai trò của Fanpage trong hành trình khách hàng
+Fanpage có thể được xem như “cửa hàng số” của thương hiệu trên Facebook, hỗ trợ các điểm chạm trong hành trình khách hàng:
+1) **Nhận biết (Awareness):** khách nhìn thấy nội dung (Reels/ảnh).
+2) **Cân nhắc (Consideration):** khách xem trang, đọc mô tả, xem phản hồi.
+3) **Hành động (Action):** khách inbox/bình luận để hỏi giá, ship, combo.
+4) **Trải nghiệm & duy trì (Retention):** phản hồi nhanh, đóng gói tốt, nhắc mua lại.
 
-### 1.1.5. Phạm vi triển khai và đối tượng nghiên cứu
-- **Kênh triển khai chính:** Fanpage Facebook của thương hiệu **Bánh Chuối Chiên QT**.
-- **Phạm vi triển khai:** Tập trung tối ưu nội dung tự nhiên (organic) gồm bài viết/ảnh/video/Reels; đồng thời tối ưu thông tin Fanpage và quy trình tương tác (bình luận/inbox). Các nội dung liên quan đến quảng cáo trả phí được trình bày riêng ở Chương 4.
-- **Giai đoạn theo dõi:** Từ 01/01/2026 đến 16/04/2026.
-- **Nguồn số liệu:** Meta Business Suite/Insights trong giai đoạn theo dõi; kết hợp thống kê nội dung đăng tải trên Fanpage.
-- **Đối tượng nghiên cứu:** Hoạt động Facebook Marketing của Fanpage **Bánh Chuối Chiên QT** (nội dung đăng tải, mức độ tiếp cận, tương tác và tín hiệu chuyển đổi như tin nhắn/bình luận).
+Trong đề tài, Fanpage là kênh trung tâm để triển khai nội dung và đo lường hiệu quả thông qua Meta Business Suite/Insights.
 
-**Bảng 1.1. Tóm tắt phạm vi dự án và đối tượng nghiên cứu**
+### 2.2.3. Các định dạng nội dung phổ biến (bài viết, ảnh, video, Reels)
+Các định dạng nội dung phổ biến và cách ứng dụng trong bối cảnh thương hiệu địa phương:
+- **Bài viết chữ (text post):** thông báo, ưu đãi, giờ bán; cần rõ CTA.
+- **Ảnh:** món ăn, combo, bảng giá; nên đồng bộ tone màu/bố cục.
+- **Video ngắn:** quy trình làm, “cận cảnh chiên”, đóng gói; tăng cảm giác tin cậy.
+- **Reels:** định dạng ưu tiên phân phối; phù hợp nội dung “đã mắt” và bắt trend ở mức phù hợp.
 
-| Hạng mục | Nội dung |
-|---|---|
-| Kênh triển khai | Fanpage Facebook Bánh Chuối Chiên QT |
-| Trọng tâm triển khai | Nội dung organic + tối ưu Fanpage + tối ưu tương tác (bình luận/inbox) |
-| Giai đoạn theo dõi | 01/01/2026–16/04/2026 |
-| Nguồn dữ liệu chính | Meta Business Suite/Insights (CSV) |
-| Đơn vị phân tích | Bài viết/định dạng nội dung; tổng hợp theo giai đoạn |
-| Mục tiêu theo phễu | Nhận diện → Tương tác → Chuyển đổi |
+Nguyên tắc chung: nội dung cần đồng thời đạt **(1) hấp dẫn thị giác**, **(2) thông tin rõ ràng** (giá/ship/combo), và **(3) CTA cụ thể**.
 
-## 1.2. Giới thiệu đơn vị/cơ sở/doanh nghiệp
+## 2.3. Các mô hình áp dụng cho đề tài
 
-### 1.2.1. Thông tin chung
-- **Tên thương hiệu:** Bánh Chuối Chiên QT
-- **Lĩnh vực:** Kinh doanh đồ ăn vặt (sản phẩm chủ lực: bánh chuối chiên; có bán thêm khoai chiên)
-- **Hình thức kinh doanh:** Bán mang đi và giao hàng theo đơn đặt, phục vụ chủ yếu khách hàng trong khu vực.
-- **Kênh bán hàng/chăm sóc khách:** Fanpage Facebook (bình luận/inbox) là kênh chính; hỗ trợ xác nhận đơn và chăm sóc khách trong quá trình giao nhận.
+### 2.3.1. Mô hình STP (phân khúc, lựa chọn, định vị)
+STP là khung nền tảng giúp xác định “bán cho ai” và “định vị như thế nào”:
+- **Segmentation (Phân khúc):** chia khách hàng theo độ tuổi, nhu cầu, hành vi (học sinh/sinh viên, văn phòng, gia đình, v.v.).
+- **Targeting (Lựa chọn thị trường mục tiêu):** lựa chọn nhóm khách hàng phù hợp nhất với nguồn lực và mục tiêu của thương hiệu.
+- **Positioning (Định vị):** xác định hình ảnh mong muốn trong tâm trí khách hàng, chẳng hạn “giòn ngon – làm mới trong ngày” hoặc “vệ sinh – làm thật”.
 
-### 1.2.2. Điểm mạnh nội tại (nguồn lực)
-- Sản phẩm dễ quay/chụp, phù hợp định dạng video ngắn (cận cảnh chiên, thành phẩm, topping…). 
-- Mức giá dễ tiếp cận, phù hợp nhóm khách hàng địa phương.
-- Có thể triển khai nội dung “hậu trường” (quy trình chế biến), giúp tăng niềm tin.
+Áp dụng vào Fanpage: STP giúp quyết định trụ nội dung, thông điệp, ngôn ngữ và định dạng ưu tiên.
 
-### 1.2.3. Định hướng phát triển thương hiệu trên Facebook
-Định hướng nội dung và hình ảnh của thương hiệu tập trung vào:
-- **Chất lượng và độ tin cậy:** nguyên liệu, quy trình, vệ sinh.
-- **Cảm xúc và trải nghiệm:** giòn – thơm – nóng – tiện.
-- **Tính gần gũi địa phương:** giao nhanh, phục vụ thân thiện.
+### 2.3.2. Content Funnel hoặc AIDA trong truyền thông nội dung
+**AIDA** mô tả tiến trình tác động của nội dung đến khách hàng:
+- **Attention:** thu hút chú ý (hook đầu video, ảnh cận cảnh hấp dẫn).
+- **Interest:** tạo quan tâm (mô tả ngắn gọn: giòn, thơm, topping).
+- **Desire:** tăng mong muốn (feedback, cam kết vệ sinh, ưu đãi combo).
+- **Action:** thúc đẩy hành động (CTA: “Inbox đặt ngay”, “Comment ‘QT’ để nhận menu”).
 
-## 1.3. Khách hàng mục tiêu
+**Content Funnel** thường được triển khai theo 3 tầng nội dung:
+- **Tầng nhận diện (TOFU):** Reels/clip cận cảnh món, hậu trường.
+- **Tầng cân nhắc (MOFU):** bài giải đáp giá/ship, combo, quy trình làm, feedback.
+- **Tầng chuyển đổi (BOFU):** nội dung chốt đơn như ưu đãi giới hạn thời gian, nhắc đặt, kịch bản inbox.
 
-### 1.3.1. Phân khúc khách hàng mục tiêu (định hướng)
-Khách hàng mục tiêu của thương hiệu trên Facebook có thể chia theo các nhóm sau:
-- **Nhóm 1 – Học sinh/sinh viên:** thích đồ ăn vặt, nhạy với khuyến mãi, mua theo nhóm.
-- **Nhóm 2 – Nhân viên văn phòng:** ưu tiên tiện lợi, giao nhanh, đặt qua inbox vào giờ nghỉ.
-- **Nhóm 3 – Nội trợ/khách mua cho gia đình:** quan tâm vệ sinh, chất lượng, khẩu phần.
+Trong đề tài, phễu nội dung được dùng để xây dựng kế hoạch đăng tải theo lộ trình **Nhận diện → Tương tác → Chuyển đổi**.
 
-Số liệu về “Đối tượng” (độ tuổi và khu vực) trong Meta Insights được sử dụng để minh họa ở Chương 4 và phân tích sâu hơn ở Chương 5.
+### 2.3.3. CTA và tối ưu chuyển đổi qua inbox/bình luận
+CTA (Call To Action) là lời kêu gọi hành động. Với thương hiệu địa phương, CTA hiệu quả cần:
+- **Cụ thể:** “Inbox để nhận menu + phí ship”, thay vì “ủng hộ shop nhé”.
+- **Giảm ma sát:** cung cấp sẵn thông tin cơ bản (giá/combo/khu vực giao/giờ nhận).
+- **Tạo động lực:** ưu đãi theo combo, freeship theo khu vực, quà tặng nhỏ.
 
-### 1.3.2. Chân dung khách hàng (persona tham khảo)
-**Persona A – “Khách đặt nhanh”**
-- Độ tuổi: 18–28
-- Nhu cầu: đồ ăn vặt ngon, giao nhanh, giá hợp lý
-- Hành vi: xem video/Reels → để lại bình luận hoặc inbox hỏi giá/ship
-- Yếu tố tác động: hình ảnh cận cảnh, review/feedback, ưu đãi theo combo
+Tối ưu chuyển đổi qua inbox/bình luận thường dựa trên:
+- **Tốc độ phản hồi:** phản hồi càng nhanh, xác suất chốt càng cao.
+- **Kịch bản tư vấn:** hỏi nhu cầu → đề xuất combo → xác nhận địa chỉ/giờ nhận.
+- **Chuẩn hóa thông tin:** bảng giá, combo, phí ship, thời gian bán, cách đặt hàng.
 
-**Persona B – “Khách tin chất lượng”**
-- Độ tuổi: 25–40
-- Nhu cầu: an toàn vệ sinh, rõ nguồn gốc, phù hợp cho gia đình
-- Hành vi: xem bài viết/ảnh → đọc mô tả → hỏi nguyên liệu/độ ngọt/khẩu phần
-- Yếu tố tác động: quy trình làm, cam kết vệ sinh, đóng gói, phản hồi nhanh
+**Bảng 2.1. Tóm tắt mô hình áp dụng trong đề tài**
 
-**Bảng 1.2. Tóm tắt chân dung khách hàng mục tiêu (persona tham khảo)**
+| Mô hình/khái niệm | Mục đích | Áp dụng vào Facebook Marketing cho thương hiệu địa phương |
+|---|---|---|
+| STP | Xác định khách hàng mục tiêu và định vị | Chọn nhóm khách phù hợp, định hướng thông điệp “giòn ngon – vệ sinh – tiện” |
+| AIDA / Content Funnel | Thiết kế nội dung theo hành trình tác động | TOFU (Reels/clip) → MOFU (giá/ship/feedback) → BOFU (ưu đãi, chốt đơn) |
+| CTA | Tăng tỷ lệ hành động | CTA cụ thể, giảm ma sát bằng thông tin sẵn và kịch bản inbox |
 
-| Persona | Nhu cầu chính | Hành vi trên Facebook | Yếu tố tác động |
+**Hình 2.1. Minh họa phễu nội dung TOFU–MOFU–BOFU áp dụng cho Fanpage**
+
+![Hình 2.1. Minh họa phễu nội dung TOFU–MOFU–BOFU](img/hinh2_1_content_funnel.png)
+
+## 2.4. Hệ thống chỉ số đánh giá hiệu quả Facebook
+
+Các chỉ số trong Meta Business Suite/Insights có thể được nhóm theo mục tiêu.
+
+**Bảng 2.2. Nhóm chỉ số theo tầng phễu và ý nghĩa sử dụng**
+
+| Tầng mục tiêu | Nhóm chỉ số | Ví dụ chỉ số | Ý nghĩa |
 |---|---|---|---|
-| Persona A – “Khách đặt nhanh” | Ngon, giao nhanh, giá hợp lý | Xem video/Reels → bình luận/inbox hỏi nhanh | Hình ảnh cận cảnh, feedback, ưu đãi combo |
-| Persona B – “Khách tin chất lượng” | Vệ sinh, rõ nguồn gốc, phù hợp gia đình | Xem bài/ảnh → đọc mô tả → hỏi nguyên liệu/khẩu phần | Quy trình làm, cam kết vệ sinh, đóng gói, phản hồi nhanh |
+| Nhận diện | Phân phối & xem | Reach, Impressions, Views/Video views | Đánh giá mức độ “phủ” và khả năng thu hút lượt xem |
+| Tương tác | Phản hồi nội dung | Engagements; Reactions/Comments/Shares | Đo mức độ quan tâm và phản hồi của người đã tiếp cận |
+| Chuyển đổi | Hành động | Clicks, Link clicks; (nếu có) Messages | Chỉ báo nhu cầu và hành động tiến gần đặt hàng |
+| Chuẩn hóa | Tỷ lệ | $ER = \frac{Engagements}{Reach}$; $CTR = \frac{Clicks}{Reach}$ | So sánh công bằng giữa bài có reach khác nhau |
 
-### 1.3.3. Insight và rào cản mua hàng
-- **Insight thường gặp:** “Muốn món ngon và ‘đã mắt’ khi xem; thấy nội dung hấp dẫn thì hỏi; phản hồi chậm dễ bỏ qua.”
-- **Rào cản:** chưa rõ giá/size/combo; thiếu thông tin giao hàng; CTA chưa đủ rõ; thiếu bằng chứng xã hội (feedback).
+### 2.4.1. Chỉ số nhận diện (views, reach, người xem)
+- **Reach (lượt tiếp cận):** số người dùng duy nhất nhìn thấy nội dung.
+- **Impressions (lượt hiển thị):** số lần nội dung được hiển thị (một người có thể thấy nhiều lần).
+- **Views/Video views:** lượt xem video/Reels (tùy định nghĩa: 3 giây, 1 phút, ThruPlay).
 
-## 1.4. Sản phẩm/dịch vụ áp dụng
+Ý nghĩa: phản ánh khả năng phân phối nội dung và mức độ “phủ” của Fanpage trong giai đoạn nhận diện.
 
-### 1.4.1. Mô tả sản phẩm
-- **Sản phẩm chính:** Bánh chuối chiên; ngoài ra thương hiệu có bán thêm khoai chiên. Trong cơ cấu bán, bánh chuối chiên chiếm khoảng 70% và khoai chiên chiếm khoảng 30%.
-- **Đặc điểm:** thành phẩm giòn và thơm, được chế biến và bán trong ngày.
-- **Hình thức bán:** Bán theo phần hoặc theo combo; thực đơn linh hoạt theo thời điểm.
-- **Kênh phục vụ:** Bán mang đi và giao hàng trong khu vực.
+### 2.4.2. Chỉ số tương tác (engagement, phản hồi)
+- **Engagements (tương tác):** gồm like, comment, share, lưu (save), click, nhấp liên kết, v.v. tùy báo cáo.
+- **Reactions/Comments/Shares:** các thành phần tương tác quan trọng.
+- **Engagement rate (tỷ lệ tương tác):** có thể tính theo nhiều cách; một cách đơn giản:
 
-### 1.4.2. Lợi thế cạnh tranh (USP)
-Các lợi thế cạnh tranh của sản phẩm được xác định theo những điểm nổi bật sau:
-- **Giòn ngon – làm mới trong ngày**
-- **Nguyên liệu rõ ràng, đảm bảo vệ sinh**
-- **Đóng gói gọn, giao nhanh trong khu vực**
-- **Giá hợp lý, ưu đãi theo combo**
+$$
+ER = \frac{Engagements}{Reach} \times 100\%
+$$
 
-### 1.4.3. Giá trị thương hiệu cần truyền thông
-- **Tin cậy:** minh bạch quy trình, hình ảnh thật.
-- **Ngon và hấp dẫn:** ưu tiên nội dung cận cảnh; đối với video, chú trọng ánh sáng và âm thanh để tăng trải nghiệm.
-- **Tiện lợi:** hướng dẫn đặt hàng rõ ràng; đặt nhanh, nhận nhanh.
+Ý nghĩa: phản ánh mức độ “hấp dẫn” của nội dung với nhóm đã tiếp cận.
 
-### 1.4.4. Hành trình khách hàng (tóm tắt)
-1) **Tiếp xúc nội dung** (Reels/ảnh) → 2) **Đánh giá nhanh** (đọc caption, xem phản hồi) → 3) **Hỏi thông tin** (giá, ship, combo) → 4) **Đặt hàng** (inbox/bình luận) → 5) **Nhận hàng và phản hồi** (tạo nội dung UGC/feedback cho bài sau).
+### 2.4.3. Chỉ số chuyển đổi (tin nhắn, đơn hàng, tỉ lệ chốt)
+Trong bối cảnh Fanpage là kênh bán hàng qua hội thoại, các chỉ số chuyển đổi thường gồm:
+- **Messages/Inbox initiated:** số cuộc hội thoại bắt đầu từ nội dung hoặc từ trang.
+- **Comment intent:** bình luận thể hiện nhu cầu (hỏi giá, hỏi ship, đặt combo).
+- **Tỷ lệ chuyển đổi hội thoại:** trong trường hợp có dữ liệu nội bộ (sổ đơn), có thể ước tính:
 
-**Hình 1.1. Minh họa hành trình khách hàng từ nội dung đến đặt hàng**
+$$
+CR_{msg\to\order} = \frac{\text{Số đơn}}{\text{Số tin nhắn}} \times 100\%
+$$
 
-![Hình 1.1. Minh họa hành trình khách hàng từ nội dung đến đặt hàng](img/hinh1_1_hanh_trinh_khach_hang.png)
+Chỉ số “đơn hàng” thường không có sẵn trong Meta Insights khi Fanpage không tích hợp hệ thống bán. Trong trường hợp báo cáo sử dụng chỉ số này, số liệu được tổng hợp từ ghi nhận vận hành thực tế và dùng để đối chiếu xu hướng chuyển đổi.
 
-## 1.5. Tiểu kết chương
-Chương 1 đã giới thiệu tổng quan dự án, bối cảnh triển khai Facebook Marketing cho thương hiệu **Bánh Chuối Chiên QT**, đồng thời xác định vấn đề marketing, mục tiêu, phạm vi triển khai, khách hàng mục tiêu và đặc điểm sản phẩm/dịch vụ. Trên cơ sở đó, Chương 2 sẽ trình bày cơ sở lý thuyết liên quan làm nền tảng xây dựng chiến lược và kế hoạch triển khai ở các chương tiếp theo.
+## 2.5. Quy trình xây dựng chiến lược Facebook Marketing cho thương hiệu địa phương
+
+Quy trình đề xuất cho đề tài gồm 4 bước, tương ứng với nội dung triển khai ở các chương sau:
+
+### 2.5.1. Phân tích hiện trạng Fanpage
+Nội dung phân tích hiện trạng thường bao gồm:
+- **Tối ưu trang:** thông tin giới thiệu, ảnh đại diện/cover, nút hành động, cách đặt hàng.
+- **Nội dung đã đăng:** tần suất, định dạng, chất lượng hình ảnh/video, trụ nội dung.
+- **Chỉ số tổng quan:** reach, engagement, views, click, tin nhắn theo giai đoạn.
+- **Điểm mạnh/yếu:** nội dung nào hiệu quả, nội dung nào kém, vấn đề CTA, phản hồi.
+
+### 2.5.2. Xác định mục tiêu và KPI
+Mục tiêu nên theo nguyên tắc SMART (cụ thể, đo lường được, khả thi, liên quan, có thời hạn). KPI có thể chia theo tầng phễu:
+- **Nhận diện:** reach, video views.
+- **Tương tác:** engagements, ER.
+- **Chuyển đổi:** tin nhắn, bình luận có ý định mua, số đơn chốt trong trường hợp có ghi nhận từ thực tế.
+
+### 2.5.3. Xây dựng trụ nội dung và lịch đăng
+Trụ nội dung (content pillars) phù hợp với thương hiệu đồ ăn vặt gồm:
+- **Sản phẩm/Combo:** cận cảnh món, giá/combo, ưu đãi.
+- **Quy trình – vệ sinh – hậu trường:** tạo tin cậy.
+- **Feedback/UGC:** bằng chứng xã hội.
+- **Tips/giải đáp:** ship, giờ bán, cách bảo quản/ăn ngon.
+
+Lịch đăng cần đảm bảo:
+- **Tính đều:** duy trì nhịp đăng phù hợp nguồn lực.
+- **Đa dạng định dạng:** ưu tiên Reels/video ngắn kết hợp ảnh/bài viết.
+- **CTA nhất quán:** mỗi nội dung đều có mục tiêu hành động rõ.
+
+### 2.5.4. Triển khai, đo lường và tối ưu
+Trong quá trình triển khai, cần:
+- Theo dõi chỉ số theo tuần/tháng bằng Meta Insights.
+- So sánh nội dung theo định dạng (Reels/ảnh/bài) để rút ra bài học.
+- Tối ưu CTA và kịch bản inbox dựa trên câu hỏi lặp lại của khách.
+- Thử nghiệm (A/B ở mức đơn giản): hook video, caption ngắn/dài, khung giờ đăng.
+
+## 2.6. Tiểu kết chương
+Chương 2 đã hệ thống hóa cơ sở lý luận về thương hiệu, tổng quan Facebook Marketing và các mô hình áp dụng (STP, AIDA/Content Funnel, CTA) làm nền tảng triển khai chiến lược. Đồng thời, chương đã đề xuất hệ thống chỉ số đánh giá hiệu quả và quy trình xây dựng chiến lược Facebook Marketing phù hợp với thương hiệu địa phương. Trên cơ sở đó, Chương 3 sẽ trình bày phương pháp nghiên cứu và cách thu thập – xử lý dữ liệu phục vụ phân tích thực trạng và đánh giá kết quả.
